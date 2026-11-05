@@ -339,6 +339,7 @@
       backdrop-filter: blur(22px);
     }
     .modal[hidden] { display: none; }
+    .modal:not([hidden]) { animation: window-in .16s ease-out; }
     .modal-header {
       min-height: 48px;
       display: flex;
@@ -426,6 +427,7 @@
       font: 1.3rem var(--serif);
     }
     .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .character-detail .portrait { width: 110px; height: 110px; }
     .character-card strong { display: block; font: .95rem var(--serif); }
     .character-card small { display: block; margin-top: 4px; color: var(--muted); font-size: .62rem; line-height: 1.4; }
 
@@ -448,6 +450,7 @@
     .about-copy { max-width: 60ch; color: #e9e4f8; font: 1.05rem/1.6 var(--serif); }
     .fact-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
     .fact { border: 1px solid var(--line); border-radius: 99px; padding: 6px 9px; color: var(--aqua); font-size: .61rem; }
+    .character-detail { display: grid; grid-template-columns: 110px minmax(0, 1fr); align-items: center; gap: 16px; margin-top: 14px; }
     .contact-box { border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: linear-gradient(135deg, #3d385d, #242440); }
     .contact-box p { margin-top: 0; color: var(--muted); font-size: .78rem; }
     .contact-box a { display: inline-block; margin: 5px 12px 3px 0; }
@@ -713,6 +716,7 @@
     const playerMessage = document.querySelector("#playerMessage");
     const panelButtons = Array.from(document.querySelectorAll("[data-panel]"));
     let activePanel = "";
+    let activeEpisode = "05";
     let soundEnabled = false;
     let audioContext;
 
@@ -793,7 +797,7 @@
           episodes.map(function (episode) {
             const linked = Boolean(episode.videoId);
             const state = linked ? "Play episode" : "Video link to be added";
-            return '<button class="episode-card" type="button" data-episode="' + episode.number + '" aria-current="' + String(episode.number === "05") + '">' +
+            return '<button class="episode-card" type="button" data-episode="' + episode.number + '" aria-current="' + String(episode.number === activeEpisode) + '">' +
               '<span class="episode-number">' + episode.number + '</span>' +
               '<span><strong>' + episode.title + '</strong><small>' + state + '</small></span>' +
               '</button>';
@@ -852,8 +856,8 @@
       modalHeading.textContent = character.name;
       modalBody.innerHTML =
         '<button class="social-link" type="button" id="backToCharacters">← All characters</button>' +
-        '<div style="display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center;gap:16px;margin-top:14px">' +
-        '<span style="width:110px;height:110px">' + portraitMarkup(character) + '</span>' +
+        '<div class="character-detail">' +
+        portraitMarkup(character).replace('class="portrait"', 'class="portrait character-portrait"') +
         '<div><h2 class="modal-title">' + character.name + '</h2><p class="about-copy">' + character.bio + '</p></div></div>' +
         '<p class="modal-note">To add the finished character art, edit the image field for ' + character.name + ' in the character list near the top of the script.</p>';
       modalBody.querySelector("#backToCharacters").addEventListener("click", function () { renderPanel("characters"); });
@@ -869,6 +873,7 @@
         return;
       }
 
+      activeEpisode = episode.number;
       videoFrame.src = "https://www.youtube-nocookie.com/embed/" + episode.videoId + "?rel=0";
       videoFrame.title = "Seafoam Episode " + Number(episode.number) + " — " + episode.title;
       playerLabel.textContent = "Episode " + episode.number + " · " + episode.title;
