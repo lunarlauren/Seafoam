@@ -14,13 +14,17 @@
       --night: #10143a;
       --deep: #172151;
       --panel: rgba(37, 43, 94, .88);
-      --line: rgba(207, 247, 255, .42);
+      --line: rgba(120, 226, 255, .32);
       --text: #fffaff;
       --muted: #d8d8f4;
       --aqua: #89fff2;
       --pink: #ffb0ee;
       --violet: #c6a5ff;
       --gold: #fff0ad;
+      --gloss-catch: #ffffff;
+      --gloss-catch-aqua: #9afff2;
+      --gloss-edge: rgba(119, 247, 239, .76);
+      --gloss-shadow: rgba(40, 225, 226, .24);
       --serif: Georgia, "Times New Roman", serif;
       --sans: "Trebuchet MS", Arial, sans-serif;
     }
@@ -125,12 +129,10 @@
       animation: pulse 2s ease-in-out infinite;
     }
     .sound-toggle {
-      border: 1px solid #ddffffa8;
       border-radius: 999px;
       padding: 7px 12px;
       color: var(--text);
-      background: linear-gradient(145deg, #70e9e438, #70e9e410 42%, #88e9ff20);
-      box-shadow: inset 0 1px 2px #70e9e4ad, inset 0 -3px 6px #201f615c, 0 0 16px #8bf4ff22;
+      background: linear-gradient(180deg, #ffffff 0 1px, #9afff2 1px 3px, transparent 20%), linear-gradient(145deg, #355f88, #25285f);
       font-size: .62rem;
     }
     .sound-toggle[aria-pressed="true"] { color: var(--aqua); border-color: #9af7e877; }
@@ -324,16 +326,13 @@
     .episode-info h1 { margin: 0; font: clamp(1.2rem, 2.3vw, 1.8rem)/1.08 var(--serif); }
     .episode-info p:last-child { margin: 5px 0 0; color: var(--muted); font-size: .72rem; }
     .watch-button {
-      position: relative;
       flex: 0 0 auto;
       padding: 10px 16px;
-      border: 1px solid #fff5ff;
       border-radius: 999px;
       color: white;
       background:
-        radial-gradient(ellipse at 30% 0%, #70e9e490, transparent 42%),
-        linear-gradient(120deg, #d57aff, #856bff 52%, #34d7d3);
-      box-shadow: inset 0 2px 2px #70e9e4cc, inset 0 -5px 8px #3b2d93aa, 0 4px 0 #473e9b, 0 0 19px #d394ff70;
+        linear-gradient(180deg, #ffffff 0 1px, #9afff2 1px 3px, transparent 14%),
+        linear-gradient(120deg, #c459e8, #7655e9 52%, #21bfc7);
       font-size: .62rem;
       font-weight: 700;
       letter-spacing: .08em;
@@ -348,14 +347,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      border: 1px solid #72e9e599;
       border-radius: 22px;
       padding: 9px 11px;
       color: var(--text);
       background:
-        radial-gradient(ellipse at 20% 0%, #70e9e435, transparent 45%),
-        linear-gradient(145deg, #69619f, #35386e 52%, #365d83);
-      box-shadow: inset 0 2px 0 #70e9e4b8, inset 0 -5px 9px #15163e80, 0 4px 0 #171a4f, 0 8px 18px #080b3152, 0 0 15px #85f6ff25;
+        linear-gradient(180deg, #ffffff 0 1px, #8df6ed 1px 3px, transparent 15%),
+        linear-gradient(145deg, #625994, #393a75 54%, #315d80);
       text-align: left;
       transition: transform .18s ease, border-color .18s ease, filter .18s ease, box-shadow .18s ease;
     }
@@ -634,13 +631,11 @@
         align-items: center;
         justify-content: center;
         gap: 2px;
-        border: 1px solid #82e9e6f0;
         border-radius: 17px;
         color: var(--text);
         background:
-          radial-gradient(ellipse at 28% 0%, #70e9e48c, transparent 48%),
-          linear-gradient(145deg, #8a79d9, #536fbd 58%, #36b8be);
-        box-shadow: inset 0 2px 2px #70e9e4d1, inset 0 -4px 7px #201c69a1, 0 3px 0 #24215c, 0 0 12px #9bfaff3a;
+          linear-gradient(180deg, #ffffff 0 1px, #93fff2 1px 3px, transparent 16%),
+          linear-gradient(145deg, #7867ca, #526cba 58%, #319eae);
         font-size: .55rem;
       }
       .mobile-nav button[aria-pressed="true"] { border-color: #9af7e8a0; box-shadow: 0 0 13px #9af7e81f; }
@@ -671,7 +666,28 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       }
-  </style>
+  
+    /* Reusable glossy button finish: one sharp catch-light and a compact colored shadow. */
+    .gloss-button {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-color: var(--gloss-edge);
+      box-shadow: inset 0 1px 0 var(--gloss-catch), inset 0 -3px 0 rgba(18, 23, 76, .58), 0 3px 0 rgba(15, 20, 65, .72), 0 5px 10px var(--gloss-shadow);
+    }
+    .gloss-button::before {
+      position: absolute;
+      z-index: 1;
+      top: 1px;
+      right: 9%;
+      left: 9%;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--gloss-catch-aqua) 16%, var(--gloss-catch) 42% 58%, var(--gloss-catch-aqua) 84%, transparent);
+      content: "";
+      pointer-events: none;
+    }
+</style>
 </head>
 <body>
   <div class="shell">
@@ -682,7 +698,7 @@
       </button>
       <div class="top-actions">
         <span class="status"><i class="status-dot"></i>Original animated series</span>
-        <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" title="Turn interface sounds on or off">Sound: off</button>
+        <button class="sound-toggle gloss-button" id="soundToggle" type="button" aria-pressed="false" title="Turn interface sounds on or off">Sound: off</button>
       </div>
     </header>
 
@@ -695,7 +711,7 @@
             <span class="series-caption">A story beneath the surface · About</span>
           </button>
         </section>
-        <button class="glass cast-card" type="button" data-panel="characters" aria-label="Open character profiles">
+        <button class="glass cast-card gloss-button" type="button" data-panel="characters" aria-label="Open character profiles">
           <span class="section-label">Cast signal</span>
           <span class="cast-icons" aria-label="Seven characters">
             <span class="cast-icon" style="--icon-color:#91efdc">A</span><span class="cast-icon" style="--icon-color:#829fff">Y</span><span class="cast-icon" style="--icon-color:#c5a1f7">J</span><span class="cast-icon" style="--icon-color:#ff9fc9">C</span><span class="cast-icon" style="--icon-color:#84dff1">A</span><span class="cast-icon" style="--icon-color:#b5a1ff">N</span><span class="cast-icon" style="--icon-color:#f2cf83">L</span>
@@ -720,7 +736,7 @@
             <h1 id="episodeTitle">Seafoam — the series room</h1>
             <p id="episodeDescription">Alex questions her alliances while answers may be buried in her unconscious.</p>
           </div>
-          <a class="watch-button" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">More videos ↗</a>
+          <a class="watch-button gloss-button" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">More videos ↗</a>
         </section>
         <section class="companion" aria-label="Seafoam companion">
           <span class="companion-face" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4c-6 12-9 19-9 25a9 9 0 0 0 18 0c0-6-3-13-9-25Z" fill="currentColor" fill-opacity=".5" stroke="currentColor"/><circle cx="16.5" cy="22" r="1.2" fill="white"/><circle cx="23.5" cy="22" r="1.2" fill="white"/><path d="M16 27q4 3 8 0" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg></span>
@@ -730,25 +746,25 @@
       </section>
 
       <nav class="rail nav-rail" aria-label="Explore Seafoam">
-        <button class="nav-button" type="button" data-panel="episodes" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg></span><span><strong>Episodes</strong><small>Watch & explore</small></span></button>
-        <button class="nav-button" type="button" data-panel="characters" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span><strong>Characters</strong><small>Meet the cast</small></span></button>
-        <button class="nav-button" type="button" data-panel="social" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Social</strong><small>Instagram gallery</small></span></button>
-        <button class="nav-button" type="button" data-panel="contact" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Contact</strong><small>Follow the project</small></span></button>
+        <button class="nav-button gloss-button" type="button" data-panel="episodes" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg></span><span><strong>Episodes</strong><small>Watch & explore</small></span></button>
+        <button class="nav-button gloss-button" type="button" data-panel="characters" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span><strong>Characters</strong><small>Meet the cast</small></span></button>
+        <button class="nav-button gloss-button" type="button" data-panel="social" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Social</strong><small>Instagram gallery</small></span></button>
+        <button class="nav-button gloss-button" type="button" data-panel="contact" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Contact</strong><small>Follow the project</small></span></button>
         <p class="nav-credit">Created by Lauren Leven<br>Independent animated series</p>
       </nav>
     </main>
 
     <nav class="mobile-nav" aria-label="Seafoam navigation">
-      <button type="button" data-panel="episodes" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg>Episodes</button>
-      <button type="button" data-panel="characters" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Cast</button>
-      <button type="button" data-panel="social" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg>Social</button>
-      <button type="button" data-panel="contact" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg>Contact</button>
+      <button class="gloss-button" type="button" data-panel="episodes" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg>Episodes</button>
+      <button class="gloss-button" type="button" data-panel="characters" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Cast</button>
+      <button class="gloss-button" type="button" data-panel="social" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg>Social</button>
+      <button class="gloss-button" type="button" data-panel="contact" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg>Contact</button>
     </nav>
 
     <section class="modal" id="infoModal" role="dialog" aria-modal="false" aria-labelledby="modalHeading" hidden>
       <header class="modal-header" id="modalHandle">
         <span class="modal-heading"><span class="drag-mark" aria-hidden="true">⋮⋮</span><span id="modalHeading">Seafoam information</span></span>
-        <button class="modal-close" id="closeModal" type="button" aria-label="Close information window">×</button>
+        <button class="modal-close gloss-button" id="closeModal" type="button" aria-label="Close information window">×</button>
       </header>
       <div class="modal-body" id="modalBody"></div>
     </section>
@@ -875,7 +891,7 @@
           episodes.map(function (episode) {
             const linked = Boolean(episode.videoId);
             const state = linked ? "Play episode" : "Video link to be added";
-            return '<button class="episode-card" type="button" data-episode="' + episode.number + '" aria-current="' + String(episode.number === activeEpisode) + '">' +
+            return '<button class="episode-card gloss-button" type="button" data-episode="' + episode.number + '" aria-current="' + String(episode.number === activeEpisode) + '">' +
               '<span class="episode-number">' + episode.number + '</span>' +
               '<span><strong>' + episode.title + '</strong><small>' + state + '</small></span>' +
               '</button>';
@@ -892,7 +908,7 @@
           '<p class="modal-lede">Tap a profile to open its description. Portraits are ready for your character art.</p>' +
           '<div class="character-grid">' +
           characters.map(function (character, index) {
-            return '<button class="character-card" type="button" data-character="' + index + '">' +
+            return '<button class="character-card gloss-button" type="button" data-character="' + index + '">' +
               portraitMarkup(character) +
               '<span><strong>' + character.name + '</strong><small>Open character profile ↗</small></span>' +
               '</button>';
