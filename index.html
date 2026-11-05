@@ -220,7 +220,7 @@
       margin: 0 auto;
       padding: clamp(28px, 8svh, 72px) 20px 24px;
       display: grid;
-      grid-template-columns: 205px minmax(0, 1fr) 190px;
+      grid-template-columns: 220px minmax(0, 1fr) 190px;
       align-items: stretch;
       align-content: start;
       gap: 18px;
@@ -229,6 +229,7 @@
     .nav-rail { align-self:stretch; padding-top:0; }
     .nav-rail { align-self: stretch; padding-top: 0; }
     .left-rail { display:grid; height:100%; min-height:0; grid-template-rows:minmax(0,1fr) auto auto; }
+    .left-rail > * { width:100%; min-width:0; }
     .glass {
       border: 1px solid rgba(147, 200, 255, .54);
       border-radius: 4px;
@@ -254,7 +255,7 @@
         linear-gradient(145deg, rgba(17,69,119,.42), rgba(28,42,101,.52) 52%, rgba(8,25,61,.62));
       box-shadow: inset 0 2px 0 rgba(255,255,255,.46), inset 0 -8px 16px #15134488, 0 8px 18px #080b3155;
     }
-    .series-card button { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:0; padding:14px 8px; background:none; cursor:pointer; transition:transform .3s ease, filter .3s ease; }
+    .series-card button { width:100%; min-width:0; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:0; padding:14px 8px; background:none; cursor:pointer; transition:transform .3s ease, filter .3s ease; }
     .series-card button:hover { transform:translateY(-2px); filter:brightness(1.08); }
     .series-card:has(button:hover) { box-shadow:0 14px 32px rgba(29,111,205,.22) !important; }
     .large-orb {
@@ -432,7 +433,7 @@
     }
     .watch-button:hover { filter: brightness(1.05); transform: translateY(0); }
 
-    .nav-rail { display: flex; flex-direction: column; gap: 9px; align-self: stretch; padding-top: 4px; }
+    .nav-rail { display: flex; flex-direction: column; gap: 9px; align-self: stretch; padding-top: 0; }
     .nav-button {
       --button-tint: var(--accent, var(--aqua));
       min-height: 60px;
@@ -956,7 +957,7 @@
 
     /* Spacing scale keeps the page rhythm consistent across breakpoints. */
     :root { --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; }
-    .layout { gap:var(--space-4); }
+    .layout { gap:var(--space-4); grid-template-columns:minmax(0, 220px) minmax(0, 1fr) minmax(0, 190px); }
     .rail { gap:var(--space-3); }
     .stage { gap:var(--space-3); }
     .episode-info { padding:var(--space-3) var(--space-4); }
