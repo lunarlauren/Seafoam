@@ -880,6 +880,20 @@
     .nav-button:active, .episode-card:active, .character-card:active,
     .poster-button:active, .mobile-nav button:active { transform:scale(.985); }
 
+
+    /* Spacing scale keeps the page rhythm consistent across breakpoints. */
+    :root { --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; }
+    .layout { gap:var(--space-4); }
+    .rail { gap:var(--space-3); }
+    .stage { gap:var(--space-3); }
+    .episode-info { padding:var(--space-3) var(--space-4); }
+    @media (max-width:720px) {
+      .layout { gap:var(--space-3); padding:var(--space-3) 10px; }
+      .stage { gap:var(--space-2); }
+      .episode-info { padding:var(--space-3); }
+      .mobile-laurel { margin:var(--space-3) 0 16px; }
+      .mobile-nav { gap:var(--space-2); padding:var(--space-2); }
+    }
 </style>
 </head>
 <body>
