@@ -615,11 +615,11 @@
       .player { aspect-ratio: 16 / 10; max-height: 40svh; border-radius: 4px; }
       .player-label { display:none; }
       .player-message { bottom: 8px; font-size: .58rem; }
-      .episode-info { min-height: 68px; gap: 7px; padding: 9px 10px; }
+      .episode-info { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px; padding:11px 12px; }
       .eyebrow { margin-bottom: 3px; font-size: .51rem; }
-      .episode-info h1 { font-size: 1.12rem; }
+      .episode-info h1 { font-size: 1.08rem; line-height:1.15; }
       .episode-info p:last-child { margin-top: 3px; font-size: .6rem; }
-      .watch-button { padding: 7px 8px; font-size: .52rem; }
+      .watch-button { max-width:100px; white-space:normal; text-align:center; padding:7px 8px; font-size:.52rem; }
       .companion {
         display: flex;
         align-items: center;
@@ -706,7 +706,7 @@
       .modal-lede { margin: 5px 0 11px; font-size: .68rem; }
       .episode-list, .character-grid { grid-template-columns: 1fr; }
       .gallery-grid { gap: 6px; }
-      .footer { position: relative; right: auto; bottom: auto; left: auto; padding: 0 18px 90px; }
+      .footer { position:relative; right:auto; bottom:auto; left:auto; margin-top:20px; padding:0 18px 86px; font-size:.62rem; }
       }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
