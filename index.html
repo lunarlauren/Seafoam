@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07142c">
+  <meta name="author" content="Lauren Leven">
   <meta name="description" content="Seafoam is Lauren Leven’s hand-drawn sci-fantasy animated web series. Watch episodes, meet the cast, and explore an original story about a crew caught in a strange experiment.">
   <link rel="canonical" href="https://seafoam.bertinoln.workers.dev/">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -18,7 +19,9 @@
   <meta property="og:title" content="Seafoam — an animated sci-fantasy series">
   <meta property="og:description" content="A story beneath the surface. Watch Seafoam, meet the cast, and explore the world of the series.">
   <meta property="og:image" content="https://seafoam.bertinoln.workers.dev/best%20poster%20square%20%281%29.png">
+  <meta property="og:image:alt" content="Seafoam, an original hand-drawn sci-fantasy animated series by Lauren Leven">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="Seafoam, an original hand-drawn sci-fantasy animated series by Lauren Leven">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%230b1d42'/%3E%3Cpath d='M32 10c-7 14-11 23-11 31a11 11 0 0 0 22 0c0-8-4-17-11-31Z' fill='%2377dfe8' stroke='%23a8cfff' stroke-width='2'/%3E%3C/svg%3E">
   <title>Seafoam | Hand-Drawn Sci-Fantasy Animated Series</title>
   <script type="application/ld+json">
@@ -957,7 +960,7 @@
         SEAFOAM
       </button>
       <div class="top-actions">
-        <span class="status"><i class="status-dot"></i>Original animated series</span>
+        <span class="status"><i class="status-dot"></i>Hand-drawn sci-fantasy</span>
         <button class="sound-toggle gloss-button" id="soundToggle" type="button" aria-pressed="false" title="Turn interface sounds on or off">Sound: off</button>
       </div>
     </header>
@@ -1029,7 +1032,7 @@
       <div class="modal-body" id="modalBody"></div>
     </section>
 
-    <footer class="footer">Created by Lauren Leven · SEAFOAM · An independent animated sci-fantasy series · <span id="year"></span></footer>
+    <footer class="footer">Created by Lauren Leven · SEAFOAM · An independent hand-drawn sci-fantasy web series · <span id="year"></span></footer>
   </div>
 
   <script>
@@ -1165,7 +1168,7 @@
       if (name === "episodes") {
         modalBody.innerHTML =
           '<h2 class="modal-title">Season one · 9 episodes</h2>' +
-          '<p class="modal-lede">Choose an episode to load it in the player. Unlinked episodes stay listed and will not interrupt the video.</p>' +
+          '<p class="modal-lede">Choose an episode to watch it in the player.</p>' +
           '<div class="episode-list">' +
           episodes.map(function (episode) {
             const linked = Boolean(episode.videoId);
@@ -1175,7 +1178,7 @@
               '<span><strong>' + episode.title + '</strong><small>' + state + '</small></span>' +
               '</button>';
           }).join("") +
-          '</div><p class="modal-note">Episode titles and links are editable in the episodes list near the top of the script.</p>';
+          '</div>';
         modalBody.querySelectorAll("[data-episode]").forEach(function (button) {
           button.addEventListener("click", function () { chooseEpisode(button.dataset.episode); });
         });
