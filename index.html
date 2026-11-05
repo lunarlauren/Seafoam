@@ -178,7 +178,7 @@
     .rail { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .nav-rail { align-self:stretch; padding-top:0; }
     .nav-rail { align-self: stretch; padding-top: 0; }
-    .left-rail .laurel { margin-top:auto; }
+    .left-rail { display:grid; grid-template-rows:minmax(260px,1fr) auto auto; }
     .glass {
       border: 1px solid rgba(147, 200, 255, .54);
       border-radius: 4px;
@@ -193,6 +193,7 @@
     .series-card {
       min-height: 164px;
       display: grid;
+      align-self:stretch;
       place-items: center;
       padding: 14px;
       border-radius: 4px;
@@ -203,7 +204,7 @@
         linear-gradient(145deg, rgba(17,69,119,.42), rgba(28,42,101,.52) 52%, rgba(8,25,61,.62));
       box-shadow: inset 0 2px 0 rgba(255,255,255,.46), inset 0 -8px 16px #15134488, 0 8px 18px #080b3155;
     }
-    .series-card button { border:0; padding:0; background:none; cursor:pointer; transition:transform .3s ease, filter .3s ease; }
+    .series-card button { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:0; padding:14px 8px; background:none; cursor:pointer; transition:transform .3s ease, filter .3s ease; }
     .series-card button:hover { transform:translateY(-2px); filter:brightness(1.08); }
     .series-card:has(button:hover) { box-shadow:0 14px 32px rgba(29,111,205,.22) !important; }
     .large-orb {
@@ -223,6 +224,7 @@
       animation: float 5s ease-in-out infinite;
     }
     .large-orb svg { width: 48px; filter: drop-shadow(0 0 8px var(--aqua)); }
+    .series-summary { max-width:24ch; margin:8px 0 0; color:rgba(227,239,255,.82); font-size:.7rem; line-height:1.55; }
     .series-name { display: block; margin-top: 8px; font: 1.1rem var(--serif); letter-spacing: .16em; }
     .series-caption { display: block; margin-top: 2px; color: var(--muted); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; }
     .section-label {
@@ -830,6 +832,7 @@
             <span class="large-orb" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M50 11c-10 21-16 35-16 48a16 16 0 0 0 32 0c0-13-6-27-16-48Z" fill="#9af7e8" fill-opacity=".7" stroke="#fff" stroke-width="2"/><path d="M20 72q10-7 20 0t20 0 20 0" stroke="#d5c7ff" stroke-width="2" stroke-linecap="round"/></svg></span>
             <span class="series-name">SEAFOAM</span>
             <span class="series-caption">A story beneath the surface · About</span>
+            <span class="series-summary">An independent animated sci-fi series about strange worlds, shifting loyalties, and the secrets hidden beneath the sea.</span>
           </button>
         </section>
         <button class="glass cast-card gloss-button" type="button" data-panel="characters" aria-label="Open character profiles">
