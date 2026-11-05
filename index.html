@@ -43,24 +43,35 @@
       font: 14px/1.45 var(--sans);
     }
 
-    /* Starry background layer. The foreground moves normally, creating gentle scroll parallax. */
-    body::before {
-      position: fixed;
-      z-index: -1;
-      inset: -6%;
-      content: "";
-      pointer-events: none;
-      background-image:
-        linear-gradient(180deg, rgba(10, 15, 45, .34), rgba(10, 15, 45, .46)),
-        radial-gradient(ellipse at 12% 8%, #694ce035 0, transparent 24%),
-        radial-gradient(ellipse at 88% 22%, #176ebc32 0, transparent 26%),
-        radial-gradient(ellipse at 50% 110%, #38d5d034 0, transparent 29%),
-        url("./starry.png");
-      background-position: center;
-      background-size: cover;
-      transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.06);
-      will-change: transform;
+    /* The embedded ambient video sits behind a dark wash for readable glass panels. */
+    .ambient-video {
+      position:fixed;
+      z-index:-1;
+      inset:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      pointer-events:none;
+      background:#07142c;
     }
+    .ambient-video iframe {
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:max(100vw,177.78vh);
+      height:max(100vh,56.25vw);
+      border:0;
+      transform:translate(-50%,-50%);
+      opacity:.48;
+      filter:brightness(.62) saturate(1.18);
+    }
+    .ambient-video::after {
+      position:absolute;
+      inset:0;
+      content:"";
+      background:linear-gradient(180deg,rgba(5,13,35,.56),rgba(5,18,44,.68));
+    }
+    body { background:#07142c; }
     button, a { color: inherit; font: inherit; }
     button { cursor: pointer; }
     a { text-decoration: none; }
@@ -755,6 +766,7 @@
 </head>
 <body>
   <div class="shell">
+    <div class="ambient-video" aria-hidden="true"><iframe src="https://www.youtube-nocookie.com/embed/lwFjb6KHm88?autoplay=1&mute=1&controls=0&loop=1&playlist=lwFjb6KHm88&playsinline=1&rel=0&modestbranding=1" title="Ambient underwater background" tabindex="-1" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
     <header class="topbar">
       <button class="brand" id="homeButton" type="button" aria-label="Return to the featured episode">
         <span class="brand-orb" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15c3-1 4-5 5-9 2 5 3 8 6 8 2 0 4-2 5-5M5 19c2-1 4-1 6 0s4 1 6 0 3-1 5 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
