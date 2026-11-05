@@ -537,7 +537,7 @@
       box-shadow: inset 0 2px 5px #70e9e4a8, inset 0 -4px 8px #15163f66, 0 2px 7px #080b3155;
       font: 1.3rem var(--serif);
     }
-    .portrait img { width: 100%; height: 100%; object-fit: cover; object-position:center 10%; }
+    .portrait img { width:100%; height:100%; object-fit:cover; object-position:center 12%; transform:scale(2.35); transform-origin:center 14%; }
     .character-detail .portrait { width: 110px; height: 110px; }
     .character-card strong { display: block; font: .95rem var(--serif); }
     .character-card small { display: block; margin-top: 4px; color: var(--muted); font-size: .62rem; line-height: 1.4; }
@@ -558,6 +558,7 @@
     .gallery-tile:nth-child(2) { --tile: linear-gradient(145deg, #55488c, #9af7e8 60%, #292849); }
     .gallery-tile:nth-child(3) { --tile: linear-gradient(145deg, #df8ab3, #475e98 60%, #1f203e); }
     .social-link, .contact-link { color: var(--aqua); text-decoration: underline; text-underline-offset: 3px; }
+    button.social-link { display:inline-flex; align-items:center; min-height:34px; margin:0; padding:6px 10px; border:1px solid rgba(150,210,255,.45); border-radius:4px; background:rgba(30,81,130,.28); text-decoration:none; cursor:pointer; }
     .about-copy { max-width: 60ch; color: #e9e4f8; font: 1.05rem/1.6 var(--serif); }
     .fact-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
     .fact { border: 1px solid var(--line); border-radius: 4px; padding: 6px 9px; color: var(--aqua); font-size: .61rem; }
@@ -1058,7 +1059,7 @@
         '<div class="character-detail">' +
         portraitMarkup(character).replace('class="portrait"', 'class="portrait character-portrait"') +
         '<div><h2 class="modal-title">' + character.name + '</h2><p class="about-copy">' + character.bio + '</p></div></div>' +
-        '<p class="modal-note">To add the finished character art, edit the image field for ' + character.name + ' in the character list near the top of the script.</p>';
+        ''; 
       modalBody.querySelector("#backToCharacters").addEventListener("click", function () { renderPanel("characters"); });
     }
 
