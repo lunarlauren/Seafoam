@@ -22,7 +22,7 @@
       --violet: #c6a5ff;
       --gold: #fff0ad;
       --glass-specular: rgba(202, 236, 255, .98);
-      --glass-rim: rgba(157, 211, 255, .66);
+      --glass-rim: rgba(75, 157, 247, .62);
       --glass-tint: rgba(56, 143, 229, .32);
       --glass-shadow: rgba(39, 127, 218, .14);
       --serif: Georgia, "Times New Roman", serif;
@@ -772,7 +772,14 @@
     }
     .player { border-width:1px !important; }
     .gloss-button { box-shadow: inset 0 1px 0 rgba(245,252,255,.72), 0 2px 5px rgba(2,12,34,.25); }
-    .gloss-button::before { height:1px; }
+    .gloss-button::before {
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(82,174,255,.5) 18%,rgba(125,198,255,.82) 50%,rgba(69,151,244,.52) 82%,transparent);
+    }
+    .gloss-button { box-shadow:inset 0 1px 0 rgba(112,187,255,.56),0 2px 5px rgba(2,12,34,.25); }
+    .player { box-shadow:0 0 0 1px rgba(61,137,226,.45),0 10px 26px rgba(2,10,29,.4); }
+    .portrait img[src*="YunoirePNG"] { transform:none; object-position:center top; }
+    .cast-icon:nth-child(2) img { width:100%; height:100%; left:0; top:0; transform:none; object-fit:cover; object-position:center top; }
 </style>
 </head>
 <body>
