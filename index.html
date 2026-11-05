@@ -795,6 +795,16 @@
     .gloss-button { box-shadow:inset 0 1px 0 rgba(112,187,255,.56),0 2px 5px rgba(2,12,34,.25); }
     .player { box-shadow:0 0 0 1px rgba(61,137,226,.45),0 10px 26px rgba(2,10,29,.4); }
     .portrait img[src*="YunoirePNG"] { transform:none; object-position:center top; }
+    /* Keep About and the square award tile on matching edges. */
+    .left-rail { grid-template-rows:auto auto auto; }
+    .series-card { aspect-ratio:1; min-height:0; }
+    .large-orb { width:64px; height:64px; }
+    .series-card button { gap:4px; padding:10px 8px; }
+    .series-summary { font-size:.62rem; line-height:1.4; }
+    /* Quiet iconography: retain the colored line icon, remove the glowing tile. */
+    .nav-icon { width:30px; height:30px; border:0; border-radius:0; background:transparent; box-shadow:none; }
+    .nav-button { gap:8px; }
+    .cast-icon:nth-child(2) img { transform:scale(2.1); transform-origin:center 12%; }
     .cast-icon:nth-child(2) img { width:100%; height:100%; left:0; top:0; transform:none; object-fit:cover; object-position:center top; }
 
     /* Classic glass finish: one quiet edge, translucent fill, soft lift. */
