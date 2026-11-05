@@ -176,10 +176,9 @@
       gap: 18px;
     }
     .rail { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-    .left-rail { display:grid; grid-template-rows:auto minmax(0,1fr) auto; }
     .nav-rail { align-self:stretch; padding-top:0; }
-    .left-rail { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
     .nav-rail { align-self: stretch; padding-top: 0; }
+    .left-rail .laurel { margin-top:auto; }
     .glass {
       border: 1px solid rgba(147, 200, 255, .54);
       border-radius: 4px;
@@ -834,11 +833,11 @@
           </button>
         </section>
         <button class="glass cast-card gloss-button" type="button" data-panel="characters" aria-label="Open character profiles">
-          <span class="section-label">Cast signal</span>
+          <span class="section-label">Meet the cast</span>
           <span class="cast-icons" aria-label="Five characters">
             <span class="cast-icon"><img src="./Alex-Character.png" alt=""></span><span class="cast-icon"><img src="./YunoirePNG.png" alt=""></span><span class="cast-icon"><img src="./Jack%20Transparent.png" alt=""></span><span class="cast-icon"><img src="./Charlotte%20Transparent.png" alt=""></span><span class="cast-icon"><img src="./apollo%20transparent.png" alt=""></span>
           </span>
-          <span class="cast-hint">Five lives in one orbit · Meet the cast ↗</span>
+          <span class="cast-hint">Open a character profile ↗</span>
         </button>
         <figure class="glass laurel">
           <button class="poster-button" id="openPoster" type="button" aria-label="View Best Poster larger"><img src="./best%20poster%20square%20%281%29.png" alt="Seafoam Best Poster award" loading="lazy"></button>
