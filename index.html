@@ -178,7 +178,7 @@
     .rail { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .nav-rail { align-self:stretch; padding-top:0; }
     .nav-rail { align-self: stretch; padding-top: 0; }
-    .left-rail { display:grid; grid-template-rows:minmax(260px,1fr) auto auto; }
+    .left-rail { display:grid; height:100%; min-height:0; grid-template-rows:minmax(0,1fr) auto auto; }
     .glass {
       border: 1px solid rgba(147, 200, 255, .54);
       border-radius: 4px;
@@ -423,10 +423,14 @@
       top: 50%;
       left: 50%;
       width: min(560px, calc(100vw - 28px));
-      max-height: min(76svh, 690px);
+      max-height: min(86svh, 820px);
+      min-width:280px;
+      min-height:220px;
+      max-width: min(92vw, 1100px);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow: auto;
+      resize: both;
       border: 1.5px solid #69e8e699;
       border-radius: 4px;
       background:
@@ -683,6 +687,7 @@
       .mobile-nav button:nth-child(3) { --accent: var(--violet); }
       .mobile-nav button:nth-child(4) { --accent: var(--gold); }
       .modal {
+        resize:none;
         top: 56px;
         bottom: calc(76px + env(safe-area-inset-bottom));
         left: 50%;
@@ -1170,26 +1175,12 @@
         modalHandle.removeEventListener("pointermove", move);
         modalHandle.removeEventListener("pointerup", finish);
         modalHandle.removeEventListener("pointercancel", finish);
-        snapModal();
       }
       modalHandle.addEventListener("pointermove", move);
       modalHandle.addEventListener("pointerup", finish);
       modalHandle.addEventListener("pointercancel", finish);
     });
 
-    function snapModal() {
-      const rect = modal.getBoundingClientRect();
-      const x = rect.left + rect.width / 2 < window.innerWidth / 2
-        ? 10
-        : window.innerWidth - rect.width - 10;
-      const y = rect.top + rect.height / 2 < window.innerHeight / 2
-        ? 74
-        : window.innerHeight - rect.height - 10;
-      modal.style.left = Math.max(10, x) + "px";
-      modal.style.top = Math.max(10, y) + "px";
-      modal.style.bottom = "auto";
-      modal.style.transform = "none";
-    }
 
     document.querySelector("#year").textContent = new Date().getFullYear();
   </script>
