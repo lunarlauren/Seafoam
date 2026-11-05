@@ -765,7 +765,13 @@
     /* One deliberate corner system: sharp 4px edges for all boxed UI surfaces. */
     .glass, .series-card, .cast-card, .laurel, .player, .episode-info,
     .nav-button, .gloss-button, .companion, .modal, .character-card,
-    .episode-card, .gallery-tile, .contact-box { border-radius:4px !important; }
+    .episode-card, .gallery-tile, .contact-box {
+      border-radius:4px !important;
+      border-width:1px !important;
+    }
+    .player { border-width:1px !important; }
+    .gloss-button { box-shadow: inset 0 1px 0 rgba(245,252,255,.72), 0 2px 5px rgba(2,12,34,.25); }
+    .gloss-button::before { height:1px; }
 </style>
 </head>
 <body>
