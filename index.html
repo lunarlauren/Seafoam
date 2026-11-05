@@ -21,10 +21,10 @@
       --pink: #ffb0ee;
       --violet: #c6a5ff;
       --gold: #fff0ad;
-      --gloss-catch: #ffffff;
-      --gloss-catch-aqua: #9afff2;
-      --gloss-edge: rgba(119, 247, 239, .76);
-      --gloss-shadow: rgba(40, 225, 226, .24);
+      --glass-specular: rgba(255, 255, 255, .96);
+      --glass-rim: rgba(219, 255, 255, .84);
+      --glass-tint: rgba(99, 188, 229, .22);
+      --glass-shadow: rgba(33, 217, 222, .22);
       --serif: Georgia, "Times New Roman", serif;
       --sans: "Trebuchet MS", Arial, sans-serif;
     }
@@ -133,10 +133,10 @@
       animation: pulse 2s ease-in-out infinite;
     }
     .sound-toggle {
+      --button-tint: var(--aqua);
       border-radius: 999px;
       padding: 7px 12px;
       color: var(--text);
-      background: linear-gradient(180deg, #ffffff 0 1px, #9afff2 1px 3px, transparent 20%), linear-gradient(145deg, #355f88, #25285f);
       font-size: .62rem;
     }
     .sound-toggle[aria-pressed="true"] { color: var(--aqua); border-color: #9af7e877; }
@@ -145,10 +145,10 @@
       width: min(1480px, 100%);
       min-height: calc(100svh - 62px);
       margin: 0 auto;
-      padding: 18px 20px 24px;
+      padding: clamp(28px, 8svh, 72px) 20px 24px;
       display: grid;
       grid-template-columns: 205px minmax(0, 1fr) 190px;
-      align-items: center;
+      align-items: start;
       gap: 18px;
     }
     .rail { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
@@ -330,23 +330,21 @@
     .episode-info h1 { margin: 0; font: clamp(1.2rem, 2.3vw, 1.8rem)/1.08 var(--serif); }
     .episode-info p:last-child { margin: 5px 0 0; color: var(--muted); font-size: .72rem; }
     .watch-button {
+      --button-tint: var(--violet);
       flex: 0 0 auto;
       padding: 10px 16px;
       border-radius: 999px;
       color: white;
-      background:
-        linear-gradient(180deg, #ffffff 0 1px, #9afff2 1px 3px, transparent 14%),
-        linear-gradient(120deg, #c459e8, #7655e9 52%, #21bfc7);
       font-size: .62rem;
       font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
-      transition: transform .18s ease, filter .18s ease;
     }
     .watch-button:hover { filter: brightness(1.16); transform: translateY(-1px); }
 
     .nav-rail { display: flex; flex-direction: column; gap: 9px; align-self: stretch; padding-top: 4px; }
     .nav-button {
+      --button-tint: var(--accent, var(--aqua));
       min-height: 69px;
       display: flex;
       align-items: center;
@@ -354,11 +352,7 @@
       border-radius: 22px;
       padding: 9px 11px;
       color: var(--text);
-      background:
-        linear-gradient(180deg, #ffffff 0 1px, #8df6ed 1px 3px, transparent 15%),
-        linear-gradient(145deg, #625994, #393a75 54%, #315d80);
       text-align: left;
-      transition: transform .18s ease, border-color .18s ease, filter .18s ease, box-shadow .18s ease;
     }
     .nav-button:hover { transform: translateX(-3px); border-color: #9af7e899; filter: brightness(1.12); }
     .nav-button[aria-pressed="true"] { border-color: #9af7e899; background: linear-gradient(110deg, #454064, #252b4b); box-shadow: 0 0 18px #9af7e815; }
@@ -630,6 +624,7 @@
         backdrop-filter: blur(22px) saturate(160%);
       }
       .mobile-nav button {
+        --button-tint: var(--accent, var(--aqua));
         min-height: 48px;
         display: flex;
         flex-direction: column;
@@ -638,9 +633,6 @@
         gap: 2px;
         border-radius: 17px;
         color: var(--text);
-        background:
-          linear-gradient(180deg, #ffffff 0 1px, #93fff2 1px 3px, transparent 16%),
-          linear-gradient(145deg, #7867ca, #526cba 58%, #319eae);
         font-size: .55rem;
       }
       .mobile-nav button[aria-pressed="true"] { border-color: #9af7e8a0; box-shadow: 0 0 13px #9af7e81f; }
@@ -674,11 +666,23 @@
   
     /* Reusable glossy button finish: one sharp catch-light and a compact colored shadow. */
     .gloss-button {
+      --button-tint: var(--glass-tint);
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      border: 1px solid var(--gloss-edge);
-      box-shadow: inset 0 1px 0 var(--gloss-catch), inset 0 -3px 0 rgba(18, 23, 76, .58), 0 3px 0 rgba(15, 20, 65, .72), 0 5px 10px var(--gloss-shadow);
+      border: 1px solid var(--glass-rim);
+      background:
+        linear-gradient(180deg, var(--glass-specular) 0 1px, color-mix(in srgb, var(--button-tint) 76%, white) 2px, transparent 13px),
+        linear-gradient(145deg, color-mix(in srgb, var(--button-tint) 86%, rgba(255,255,255,.08)), rgba(45, 60, 126, .50) 58%, rgba(25, 39, 91, .68));
+      box-shadow:
+        inset 0 1px 0 var(--glass-specular),
+        inset 0 0 0 1px rgba(194, 248, 255, .24),
+        inset 0 -5px 10px rgba(9, 18, 63, .42),
+        0 2px 0 rgba(18, 24, 77, .7),
+        0 7px 15px var(--glass-shadow);
+      -webkit-backdrop-filter: blur(22px) saturate(185%);
+      backdrop-filter: blur(22px) saturate(185%);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
     }
     .gloss-button::before {
       position: absolute;
@@ -688,7 +692,7 @@
       left: 9%;
       height: 2px;
       border-radius: 999px;
-      background: linear-gradient(90deg, transparent, var(--gloss-catch-aqua) 16%, var(--gloss-catch) 42% 58%, var(--gloss-catch-aqua) 84%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.78) 18%, #ffffff 42% 58%, rgba(157,255,247,.92) 82%, transparent);
       content: "";
       pointer-events: none;
     }
