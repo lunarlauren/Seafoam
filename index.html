@@ -585,6 +585,7 @@
     .contact-box a { display: inline-block; margin: 5px 12px 3px 0; }
 
     .companion { display: none; }
+    .mobile-laurel { display:none; }
     .mobile-nav { display: none; }
     .footer { position: absolute; right: 0; bottom: 7px; left: 0; width: min(1480px, 100%); margin: 0 auto; padding: 0 18px; color: #aaa6c4; text-align: center; font-size: .58rem; }
 
@@ -614,6 +615,11 @@
       .layout { display:flex; align-items:center; width:min(520px,100%); min-height:calc(100svh - 48px - 112px); padding:12px 10px; }
       .left-rail, .nav-rail { display: none; }
       .stage { width:100%; gap:8px; }
+      .mobile-laurel { display:flex; align-items:center; gap:12px; width:min(520px,calc(100% - 20px)); margin:0 auto 100px; padding:10px; text-align:left; color:var(--text); background:rgba(8,22,48,.48); border:1px solid rgba(91,157,220,.24); }
+      .mobile-laurel img { width:56px; height:56px; object-fit:cover; filter:brightness(.55) saturate(.65); }
+      .mobile-laurel strong,.mobile-laurel small { display:block; }
+      .mobile-laurel small { margin-top:3px; color:var(--muted); font-size:.68rem; }
+      .mobile-laurel-arrow { margin-left:auto; color:#75baff; }
       .player { aspect-ratio: 16 / 10; max-height: 40svh; border-radius: 4px; }
       .player-label { display:none; }
       .player-message { bottom: 8px; font-size: .58rem; }
@@ -934,6 +940,11 @@
         <button class="nav-button gloss-button" type="button" data-panel="social" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Social</strong><small>Instagram gallery</small></span></button>
         <button class="nav-button gloss-button" type="button" data-panel="contact" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Contact</strong><small>Follow the project</small></span></button>
        </nav>
+      <button class="mobile-laurel glass" id="mobileOpenPoster" type="button">
+        <img src="./best%20poster%20square%20%281%29.png" alt="" aria-hidden="true">
+        <span><strong>Festival Laurel</strong><small>View the award poster</small></span>
+        <span class="mobile-laurel-arrow" aria-hidden="true">↗</span>
+      </button>
     </main>
 
     <nav class="mobile-nav" aria-label="Seafoam navigation">
@@ -1191,6 +1202,7 @@
     });
     document.querySelector("#closeModal").addEventListener("click", closePanel);
     document.querySelector("#openPoster").addEventListener("click", openPoster);
+    document.querySelector("#mobileOpenPoster").addEventListener("click", openPoster);
     document.querySelector("#soundToggle").addEventListener("click", function (event) {
       soundEnabled = !soundEnabled;
       event.currentTarget.setAttribute("aria-pressed", String(soundEnabled));
