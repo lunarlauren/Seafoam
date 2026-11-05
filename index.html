@@ -61,7 +61,7 @@
       width:max(100vw,177.78vh);
       height:max(100vh,56.25vw);
       border:0;
-      transform:translate(-50%,-50%);
+      transform:translate(-50%,-50%) scale(1.16);
       opacity:.88;
       filter:brightness(.94) saturate(1.12);
     }
@@ -69,8 +69,10 @@
       position:absolute;
       inset:0;
       content:"";
-      background:transparent;
+      background:#07142c;
+      animation:ambient-reveal .8s ease 2.2s forwards;
     }
+    @keyframes ambient-reveal { to { opacity:0; visibility:hidden; } }
     body { background:#07142c; }
     button, a { color: inherit; font: inherit; }
     button { cursor: pointer; }
@@ -706,7 +708,7 @@
       .modal-lede { margin: 5px 0 11px; font-size: .68rem; }
       .episode-list, .character-grid { grid-template-columns: 1fr; }
       .gallery-grid { gap: 6px; }
-      .footer { position:relative; right:auto; bottom:auto; left:auto; margin-top:20px; padding:0 18px 86px; font-size:.62rem; }
+      .footer { display:none; }
       }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
