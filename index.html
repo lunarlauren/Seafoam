@@ -163,7 +163,7 @@
       letter-spacing: .14em;
       text-transform: uppercase;
     }
-    .cast-card { padding: 12px; }
+    .cast-card { width: 100%; padding: 12px; color: var(--text); text-align: left; cursor: pointer; transition: transform .18s ease, border-color .18s ease, filter .18s ease; }\n    .cast-card:hover { transform: translateY(-2px); border-color: #ff9fcf9c; filter: brightness(1.12); }
     .cast-icons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .cast-icon {
       aspect-ratio: 1;
@@ -617,13 +617,13 @@
             <span class="series-caption">A story beneath the surface · About</span>
           </button>
         </section>
-        <section class="glass cast-card">
-          <p class="section-label">Cast signal</p>
-          <div class="cast-icons" aria-label="Seven characters">
+        <button class="glass cast-card" type="button" data-panel="characters" aria-label="Open character profiles">
+          <span class="section-label">Cast signal</span>
+          <span class="cast-icons" aria-label="Seven characters">
             <span class="cast-icon" style="--icon-color:#91efdc">A</span><span class="cast-icon" style="--icon-color:#829fff">Y</span><span class="cast-icon" style="--icon-color:#c5a1f7">J</span><span class="cast-icon" style="--icon-color:#ff9fc9">C</span><span class="cast-icon" style="--icon-color:#84dff1">A</span><span class="cast-icon" style="--icon-color:#b5a1ff">N</span><span class="cast-icon" style="--icon-color:#f2cf83">L</span>
-          </div>
-          <p class="cast-hint">Seven lives in one orbit.</p>
-        </section>
+          </span>
+          <span class="cast-hint">Seven lives in one orbit · Meet the cast ↗</span>
+        </button>
         <section class="glass laurel">
           <svg viewBox="0 0 44 54" fill="none" aria-hidden="true"><path d="M20 48C8 37 5 22 7 7m2 9c5-1 8-4 10-8m-9 18c5-1 9-3 12-7m-10 16c5 0 10-2 14-5M24 48C36 37 39 22 37 7m-2 9c-5-1-8-4-10-8m9 18c-5-1-9-3-12-7m10 16c-5 0-10-2-14-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           <span><strong>Festival laurel</strong><small>Add the official festival and award here</small></span>
