@@ -32,22 +32,34 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
+      position: relative;
+      isolation: isolate;
       min-width: 320px;
       min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
       color: var(--text);
       background-color: #10143a;
+      font: 14px/1.45 var(--sans);
+    }
+
+    /* Starry background layer. The foreground moves normally, creating gentle scroll parallax. */
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: -6%;
+      content: "";
+      pointer-events: none;
       background-image:
         linear-gradient(180deg, rgba(10, 15, 45, .34), rgba(10, 15, 45, .46)),
         radial-gradient(ellipse at 12% 8%, #694ce035 0, transparent 24%),
         radial-gradient(ellipse at 88% 22%, #176ebc32 0, transparent 26%),
         radial-gradient(ellipse at 50% 110%, #38d5d034 0, transparent 29%),
-        url("./Midnight%20seafoam%20dreamscape.png");
+        url("./starry.png");
       background-position: center;
       background-size: cover;
-      background-attachment: fixed;
-      font: 14px/1.45 var(--sans);
+      transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.06);
+      will-change: transform;
     }
     button, a { color: inherit; font: inherit; }
     button { cursor: pointer; }
@@ -553,7 +565,6 @@
       .episode-info { min-height: 72px; padding: 10px; }
     }
     @media (max-width: 720px) {
-      body { background-attachment: scroll; }
       .topbar { height: 48px; margin: 0 auto; padding: 0 12px; }
       .brand { gap: 7px; font-size: 1rem; }
       .brand-orb { width: 29px; height: 29px; }
@@ -779,6 +790,19 @@
   </div>
 
   <script>
+    /* Gentle scroll parallax: move the star layer, never track the pointer. */
+    let parallaxFrame = 0;
+    function updateBackgroundParallax() {
+      if (parallaxFrame || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      parallaxFrame = window.requestAnimationFrame(() => {
+        const offset = Math.min(window.scrollY * 0.06, 30);
+        document.documentElement.style.setProperty("--parallax-y", offset + "px");
+        parallaxFrame = 0;
+      });
+    }
+    window.addEventListener("scroll", updateBackgroundParallax, { passive: true });
+    updateBackgroundParallax();
+
     /* EPISODE EDITING:
        Add each YouTube video ID in videoId. The ID is the part after "v=" in its URL.
        Titles and summaries can be changed here. Blank IDs are listed but do not replace the playing video.
