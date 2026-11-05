@@ -1,3 +1,15 @@
+636:    .mobile-series-intro { display:none; }
+668:      .mobile-series-intro {
+681:      .mobile-series-intro-copy { min-width:0; }
+682:      .mobile-series-intro strong { display:block; font:1rem/1.2 var(--serif); }
+683:      .mobile-series-intro small { display:block; margin-top:4px; color:var(--muted); font-size:.65rem; line-height:1.45; }
+684:      .mobile-series-intro svg { width:18px; height:18px; flex:0 0 auto; color:#81c8ff; }
+989:          <button type="button" data-panel="about" aria-label="Open About Seafoam">
+1025:      <button class="glass gloss-button mobile-series-intro" type="button" data-panel="about">
+1026:        <span class="mobile-series-intro-copy">
+1027:          <strong>About Seafoam</strong>
+1190:        about: "About Seafoam"
+1250:          '<h2 class="modal-title">About Seafoam</h2>' +
 <!doctype html>
 <!-- Cloudflare Pages: this build is static; publish the repository root without a build command. -->
 <html lang="en">
@@ -633,6 +645,7 @@
     .contact-box a { display: inline-block; margin: 5px 12px 3px 0; }
 
     .companion { display: none; }
+    .mobile-series-intro { display:none; }
     .mobile-laurel { display:none; }
     .mobile-nav { display: none; }
     .footer { position: absolute; right: 0; bottom: 7px; left: 0; width: min(1480px, 100%); margin: 0 auto; padding: 0 18px; color: #aaa6c4; text-align: center; font-size: .58rem; }
@@ -664,6 +677,23 @@
       .left-rail, .nav-rail { display: none; }
       .stage { width:100%; gap:8px; }
       .episode-info { order:-1; }
+      .mobile-series-intro {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        width:100%;
+        margin-top:12px;
+        padding:13px 14px;
+        color:var(--text);
+        text-align:left;
+        background:rgba(8,22,48,.46) !important;
+        border-color:rgba(91,157,220,.24) !important;
+      }
+      .mobile-series-intro-copy { min-width:0; }
+      .mobile-series-intro strong { display:block; font:1rem/1.2 var(--serif); }
+      .mobile-series-intro small { display:block; margin-top:4px; color:var(--muted); font-size:.65rem; line-height:1.45; }
+      .mobile-series-intro svg { width:18px; height:18px; flex:0 0 auto; color:#81c8ff; }
       .mobile-laurel { display:flex; flex:0 0 auto; align-items:center; gap:12px; width:100%; margin:12px auto 16px; padding:10px; text-align:left; color:var(--text); background:rgba(8,22,48,.48); border:1px solid rgba(91,157,220,.24); }
       .mobile-laurel img { width:56px; height:56px; object-fit:cover; filter:brightness(.55) saturate(.65); }
       .mobile-laurel strong,.mobile-laurel small { display:block; }
@@ -1003,6 +1033,14 @@
         </section>
 
       </section>
+
+      <button class="glass gloss-button mobile-series-intro" type="button" data-panel="about">
+        <span class="mobile-series-intro-copy">
+          <strong>About Seafoam</strong>
+          <small>A hand-drawn sci-fantasy series by Lauren Leven. After being taken from Earth, Alex must find her way through a strange experiment far from home.</small>
+        </span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M6 18 18 6M8 6h10v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
 
       <nav class="rail nav-rail" aria-label="Explore Seafoam">
         <button class="nav-button gloss-button" type="button" data-panel="episodes" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg></span><span><strong>Episodes</strong><small>Watch & explore</small></span></button>
