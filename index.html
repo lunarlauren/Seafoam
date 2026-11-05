@@ -3,161 +3,960 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#11112a">
-  <meta name="description" content="Watch Seafoam, an independent animated sci-fi series by Lauren Leven. Explore episodes, characters, and artwork.">
-  <title>Seafoam — animated series</title>
+  <meta name="theme-color" content="#15142d">
+  <meta name="description" content="Watch Seafoam, an independent animated sci-fi series by Lauren Leven.">
+  <title>Seafoam — an animated series</title>
   <style>
+    /* COLOR GUIDE: edit these values to change the site's main palette. */
     :root {
       color-scheme: dark;
-      --night:#121228; --deep:#191a39; --panel:#222344; --line:rgba(218,220,255,.25);
-      --white:#fff9ee; --muted:#c6c2dc; --aqua:#8ff6e8; --pink:#ff9dde; --violet:#b5a1ff;
-      --gold:#ffe49b; --serif:Georgia,"Times New Roman",serif; --sans:"Trebuchet MS","Segoe UI",sans-serif;
+      --night: #15142d;
+      --deep: #211d43;
+      --panel: rgba(37, 34, 72, .88);
+      --line: rgba(225, 221, 255, .2);
+      --text: #fff8f4;
+      --muted: #c9c5df;
+      --aqua: #9af7e8;
+      --pink: #ff9fcf;
+      --violet: #b69cff;
+      --gold: #ffe8a5;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Trebuchet MS", Arial, sans-serif;
     }
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-width:320px;background:var(--night);color:var(--white);font:14px/1.45 var(--sans)}
-    a{color:inherit;text-decoration:none} button{font:inherit;color:inherit} :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-    .app{min-height:100svh;overflow:hidden;background:radial-gradient(ellipse at 55% -12%,#514177 0,#282747 27%,#17172f 64%,#101124 100%)}
-    .topbar{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--line);background:rgba(18,18,40,.35)}
-    .brand{display:flex;align-items:center;gap:9px;font:1.18rem var(--serif);letter-spacing:.12em}.logo{width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(143,246,232,.65);border-radius:50%;color:var(--aqua);box-shadow:0 0 17px #8ff6e833}.logo svg{width:18px}
-    .status{display:flex;gap:8px;align-items:center;color:#d9d5ef;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--aqua);box-shadow:0 0 10px var(--aqua);animation:blink 2.8s ease-in-out infinite}
-    .layout{width:min(1480px,100%);min-height:calc(100svh - 62px);margin:auto;padding:18px;display:grid;grid-template-columns:188px minmax(0,1fr) 190px;gap:15px}
-    .rail{display:flex;min-width:0;flex-direction:column;gap:12px}.glass{border:1px solid var(--line);border-radius:9px;background:linear-gradient(145deg,rgba(56,55,94,.83),rgba(27,28,54,.92));box-shadow:inset 0 1px rgba(255,255,255,.13),0 8px 25px #07081742;backdrop-filter:blur(14px)}
-    .series-badge{min-height:134px;display:grid;place-items:center;text-align:center;padding:12px;background:radial-gradient(circle at 50% 43%,#7771ec66,transparent 52%),linear-gradient(145deg,#353256,#1c1d38)}
-    .orb{width:68px;height:68px;border:1px solid #b0fff099;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#b9fff633,#7771ec44 65%,#14162b);box-shadow:0 0 28px #8ff6e82e,inset 0 0 20px #8ff6e822}.orb svg{width:42px;filter:drop-shadow(0 0 7px #8ff6e8)}
-    .badge-title{margin:7px 0 0;font:1rem var(--serif);letter-spacing:.12em}.badge-sub{margin:1px 0 0;color:var(--muted);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase}
-    .rail-label{margin:0 0 8px;color:var(--aqua);font-size:.61rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.cast-box{padding:11px}.avatars{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.avatar{aspect-ratio:1;display:grid;place-items:center;border:1px solid #ffffff45;border-radius:7px;color:#19172c;font:1rem var(--serif);background:var(--color);box-shadow:inset 0 1px #ffffff66}.avatar:nth-child(1){--color:#91efdc}.avatar:nth-child(2){--color:#829fff}.avatar:nth-child(3){--color:#c5a1f7}.avatar:nth-child(4){--color:#ff9fc9}.avatar:nth-child(5){--color:#84dff1}.avatar:nth-child(6){--color:#b5a1ff}.avatar:nth-child(7){--color:#f2cf83}.avatar:nth-child(8){--color:#f0c4e7}
-    .rail-small{margin:8px 0 0;color:var(--muted);font-size:.64rem}.laurel{min-height:95px;padding:10px;display:flex;align-items:center;justify-content:center;gap:7px;text-align:center;color:var(--gold);background:linear-gradient(135deg,#373151,#24223f)}.laurel svg{width:34px;flex:0 0 auto}.laurel strong{display:block;font: .75rem var(--serif);letter-spacing:.06em}.laurel small{display:block;margin-top:3px;color:#d8cfe0;font-size:.55rem}
-    .social-mini{padding:10px}.mini-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.mini-gallery span{aspect-ratio:1;border:1px solid #ffffff40;border-radius:4px;background:var(--tile);box-shadow:inset 0 0 25px #ffffff12}.mini-gallery span:nth-child(1){--tile:linear-gradient(135deg,#216c83,#d677bd)}.mini-gallery span:nth-child(2){--tile:linear-gradient(140deg,#55468a,#7de7db)}.mini-gallery span:nth-child(3){--tile:linear-gradient(130deg,#df8bb7,#405e86)}
-    .stage{min-width:0;display:flex;flex-direction:column;gap:11px}.screen{position:relative;aspect-ratio:16/9;min-height:230px;overflow:hidden;border:1px solid #cfc8ff6e;border-radius:11px;background:radial-gradient(ellipse at 52% 40%,#8270ff72,transparent 32%),radial-gradient(ellipse at 70% 83%,#36b8b166,transparent 39%),linear-gradient(145deg,#253858,#14172f 72%);box-shadow:0 0 0 4px #ffffff09,0 15px 43px #07081770,inset 0 0 50px #aa9eff20}
-    .screen::before{position:absolute;inset:0;content:"";background:repeating-linear-gradient(0deg,transparent 0 38px,#f4f2ff0b 39px 40px),repeating-linear-gradient(90deg,transparent 0 38px,#f4f2ff08 39px 40px);mask-image:radial-gradient(ellipse,#000,transparent 84%)}
-    .screen::after{position:absolute;inset:12% 19%;border:1px solid #d6fffa4d;border-radius:50%;content:"";transform:rotate(-18deg) scaleY(.65);box-shadow:0 0 42px #8ff6e81b,inset 0 0 32px #8ff6e818;pointer-events:none}
-    .video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#11112a}.screen:has(.video-frame)::before,.screen:has(.video-frame)::after{display:none}
-    .screen-badge{position:absolute;z-index:2;top:11px;left:12px;padding:5px 9px;border:1px solid #ffffff37;border-radius:999px;background:#101329a6;color:#e9e3ff;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(9px)}
-    .screen-art{position:absolute;inset:0;display:grid;place-items:center}.big-orb{width:min(36%,220px);aspect-ratio:1;display:grid;place-items:center;border:1px solid #e4faff88;border-radius:50%;background:radial-gradient(circle,#ffffff20,#9b8bff33 46%,#11152a77 74%);box-shadow:0 0 60px #8ff6e82c}.big-orb svg{width:59%;filter:drop-shadow(0 0 13px #8ff6e8)}
-    .screen-controls{position:absolute;z-index:2;right:13px;bottom:12px;left:13px;display:flex;align-items:center;gap:9px;padding:8px 10px;border:1px solid #ffffff2d;border-radius:7px;background:#111326b9;backdrop-filter:blur(9px)}.play{width:23px;height:23px;display:grid;place-items:center;border:0;border-radius:50%;color:#16162e;background:var(--aqua);font-size:.62rem}.track{height:3px;flex:1;border-radius:5px;background:#ffffff54}.track::before{display:block;width:19%;height:100%;border-radius:inherit;content:"";background:linear-gradient(90deg,var(--pink),var(--aqua))}.time{color:#eee9ff;font-size:.55rem}
-    .info{display:flex;min-height:83px;align-items:center;justify-content:space-between;gap:14px;padding:12px 15px;border:1px solid var(--line);border-radius:9px;background:linear-gradient(105deg,#332e59,#252443 58%,#1d2544)}.info-copy{min-width:0}.info-actions{display:flex;flex:0 0 auto;flex-direction:column;align-items:flex-end;gap:7px}.about-link{color:#e5dcff;font-size:.62rem;text-decoration:underline;text-decoration-color:#c8bbff88;text-underline-offset:3px}.about-link:hover{color:var(--aqua)}.eyebrow{margin:0 0 3px;color:var(--aqua);font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.info h1{margin:0;font:clamp(1.13rem,2vw,1.7rem)/1.08 var(--serif)}.info p{margin:5px 0 0;color:var(--muted);font-size:.71rem}.watch-more{flex:0 0 auto;padding:9px 12px;border:1px solid #d7cfff91;border-radius:5px 12px 5px 12px;color:#fff;background:linear-gradient(120deg,#9b67e8,#5d68d5 55%,#36aba9);box-shadow:0 0 18px #ab8dff2c;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-    .right-rail{display:flex;flex-direction:column;gap:8px}.nav-link{display:flex;min-height:66px;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:7px;background:linear-gradient(105deg,#343253,#22223f);transition:transform .2s,border-color .2s,filter .2s}.nav-link:hover,.nav-link[aria-current="page"]{transform:translateX(-2px);border-color:#a9f7e695;filter:brightness(1.17)}.nav-icon{width:34px;height:34px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:9px 4px 9px 4px;color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,transparent)}.nav-icon svg{width:18px}.nav-link strong{display:block;font:1rem var(--serif)}.nav-link small{display:block;color:var(--muted);font-size:.58rem}.nav-link:nth-child(1){--accent:var(--aqua)}.nav-link:nth-child(2){--accent:var(--pink)}.nav-link:nth-child(3){--accent:var(--violet)}.nav-link:nth-child(4){--accent:var(--gold)}.side-credit{margin-top:auto;padding:10px 2px;color:#a7a4bf;font-size:.63rem}
-    .view-panel{display:none;min-height:calc(100svh - 150px);padding:17px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(145deg,#2d2b4d,#191a34);overflow:auto}.view-panel.active{display:block;animation:appear .24s ease-out}.stage.browsing .screen,.stage.browsing .info{display:none}.view-title{margin:0;font:1.65rem var(--serif)}.view-lede{margin:5px 0 15px;color:var(--muted);font-size:.76rem}.episode-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.episode-card,.character-card,.gallery-card{border:1px solid var(--line);border-radius:8px;background:linear-gradient(140deg,#393452,#212440);overflow:hidden}.episode-card{padding:11px}.episode-card button{width:100%;padding:0;border:0;text-align:left;background:none;cursor:pointer}.ep-label{color:var(--aqua);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase}.episode-card h2{margin:4px 0;font:1rem var(--serif)}.episode-card p{margin:0;color:var(--muted);font-size:.67rem}.episode-card.selected{border-color:#8ff6e8a8;box-shadow:0 0 20px #8ff6e814}
-    .character-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.character-card{padding:12px;text-align:center}.character-face{width:46px;height:46px;margin:0 auto 7px;display:grid;place-items:center;border:1px solid #fff8;border-radius:50%;color:#19172c;background:var(--color);font:1.2rem var(--serif)}.character-card strong{font: .85rem var(--serif)}
-    .gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.gallery-card{aspect-ratio:1;position:relative;display:grid;place-items:center;background:var(--art);}.gallery-card span{padding:5px 8px;border:1px solid #ffffff6e;border-radius:99px;background:#17172f9c;font-size:.6rem;backdrop-filter:blur(6px)}.gallery-card:nth-child(1){--art:linear-gradient(145deg,#185a79,#b85cba 55%,#17172f)}.gallery-card:nth-child(2){--art:linear-gradient(150deg,#6654a6,#89e8d8 55%,#222440)}.gallery-card:nth-child(3){--art:linear-gradient(145deg,#df87b5,#304e8a 60%,#15162d)}.gallery-note{margin:12px 0 0;color:var(--muted);font-size:.7rem}.screen-art.coming-soon::after{position:absolute;top:72%;left:50%;width:max-content;max-width:85%;padding:8px 12px;border:1px solid #ffffff50;border-radius:99px;content:"EPISODE VIDEO NOT LINKED YET";color:#fff;background:#17172fcc;font-size:.58rem;letter-spacing:.1em;text-align:center;transform:translateX(-50%);backdrop-filter:blur(8px)}
-    .series-copy{max-width:680px;color:#e2def2;font:1.16rem/1.6 var(--serif)}.facts{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.fact{padding:6px 9px;border:1px solid var(--line);border-radius:99px;color:var(--aqua);font-size:.62rem}
-    .contact-card{max-width:510px;padding:19px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(130deg,#393353,#202440)}.contact-card p{color:var(--muted);font-size:.8rem}.contact-card a{display:inline-block;margin-top:7px;padding:9px 13px;border:1px solid #ff9dde8c;border-radius:5px 12px 5px 12px;color:#ffeaf5;background:#ff9dde18;font-size:.7rem}
-    .mobile-pet,.mobile-nav{display:none}.footer{padding:9px 18px 15px;color:#9996b1;text-align:center;font-size:.58rem}
-    @keyframes blink{50%{opacity:.45}} @keyframes appear{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}
-    @media(max-width:920px) and (min-width:681px){.layout{grid-template-columns:145px minmax(0,1fr) 156px;gap:10px;padding:12px}.topbar{height:54px}.layout{min-height:calc(100svh - 54px)}.nav-link{min-height:58px;padding:7px;gap:7px}.nav-icon{width:29px;height:29px}.series-badge{min-height:118px}.cast-box,.social-mini{padding:8px}.laurel{min-height:82px;padding:6px}.laurel svg{width:27px}.side-credit{font-size:.56rem}}
-    @media(max-width:680px){
-      .app{min-height:100svh;padding:9px 10px 18px;background:radial-gradient(ellipse at 50% -10%,#5a477c 0,#292745 34%,#19192f 100%)}
-      .topbar{height:39px;max-width:470px;margin:0 auto 8px;padding:0 4px;border:0}.brand{font-size:1rem;gap:7px}.logo{width:27px;height:27px}.status{font-size:.52rem;letter-spacing:.1em}
-      .layout{display:flex;max-width:470px;min-height:0;flex-direction:column;gap:8px;margin:0 auto;padding:0}.left-rail,.right-rail{display:none}.stage{gap:7px}
-      .screen{order:0;aspect-ratio:1/1.08;min-height:0;border:2px solid #d7c8ffab;border-radius:25px 25px 18px 18px;box-shadow:0 0 0 4px #101126aa,0 14px 32px #08081770,inset 0 0 40px #ffffff10}
-      .screen::before{background:radial-gradient(circle at 20% 24%,#fff 0 1px,transparent 2px),radial-gradient(circle at 75% 20%,#fff 0 1px,transparent 2px),radial-gradient(circle at 78% 69%,var(--pink) 0 2px,transparent 3px),radial-gradient(circle at 21% 76%,var(--aqua) 0 2px,transparent 3px),repeating-linear-gradient(0deg,transparent 0 32px,#fff1 33px 34px)}
-      .screen::after{inset:13% 18%;border-color:#e7dfff59}.screen-badge{top:10px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:.54rem}.big-orb{width:55%;box-shadow:0 0 48px #8ff6e844}.screen-controls{right:10px;bottom:9px;left:10px;padding:6px 8px}.time{font-size:.5rem}
-      .info{order:1;min-height:62px;padding:9px 10px;gap:7px}.info-actions{gap:4px}.about-link{font-size:.5rem}.eyebrow{font-size:.52rem}.info h1{font-size:1.12rem}.info p{margin-top:3px;font-size:.61rem}.watch-more{padding:7px 8px;font-size:.52rem}
-      .mobile-pet{order:2;display:flex;min-height:49px;align-items:center;gap:9px;padding:6px 10px;border:1px solid #d9cfff36;border-radius:13px;background:#20203ce8;box-shadow:inset 0 1px #ffffff16}.pet-face{width:36px;height:36px;display:grid;place-items:center;border:1px solid #8ff6e897;border-radius:50%;color:var(--aqua);background:radial-gradient(circle,#8ff6e82e,#7771ec33);box-shadow:0 0 13px #8ff6e81a}.pet-face svg{width:25px}.pet-copy{flex:1}.pet-copy strong{display:block;font: .88rem var(--serif)}.pet-copy small{display:block;color:var(--muted);font-size:.57rem}.pet-dot{width:7px;height:7px;border-radius:50%;background:var(--aqua);box-shadow:0 0 9px var(--aqua)}
-      .mobile-nav{order:3;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.mobile-nav button{min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:1px solid #d8d4f741;border-radius:11px;color:#f7f0ff;background:linear-gradient(145deg,#353451,#24243f);font-size:.55rem}.mobile-nav button[aria-current="page"]{border-color:#8ff6e8b5;box-shadow:0 0 16px #8ff6e82b,inset 0 0 12px #8ff6e812}.mobile-nav svg{width:17px;color:var(--accent)}.mobile-nav button:nth-child(1){--accent:var(--aqua)}.mobile-nav button:nth-child(2){--accent:var(--pink)}.mobile-nav button:nth-child(3){--accent:var(--violet)}.mobile-nav button:nth-child(4){--accent:var(--gold)}
-      .mobile-shortcuts{order:4;display:flex;align-items:center;justify-content:space-between;gap:4px;padding:6px 8px;border:1px solid #d8d4f72e;border-radius:11px;background:#1b1b34}.mobile-shortcuts .avatar{width:26px;border-radius:50%;font-size:.75rem}.view-panel{min-height:0;max-height:52svh;padding:12px}.episode-list{grid-template-columns:1fr}.character-grid{grid-template-columns:repeat(3,1fr)}.gallery-grid{gap:6px}.view-title{font-size:1.4rem}.view-lede{margin-bottom:10px;font-size:.68rem}.series-copy{font-size:1rem}.contact-card{padding:13px}.footer{padding:9px 0 0;font-size:.53rem}
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% -20%, #65518b 0, transparent 44%),
+        radial-gradient(ellipse at 90% 90%, #23616a44 0, transparent 35%),
+        var(--night);
+      font: 14px/1.45 var(--sans);
     }
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+    button, a { color: inherit; font: inherit; }
+    button { cursor: pointer; }
+    a { text-decoration: none; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    [hidden] { display: none !important; }
+
+    /* The shell keeps the desktop player and both sidebars in one stable frame. */
+    .shell { min-height: 100svh; }
+    .topbar {
+      position: relative;
+      z-index: 2;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1480px, 100%);
+      margin: 0 auto;
+      padding: 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      font: 1.16rem var(--serif);
+      letter-spacing: .16em;
+    }
+    .brand-orb {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #9af7e899;
+      border-radius: 50%;
+      color: var(--aqua);
+      background: radial-gradient(circle, #b9fff533, #7869c344 65%, #17162f);
+      box-shadow: 0 0 24px #9af7e833;
+      animation: float 4s ease-in-out infinite;
+    }
+    .brand-orb svg { width: 20px; }
+    .top-actions { display: flex; align-items: center; gap: 12px; }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: .63rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--aqua);
+      box-shadow: 0 0 11px var(--aqua);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .sound-toggle {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--muted);
+      background: #ffffff09;
+      font-size: .62rem;
+    }
+    .sound-toggle[aria-pressed="true"] { color: var(--aqua); border-color: #9af7e877; }
+
+    .layout {
+      width: min(1480px, 100%);
+      min-height: calc(100svh - 62px);
+      margin: 0 auto;
+      padding: 18px 20px 24px;
+      display: grid;
+      grid-template-columns: 205px minmax(0, 1fr) 190px;
+      align-items: center;
+      gap: 18px;
+    }
+    .rail { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+    .glass {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(63, 56, 102, .82), rgba(27, 27, 57, .9));
+      box-shadow: inset 0 1px #ffffff14, 0 12px 35px #09081735;
+      backdrop-filter: blur(14px);
+    }
+    .series-card {
+      min-height: 164px;
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 38%, #8e7bff55, transparent 56%),
+        linear-gradient(145deg, #3a345e, #20203e);
+    }
+    .series-card button { border: 0; padding: 0; background: none; }
+    .large-orb {
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      margin: auto;
+      border: 1px solid #c6fff09c;
+      border-radius: 50%;
+      color: var(--aqua);
+      background: radial-gradient(circle, #b4fff02e, #7c78ec44 64%, #16162e);
+      box-shadow: 0 0 35px #9af7e833, inset 0 0 24px #a9fff022;
+      animation: float 5s ease-in-out infinite;
+    }
+    .large-orb svg { width: 48px; filter: drop-shadow(0 0 8px var(--aqua)); }
+    .series-name { display: block; margin-top: 8px; font: 1.1rem var(--serif); letter-spacing: .16em; }
+    .series-caption { display: block; margin-top: 2px; color: var(--muted); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; }
+    .section-label {
+      margin: 0 0 9px;
+      color: var(--aqua);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .cast-card { padding: 12px; }
+    .cast-icons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .cast-icon {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid #ffffff68;
+      border-radius: 8px 4px 8px 4px;
+      color: #211d43;
+      background: var(--icon-color);
+      font: 1rem var(--serif);
+      box-shadow: inset 0 1px #ffffff70;
+    }
+    .cast-hint { margin: 8px 0 0; color: var(--muted); font-size: .64rem; }
+    .laurel {
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      color: var(--gold);
+      text-align: center;
+    }
+    .laurel svg { width: 34px; flex: 0 0 auto; }
+    .laurel strong { display: block; font: .8rem var(--serif); }
+    .laurel small { display: block; margin-top: 4px; color: var(--muted); font-size: .57rem; }
+
+    .stage { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+    .player {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 64svh;
+      overflow: hidden;
+      border: 1px solid #e2d9ff88;
+      border-radius: 16px 16px 10px 10px;
+      background:
+        radial-gradient(ellipse at 50% 45%, #8775ff70, transparent 36%),
+        radial-gradient(ellipse at 72% 84%, #45caba66, transparent 42%),
+        linear-gradient(145deg, #283b59, #15162e 72%);
+      box-shadow: 0 0 0 5px #ffffff0a, 0 18px 48px #0908176b, inset 0 0 42px #b9aaff18;
+    }
+    .player::before {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 16% 22%, #fff 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 24%, #fff 0 1px, transparent 2px),
+        radial-gradient(circle at 78% 72%, var(--pink) 0 2px, transparent 3px),
+        radial-gradient(circle at 18% 78%, var(--aqua) 0 2px, transparent 3px),
+        repeating-linear-gradient(0deg, transparent 0 42px, #ffffff0a 43px 44px);
+    }
+    .player iframe { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; border: 0; }
+    .player-label {
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      left: 12px;
+      padding: 5px 9px;
+      border: 1px solid #ffffff3d;
+      border-radius: 99px;
+      color: #f0eaff;
+      background: #15142dc9;
+      font-size: .59rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+    }
+    .player-message {
+      position: absolute;
+      z-index: 2;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      width: fit-content;
+      max-width: calc(100% - 24px);
+      margin: 0 auto;
+      padding: 7px 11px;
+      border: 1px solid #ffffff38;
+      border-radius: 99px;
+      color: #f5f0ff;
+      background: #15142dcc;
+      font-size: .65rem;
+      text-align: center;
+      backdrop-filter: blur(9px);
+      pointer-events: none;
+    }
+    .episode-info {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 15px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: linear-gradient(110deg, #393258, #242444 60%, #1e2b49);
+    }
+    .episode-info-copy { min-width: 0; }
+    .eyebrow { margin: 0 0 4px; color: var(--aqua); font-size: .6rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .episode-info h1 { margin: 0; font: clamp(1.2rem, 2.3vw, 1.8rem)/1.08 var(--serif); }
+    .episode-info p:last-child { margin: 5px 0 0; color: var(--muted); font-size: .72rem; }
+    .watch-button {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+      border: 1px solid #dfd2ff9c;
+      border-radius: 6px 13px 6px 13px;
+      color: white;
+      background: linear-gradient(120deg, #a465e2, #686dd8 55%, #33aead);
+      box-shadow: 0 0 18px #b297ff30;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .watch-button:hover { filter: brightness(1.16); transform: translateY(-1px); }
+
+    .nav-rail { display: flex; flex-direction: column; gap: 9px; align-self: stretch; padding-top: 4px; }
+    .nav-button {
+      min-height: 65px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 9px 10px;
+      color: var(--text);
+      background: linear-gradient(110deg, #393455, #232341);
+      text-align: left;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+    }
+    .nav-button:hover { transform: translateX(-3px); border-color: #9af7e899; filter: brightness(1.12); }
+    .nav-button[aria-pressed="true"] { border-color: #9af7e899; background: linear-gradient(110deg, #454064, #252b4b); box-shadow: 0 0 18px #9af7e815; }
+    .nav-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+      border-radius: 10px 4px 10px 4px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+    .nav-icon svg { width: 19px; }
+    .nav-button strong { display: block; font: 1rem var(--serif); }
+    .nav-button small { display: block; margin-top: 2px; color: var(--muted); font-size: .59rem; }
+    .nav-button:nth-child(1) { --accent: var(--aqua); }
+    .nav-button:nth-child(2) { --accent: var(--pink); }
+    .nav-button:nth-child(3) { --accent: var(--violet); }
+    .nav-button:nth-child(4) { --accent: var(--gold); }
+    .nav-credit { margin-top: auto; padding: 10px 2px; color: #aaa6c4; font-size: .62rem; }
+
+    /* One movable information window stays above the playing video. */
+    .modal {
+      position: fixed;
+      z-index: 20;
+      top: 50%;
+      left: 50%;
+      width: min(560px, calc(100vw - 28px));
+      max-height: min(76svh, 690px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #e4dbff80;
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(48, 43, 85, .97), rgba(23, 24, 51, .98));
+      box-shadow: 0 22px 90px #080715a6, 0 0 32px #b69cff1b;
+      transform: translate(-50%, -50%);
+      backdrop-filter: blur(22px);
+    }
+    .modal[hidden] { display: none; }
+    .modal-header {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 10px 8px 15px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, #51436f, #292747);
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+    }
+    .modal-header:active { cursor: grabbing; }
+    .modal-heading { display: flex; align-items: center; gap: 9px; font: 1rem var(--serif); }
+    .drag-mark { color: var(--aqua); font: 1rem var(--sans); letter-spacing: -.1em; }
+    .modal-close {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--text);
+      background: #ffffff0d;
+      font-size: 1rem;
+    }
+    .modal-body { overflow: auto; padding: 16px; overscroll-behavior: contain; }
+    .modal-title { margin: 0; font: 1.55rem/1.1 var(--serif); }
+    .modal-lede { margin: 6px 0 14px; color: var(--muted); font-size: .76rem; }
+    .modal-note { margin: 12px 0 0; color: var(--muted); font-size: .68rem; }
+
+    .episode-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .episode-card {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 9px;
+      background: linear-gradient(135deg, #3d385d, #242440);
+      text-align: left;
+    }
+    .episode-card:hover, .episode-card[aria-current="true"] { border-color: #9af7e8a6; background: linear-gradient(135deg, #474168, #273449); }
+    .episode-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid #ffffff4a;
+      border-radius: 50%;
+      color: var(--aqua);
+      background: radial-gradient(circle, #9af7e826, #b69cff21);
+      font: .85rem var(--serif);
+    }
+    .episode-card strong { display: block; font: .88rem var(--serif); }
+    .episode-card small { display: block; margin-top: 3px; color: var(--muted); font-size: .59rem; }
+
+    .character-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+    .character-card {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      background: linear-gradient(135deg, #3d385d, #242440);
+      text-align: left;
+    }
+    .character-card:hover { border-color: #ff9fcf9c; transform: translateY(-2px); }
+    .portrait {
+      width: 64px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid #ffffff77;
+      border-radius: 50% 50% 42% 48%;
+      color: white;
+      background: var(--portrait-bg);
+      box-shadow: inset 0 0 25px #ffffff19, 0 0 18px #b69cff1a;
+      font: 1.3rem var(--serif);
+    }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .character-card strong { display: block; font: .95rem var(--serif); }
+    .character-card small { display: block; margin-top: 4px; color: var(--muted); font-size: .62rem; line-height: 1.4; }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+    .gallery-tile {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: end start;
+      border: 1px solid #ffffff4a;
+      border-radius: 9px;
+      padding: 8px;
+      background: var(--tile);
+      box-shadow: inset 0 0 35px #ffffff18;
+    }
+    .gallery-tile span { padding: 4px 7px; border-radius: 99px; background: #15142dc9; font-size: .59rem; backdrop-filter: blur(7px); }
+    .gallery-tile:nth-child(1) { --tile: linear-gradient(145deg, #276b87, #dd83c4 60%, #282748); }
+    .gallery-tile:nth-child(2) { --tile: linear-gradient(145deg, #55488c, #9af7e8 60%, #292849); }
+    .gallery-tile:nth-child(3) { --tile: linear-gradient(145deg, #df8ab3, #475e98 60%, #1f203e); }
+    .social-link, .contact-link { color: var(--aqua); text-decoration: underline; text-underline-offset: 3px; }
+    .about-copy { max-width: 60ch; color: #e9e4f8; font: 1.05rem/1.6 var(--serif); }
+    .fact-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .fact { border: 1px solid var(--line); border-radius: 99px; padding: 6px 9px; color: var(--aqua); font-size: .61rem; }
+    .contact-box { border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: linear-gradient(135deg, #3d385d, #242440); }
+    .contact-box p { margin-top: 0; color: var(--muted); font-size: .78rem; }
+    .contact-box a { display: inline-block; margin: 5px 12px 3px 0; }
+
+    .companion { display: none; }
+    .cursor-glow {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      width: 26px;
+      height: 26px;
+      border: 1px solid #a9fff06b;
+      border-radius: 50%;
+      background: #9af7e812;
+      box-shadow: 0 0 24px #9af7e833;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity .25s ease;
+    }
+    .footer { padding: 0 18px 10px; color: #aaa6c4; text-align: center; font-size: .58rem; }
+
+    @keyframes pulse { 50% { opacity: .45; } }
+    @keyframes float { 50% { transform: translateY(-5px); } }
+    @keyframes window-in { from { opacity: 0; scale: .97; } to { opacity: 1; scale: 1; } }
+    @media (hover: hover) and (pointer: fine) { body:hover .cursor-glow { opacity: .75; } }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 160px minmax(0, 1fr) 160px; gap: 10px; padding: 12px; }
+      .topbar { height: 54px; }
+      .layout { min-height: calc(100svh - 54px); }
+      .series-card { min-height: 140px; }
+      .large-orb { width: 68px; height: 68px; }
+      .nav-button { min-height: 58px; padding: 7px; gap: 7px; }
+      .nav-icon { width: 30px; height: 30px; }
+      .nav-button strong { font-size: .9rem; }
+      .laurel { min-height: 78px; padding: 6px; }
+      .laurel svg { width: 27px; }
+      .episode-info { min-height: 72px; padding: 10px; }
+    }
+    @media (max-width: 720px) {
+      .topbar { height: 48px; margin: 0 auto; padding: 0 12px; }
+      .brand { gap: 7px; font-size: 1rem; }
+      .brand-orb { width: 29px; height: 29px; }
+      .status { display: none; }
+      .sound-toggle { padding: 6px 9px; }
+      .layout { display: block; width: min(520px, 100%); min-height: 0; padding: 7px 10px 86px; }
+      .left-rail, .nav-rail { display: none; }
+      .stage { gap: 8px; }
+      .player { aspect-ratio: 16 / 10; max-height: 40svh; border-radius: 20px 20px 14px 14px; }
+      .player-label { top: 8px; left: 9px; font-size: .53rem; }
+      .player-message { bottom: 8px; font-size: .58rem; }
+      .episode-info { min-height: 68px; gap: 7px; padding: 9px 10px; }
+      .eyebrow { margin-bottom: 3px; font-size: .51rem; }
+      .episode-info h1 { font-size: 1.12rem; }
+      .episode-info p:last-child { margin-top: 3px; font-size: .6rem; }
+      .watch-button { padding: 7px 8px; font-size: .52rem; }
+      .companion {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-height: 48px;
+        margin-top: 8px;
+        border: 1px solid #d9d0ff38;
+        border-radius: 13px;
+        padding: 6px 10px;
+        background: linear-gradient(110deg, #302c4f, #20213c);
+        box-shadow: inset 0 1px #ffffff13;
+      }
+      .companion-face {
+        width: 35px;
+        height: 35px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border: 1px solid #9af7e899;
+        border-radius: 50%;
+        color: var(--aqua);
+        background: radial-gradient(circle, #9af7e82b, #8b76e83d);
+        box-shadow: 0 0 13px #9af7e824;
+      }
+      .companion-face svg { width: 23px; }
+      .companion-copy { flex: 1; }
+      .companion-copy strong { display: block; font: .85rem var(--serif); }
+      .companion-copy small { color: var(--muted); font-size: .57rem; }
+      .mobile-nav {
+        position: fixed;
+        z-index: 10;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 8px max(10px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+        border-top: 1px solid var(--line);
+        background: #181731eF;
+        backdrop-filter: blur(18px);
+      }
+      .mobile-nav button {
+        min-height: 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        border: 1px solid #d8d4f741;
+        border-radius: 11px;
+        color: var(--text);
+        background: linear-gradient(145deg, #353451, #24243f);
+        font-size: .55rem;
+      }
+      .mobile-nav button[aria-pressed="true"] { border-color: #9af7e8a0; box-shadow: 0 0 13px #9af7e81f; }
+      .mobile-nav svg { width: 17px; color: var(--accent); }
+      .mobile-nav button:nth-child(1) { --accent: var(--aqua); }
+      .mobile-nav button:nth-child(2) { --accent: var(--pink); }
+      .mobile-nav button:nth-child(3) { --accent: var(--violet); }
+      .mobile-nav button:nth-child(4) { --accent: var(--gold); }
+      .modal {
+        top: auto;
+        bottom: calc(68px + env(safe-area-inset-bottom));
+        left: 50%;
+        width: calc(100vw - 20px);
+        max-height: min(68svh, 570px);
+        transform: translateX(-50%);
+        border-radius: 16px;
+      }
+      .modal-header { min-height: 44px; }
+      .modal-body { padding: 12px; }
+      .modal-title { font-size: 1.35rem; }
+      .modal-lede { margin: 5px 0 11px; font-size: .68rem; }
+      .episode-list, .character-grid { grid-template-columns: 1fr; }
+      .gallery-grid { gap: 6px; }
+      .footer { padding-bottom: 90px; }
+      .cursor-glow { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .cursor-glow { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar"><a class="brand" href="#home" aria-label="Seafoam home"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15c3-1 4-5 5-9 2 5 3 8 6 8 2 0 4-2 5-5M5 19c2-1 4-1 6 0s4 1 6 0 3-1 5 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>SEAFOAM</a><span class="status"><i class="status-dot"></i>Original animated series</span></header>
-    <main class="layout" id="home">
-      <aside class="rail left-rail" aria-label="Seafoam quick links">
-        <section class="glass series-badge"><div><div class="orb" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M50 11c-10 21-16 35-16 48a16 16 0 0 0 32 0c0-13-6-27-16-48Z" fill="#8ff6e8" fill-opacity=".7" stroke="#fff" stroke-width="2"/><path d="M20 72q10-7 20 0t20 0 20 0" stroke="#d5c7ff" stroke-width="2" stroke-linecap="round"/></svg></div><p class="badge-title">SEAFOAM</p><p class="badge-sub">A story beneath the surface</p></div></section>
-        <section class="glass cast-box"><p class="rail-label">Cast signal</p><div class="avatars" aria-label="Characters"><span class="avatar">A</span><span class="avatar">Y</span><span class="avatar">J</span><span class="avatar">C</span><span class="avatar">A</span><span class="avatar">N</span><span class="avatar">L</span></div><p class="rail-small">Seven lives in one orbit.</p></section>
-        <section class="glass laurel"><svg viewBox="0 0 44 54" fill="none" aria-hidden="true"><path d="M20 48C8 37 5 22 7 7m2 9c5-1 8-4 10-8m-9 18c5-1 9-3 12-7m-10 16c5 0 10-2 14-5M24 48C36 37 39 22 37 7m-2 9c-5-1-8-4-10-8m9 18c-5-1-9-3-12-7m10 16c-5 0-10-2-14-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span><strong>Festival laurel</strong><small>Details to be added</small></span></section>
-        <section class="glass social-mini"><p class="rail-label">Instagram preview</p><div class="mini-gallery" aria-hidden="true"><span></span><span></span><span></span></div></section>
+  <div class="shell">
+    <header class="topbar">
+      <button class="brand" id="homeButton" type="button" aria-label="Return to the featured episode">
+        <span class="brand-orb" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15c3-1 4-5 5-9 2 5 3 8 6 8 2 0 4-2 5-5M5 19c2-1 4-1 6 0s4 1 6 0 3-1 5 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        SEAFOAM
+      </button>
+      <div class="top-actions">
+        <span class="status"><i class="status-dot"></i>Original animated series</span>
+        <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" title="Turn interface sounds on or off">Sound: off</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="rail left-rail" aria-label="Seafoam information">
+        <section class="glass series-card">
+          <button type="button" data-panel="about" aria-label="Open About Seafoam">
+            <span class="large-orb" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M50 11c-10 21-16 35-16 48a16 16 0 0 0 32 0c0-13-6-27-16-48Z" fill="#9af7e8" fill-opacity=".7" stroke="#fff" stroke-width="2"/><path d="M20 72q10-7 20 0t20 0 20 0" stroke="#d5c7ff" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span class="series-name">SEAFOAM</span>
+            <span class="series-caption">A story beneath the surface · About</span>
+          </button>
+        </section>
+        <section class="glass cast-card">
+          <p class="section-label">Cast signal</p>
+          <div class="cast-icons" aria-label="Seven characters">
+            <span class="cast-icon" style="--icon-color:#91efdc">A</span><span class="cast-icon" style="--icon-color:#829fff">Y</span><span class="cast-icon" style="--icon-color:#c5a1f7">J</span><span class="cast-icon" style="--icon-color:#ff9fc9">C</span><span class="cast-icon" style="--icon-color:#84dff1">A</span><span class="cast-icon" style="--icon-color:#b5a1ff">N</span><span class="cast-icon" style="--icon-color:#f2cf83">L</span>
+          </div>
+          <p class="cast-hint">Seven lives in one orbit.</p>
+        </section>
+        <section class="glass laurel">
+          <svg viewBox="0 0 44 54" fill="none" aria-hidden="true"><path d="M20 48C8 37 5 22 7 7m2 9c5-1 8-4 10-8m-9 18c5-1 9-3 12-7m-10 16c5 0 10-2 14-5M24 48C36 37 39 22 37 7m-2 9c-5-1-8-4-10-8m9 18c-5-1-9-3-12-7m10 16c-5 0-10-2-14-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span><strong>Festival laurel</strong><small>Add the official festival and award here</small></span>
+        </section>
       </aside>
 
-      <section class="stage" aria-label="Seafoam content">
-        <div class="screen" id="screen" aria-label="Featured episode player">
-          <div class="screen-art" id="screenArt" aria-hidden="true"><div class="big-orb"><svg viewBox="0 0 100 100" fill="none"><path d="M50 10C40 31 34 45 34 58a16 16 0 0 0 32 0c0-13-6-27-16-48Z" fill="#8ff6e8" fill-opacity=".78" stroke="#fff" stroke-width="2"/><path d="M20 69q10-7 20 0t20 0 20 0M26 79q9-6 18 0t18 0 18 0" stroke="#e5ddff" stroke-width="2" stroke-linecap="round"/></svg></div></div>
-          <span class="screen-badge" id="screenBadge">Featured episode · 05</span>
-          <iframe class="video-frame" id="videoFrame" src="https://www.youtube-nocookie.com/embed/-9wHI0Xynkg?rel=0" title="Seafoam Episode 5 — The Moon: Reversed" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <section class="stage" aria-label="Seafoam video player">
+        <div class="player" id="player">
+          <span class="player-label" id="playerLabel">Featured · Episode 05</span>
+          <iframe id="videoFrame" src="https://www.youtube-nocookie.com/embed/-9wHI0Xynkg?rel=0" title="Seafoam Episode 5 — The Moon: Reversed" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <p class="player-message" id="playerMessage" hidden></p>
         </div>
-        <div class="info" id="info"><div class="info-copy"><p class="eyebrow" id="infoEyebrow">Episode 05 · The Moon: Reversed</p><h1 id="infoTitle">Seafoam — the series room</h1><p id="infoDescription">Alex questions her alliances while answers may be buried in her unconscious.</p></div><div class="info-actions"><a class="watch-more" id="watchMore" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">Watch channel ↗</a><a class="about-link" href="#about" data-view="about">About the series</a></div></div>
-        <section class="glass view-panel" id="viewPanel" aria-live="polite"></section>
-        <section class="mobile-pet" aria-label="Seafoam companion"><span class="pet-face" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4c-6 12-9 19-9 25a9 9 0 0 0 18 0c0-6-3-13-9-25Z" fill="currentColor" fill-opacity=".5" stroke="currentColor"/><circle cx="16.5" cy="22" r="1.2" fill="white"/><circle cx="23.5" cy="22" r="1.2" fill="white"/><path d="M16 27q4 3 8 0" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="pet-copy"><strong>Little Seafoam</strong><small id="petMessage">Your tiny guide to the series</small></span><span class="pet-dot" aria-hidden="true"></span></section>
-        <nav class="mobile-nav" aria-label="Seafoam navigation"><button data-view="episodes"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg>Episodes</button><button data-view="characters"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Cast</button><button data-view="social"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg>Social</button><button data-view="contact"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg>Contact</button></nav>
-        <div class="mobile-shortcuts" aria-label="Cast shortcuts"><span class="avatar">A</span><span class="avatar">Y</span><span class="avatar">J</span><span class="avatar">C</span><span class="avatar">A</span><span class="avatar">N</span><span class="avatar">L</span></div>
+        <section class="episode-info">
+          <div class="episode-info-copy">
+            <p class="eyebrow" id="episodeEyebrow">Episode 05 · The Moon: Reversed</p>
+            <h1 id="episodeTitle">Seafoam — the series room</h1>
+            <p id="episodeDescription">Alex questions her alliances while answers may be buried in her unconscious.</p>
+          </div>
+          <a class="watch-button" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">More videos ↗</a>
+        </section>
+        <section class="companion" aria-label="Seafoam companion">
+          <span class="companion-face" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4c-6 12-9 19-9 25a9 9 0 0 0 18 0c0-6-3-13-9-25Z" fill="currentColor" fill-opacity=".5" stroke="currentColor"/><circle cx="16.5" cy="22" r="1.2" fill="white"/><circle cx="23.5" cy="22" r="1.2" fill="white"/><path d="M16 27q4 3 8 0" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+          <span class="companion-copy"><strong>Little Seafoam</strong><small id="companionMessage">Your tiny guide to the series</small></span>
+          <i class="status-dot" aria-hidden="true"></i>
+        </section>
       </section>
 
-      <nav class="right-rail" aria-label="Explore Seafoam">
-        <button class="nav-link" data-view="episodes" aria-current="page"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg></span><span><strong>Episodes</strong><small>Watch & explore</small></span></button>
-        <button class="nav-link" data-view="characters"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span><strong>Characters</strong><small>Meet the cast</small></span></button>
-        <button class="nav-link" data-view="social"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Social</strong><small>Instagram gallery</small></span></button>
-        <button class="nav-link" data-view="contact"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Contact</strong><small>Follow the project</small></span></button>
-        <p class="side-credit">Created by Lauren Leven<br>Original animated series</p>
+      <nav class="rail nav-rail" aria-label="Explore Seafoam">
+        <button class="nav-button" type="button" data-panel="episodes" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg></span><span><strong>Episodes</strong><small>Watch & explore</small></span></button>
+        <button class="nav-button" type="button" data-panel="characters" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span><strong>Characters</strong><small>Meet the cast</small></span></button>
+        <button class="nav-button" type="button" data-panel="social" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Social</strong><small>Instagram gallery</small></span></button>
+        <button class="nav-button" type="button" data-panel="contact" aria-pressed="false"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg></span><span><strong>Contact</strong><small>Follow the project</small></span></button>
+        <p class="nav-credit">Created by Lauren Leven<br>Independent animated series</p>
       </nav>
     </main>
+
+    <nav class="mobile-nav" aria-label="Seafoam navigation">
+      <button type="button" data-panel="episodes" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg>Episodes</button>
+      <button type="button" data-panel="characters" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.4-3.2 2.3-5 5.5-5s5.1 1.8 5.5 5M16 7a2.5 2.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Cast</button>
+      <button type="button" data-panel="social" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.6"/></svg>Social</button>
+      <button type="button" data-panel="contact" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.6"/></svg>Contact</button>
+    </nav>
+
+    <section class="modal" id="infoModal" role="dialog" aria-modal="false" aria-labelledby="modalHeading" hidden>
+      <header class="modal-header" id="modalHandle">
+        <span class="modal-heading"><span class="drag-mark" aria-hidden="true">⋮⋮</span><span id="modalHeading">Seafoam information</span></span>
+        <button class="modal-close" id="closeModal" type="button" aria-label="Close information window">×</button>
+      </header>
+      <div class="modal-body" id="modalBody"></div>
+    </section>
+
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
     <footer class="footer">SEAFOAM · An independent animated sci-fi series · <span id="year"></span></footer>
   </div>
+
   <script>
+    /* EPISODE EDITING:
+       Add each YouTube video ID in videoId. The ID is the part after "v=" in its URL.
+       Titles and summaries can be changed here. Blank IDs are listed but do not replace the playing video.
+       Episodes 1–4 and 6 are editable slots until their final titles and links are added.
+    */
     const episodes = [
-      { number: "05", title: "The Moon: Reversed", description: "Alex questions her alliances while answers may be buried in her unconscious.", video: "-9wHI0Xynkg" },
-      { number: "07", title: "Pouring Rain", description: "Unlikely alliances form.", video: "" }
+      { number: "01", title: "Episode 1", description: "Add the episode title and short description here.", videoId: "" },
+      { number: "02", title: "Episode 2", description: "Add the episode title and short description here.", videoId: "" },
+      { number: "03", title: "Episode 3", description: "Add the episode title and short description here.", videoId: "" },
+      { number: "04", title: "Episode 4", description: "Add the episode title and short description here.", videoId: "" },
+      { number: "05", title: "The Moon: Reversed", description: "Alex questions her alliances while answers may be buried in her unconscious.", videoId: "-9wHI0Xynkg" },
+      { number: "06", title: "Episode 6", description: "Add the episode title and short description here.", videoId: "" },
+      { number: "07", title: "Pouring Rain", description: "Unlikely alliances form.", videoId: "" }
     ];
-    const characters = ["Alex", "Yunoire", "Jack", "Charlotte", "Apollo", "Nova", "Leandro"];
-    const initials = ["A", "Y", "J", "C", "A", "N", "L"];
-    const colors = ["#91efdc", "#829fff", "#c5a1f7", "#ff9fc9", "#84dff1", "#b5a1ff", "#f2cf83"];
-    const panel = document.querySelector("#viewPanel");
-    const frame = document.querySelector("#videoFrame");
-    const badge = document.querySelector("#screenBadge");
-    const infoEyebrow = document.querySelector("#infoEyebrow");
-    const infoTitle = document.querySelector("#infoTitle");
-    const infoDescription = document.querySelector("#infoDescription");
-    const navButtons = [...document.querySelectorAll("[data-view]")];
 
-    function showHome() {
-      document.querySelector(".stage").classList.remove("browsing");
-      panel.classList.remove("active");
-      navButtons.forEach(button => button.removeAttribute("aria-current"));
-      document.querySelector("#petMessage").textContent = "Your tiny guide to the series";
-    }
-    function chooseEpisode(episode) {
-      infoEyebrow.textContent = `Episode ${episode.number} · ${episode.title}`;
-      infoTitle.textContent = episode.title;
-      infoDescription.textContent = episode.description;
-      badge.textContent = `Episode ${episode.number}`;
-      const screenArt = document.querySelector("#screenArt");
-      if (episode.video) {
-        frame.src = `https://www.youtube-nocookie.com/embed/${episode.video}?rel=0`;
-        frame.hidden = false;
-        screenArt.classList.remove("coming-soon");
-      } else {
-        frame.removeAttribute("src");
-        frame.hidden = true;
-        screenArt.classList.add("coming-soon");
-      }
-      showHome();
+    /* CHARACTER EDITING:
+       Change name, bio, initials, color, or image for each character.
+       To add a portrait later, set image to a local path, such as "images/alex.png".
+       Leave image blank to keep the illustrated gradient placeholder.
+    */
+    const characters = [
+      { name: "Alex", initials: "A", color: "linear-gradient(145deg,#88efd9,#7478cf)", image: "", bio: "The story's central character. Her search for the truth brings her into the orbit of F.A.T.E. Labs." },
+      { name: "Yunoire", initials: "Y", color: "linear-gradient(145deg,#8aabff,#b66fe5)", image: "", bio: "A Kir whose connection with Alex changes the course of the story." },
+      { name: "Jack", initials: "J", color: "linear-gradient(145deg,#c9a5ff,#6359a9)", image: "", bio: "A member of Alex's circle whose loyalty is tested as the crew faces danger." },
+      { name: "Charlotte", initials: "C", color: "linear-gradient(145deg,#ff9fcf,#bd577f)", image: "", bio: "A sharp, decisive member of the crew with a pivotal role in the story." },
+      { name: "Apollo", initials: "A", color: "linear-gradient(145deg,#7fe0f1,#4d739e)", image: "", bio: "A compelling figure whose influence over the crew has a darker side." },
+      { name: "Nova", initials: "N", color: "linear-gradient(145deg,#b5a1ff,#6262a8)", image: "", bio: "A Kir working with F.A.T.E. Labs, guiding Alex through its simulation." },
+      { name: "Leandro", initials: "L", color: "linear-gradient(145deg,#f2cf83,#aa6c82)", image: "", bio: "A new presence at F.A.T.E. Labs, introduced as the experiment reaches a turning point." }
+    ];
+
+    const modal = document.querySelector("#infoModal");
+    const modalBody = document.querySelector("#modalBody");
+    const modalHeading = document.querySelector("#modalHeading");
+    const videoFrame = document.querySelector("#videoFrame");
+    const playerLabel = document.querySelector("#playerLabel");
+    const playerMessage = document.querySelector("#playerMessage");
+    const panelButtons = Array.from(document.querySelectorAll("[data-panel]"));
+    let activePanel = "";
+    let soundEnabled = false;
+    let audioContext;
+
+    /* Short optional chime. Sound is off until the visitor switches it on. */
+    function playChime() {
+      if (!soundEnabled) return;
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      if (!audioContext) audioContext = new AudioContextClass();
+      const oscillator = audioContext.createOscillator();
+      const volume = audioContext.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = 520;
+      volume.gain.setValueAtTime(.035, audioContext.currentTime);
+      volume.gain.exponentialRampToValueAtTime(.001, audioContext.currentTime + .12);
+      oscillator.connect(volume);
+      volume.connect(audioContext.destination);
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + .12);
     }
 
-    function renderView(name) {
-      document.querySelector(".stage").classList.add("browsing");
-      navButtons.forEach(button => {
-        const active = button.dataset.view === name;
-        active ? button.setAttribute("aria-current", "page") : button.removeAttribute("aria-current");
+    function portraitMarkup(character) {
+      const picture = character.image
+        ? '<img src="' + character.image + '" alt="' + character.name + '">'
+        : character.initials;
+      return '<span class="portrait" style="--portrait-bg:' + character.color + '">' + picture + '</span>';
+    }
+
+    function setPanelButtonState(name) {
+      panelButtons.forEach(function (button) {
+        button.setAttribute("aria-pressed", String(button.dataset.panel === name));
       });
-      panel.classList.add("active");
-      if (name === "episodes") {
-        panel.innerHTML = `<h2 class="view-title">Episode archive</h2><p class="view-lede">Choose an episode to load it in the player. More entries can be added as the archive grows.</p><div class="episode-list">${episodes.map((ep,i)=>`<article class="episode-card ${i===0?"selected":""}"><button type="button" data-episode="${i}"><span class="ep-label">Episode ${ep.number}</span><h2>${ep.title}</h2><p>${ep.description}</p></button></article>`).join("")}</div><p class="gallery-note">Watch more on <a href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">AphrosAnimation YouTube ↗</a></p>`;
-        panel.querySelectorAll("[data-episode]").forEach(button=>button.addEventListener("click",()=>chooseEpisode(episodes[Number(button.dataset.episode)])));
-      } else if (name === "characters") {
-        panel.innerHTML = `<h2 class="view-title">Characters</h2><p class="view-lede">The people caught in the orbit of F.A.T.E. Labs. Profiles and art can grow here.</p><div class="character-grid">${characters.map((person,i)=>`<article class="character-card"><span class="character-face" style="--color:${colors[i]}">${initials[i]}</span><strong>${person}</strong></article>`).join("")}</div><p class="gallery-note">Character details are being added.</p>`;
-      } else if (name === "social") {
-        panel.innerHTML = `<h2 class="view-title">Seafoam social feed</h2><p class="view-lede">A little window into the art and making of the series.</p><div class="gallery-grid"><a class="gallery-card" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener"><span>Seafoam art</span></a><a class="gallery-card" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener"><span>Character art</span></a><a class="gallery-card" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener"><span>Behind the scenes</span></a></div><p class="gallery-note">Instagram images are placeholders until selected posts or image files are added. <a href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Visit @aphrosanimation ↗</a></p>`;
-      } else if (name === "about") {
-        panel.innerHTML = `<h2 class="view-title">About Seafoam</h2><p class="view-lede">An independent animated sci-fi series created by Lauren Leven.</p><p class="series-copy">Seafoam follows a cast of characters whose lives cross paths with F.A.T.E. Labs and a strange world shaped by the sea. Explore the episodes, get to know the cast, and follow the art as the series grows.</p><div class="facts"><span class="fact">Original animation</span><span class="fact">Science fiction</span><span class="fact">Created by Lauren Leven</span></div>`;
-      } else {
-        panel.innerHTML = `<h2 class="view-title">Contact & follow</h2><div class="contact-card"><p>Follow Lauren’s animation work and keep up with Seafoam as the series grows.</p><a href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Instagram · @aphrosanimation ↗</a><a href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">YouTube · AphrosAnimation ↗</a></div>`;
-      }
-      document.querySelector("#petMessage").textContent = ({episodes:"Choose a chapter to watch",characters:"Meet the Seafoam crew",social:"Fresh art from the series",contact:"Stay in the loop",about:"A story beneath the surface"})[name];
     }
-    navButtons.forEach(button=>button.addEventListener("click",()=>renderView(button.dataset.view)));
-    document.querySelector(".brand").addEventListener("click", event => { event.preventDefault(); showHome(); });
+
+    function openPanel(name) {
+      activePanel = name;
+      modal.hidden = false;
+      setPanelButtonState(name);
+      modalBody.scrollTop = 0;
+      renderPanel(name);
+      document.querySelector("#companionMessage").textContent = panelMessage(name);
+      playChime();
+    }
+
+    function closePanel() {
+      modal.hidden = true;
+      activePanel = "";
+      setPanelButtonState("");
+      document.querySelector("#companionMessage").textContent = "Your tiny guide to the series";
+    }
+
+    function panelMessage(name) {
+      const messages = {
+        episodes: "Pick a chapter to watch",
+        characters: "Meet the Seafoam crew",
+        social: "A little art from the series",
+        contact: "Stay in the loop",
+        about: "A story beneath the surface"
+      };
+      return messages[name] || "Your tiny guide to the series";
+    }
+
+    function renderPanel(name) {
+      const headings = {
+        episodes: "Episode archive",
+        characters: "Meet the characters",
+        social: "Seafoam on Instagram",
+        contact: "Follow the series",
+        about: "About Seafoam"
+      };
+      modalHeading.textContent = headings[name] || "Seafoam information";
+
+      if (name === "episodes") {
+        modalBody.innerHTML =
+          '<h2 class="modal-title">Season one · 7 episodes</h2>' +
+          '<p class="modal-lede">Choose an episode to load it in the player. Unlinked episodes stay listed and will not interrupt the video.</p>' +
+          '<div class="episode-list">' +
+          episodes.map(function (episode) {
+            const linked = Boolean(episode.videoId);
+            const state = linked ? "Play episode" : "Video link to be added";
+            return '<button class="episode-card" type="button" data-episode="' + episode.number + '" aria-current="' + String(episode.number === "05") + '">' +
+              '<span class="episode-number">' + episode.number + '</span>' +
+              '<span><strong>' + episode.title + '</strong><small>' + state + '</small></span>' +
+              '</button>';
+          }).join("") +
+          '</div><p class="modal-note">Episode titles and links are editable in the episodes list near the top of the script.</p>';
+        modalBody.querySelectorAll("[data-episode]").forEach(function (button) {
+          button.addEventListener("click", function () { chooseEpisode(button.dataset.episode); });
+        });
+      }
+
+      if (name === "characters") {
+        modalBody.innerHTML =
+          '<h2 class="modal-title">Characters</h2>' +
+          '<p class="modal-lede">Tap a profile to open its description. Portraits are ready for your character art.</p>' +
+          '<div class="character-grid">' +
+          characters.map(function (character, index) {
+            return '<button class="character-card" type="button" data-character="' + index + '">' +
+              portraitMarkup(character) +
+              '<span><strong>' + character.name + '</strong><small>Open character profile ↗</small></span>' +
+              '</button>';
+          }).join("") +
+          '</div>';
+        modalBody.querySelectorAll("[data-character]").forEach(function (button) {
+          button.addEventListener("click", function () { renderCharacter(Number(button.dataset.character)); });
+        });
+      }
+
+      if (name === "social") {
+        modalBody.innerHTML =
+          '<h2 class="modal-title">Seafoam social feed</h2>' +
+          '<p class="modal-lede">A little window into the art and making of the series.</p>' +
+          '<div class="gallery-grid"><div class="gallery-tile"><span>Seafoam art</span></div><div class="gallery-tile"><span>Character art</span></div><div class="gallery-tile"><span>Behind the scenes</span></div></div>' +
+          '<p class="modal-note">These are visual placeholders. Add selected post images here when you are ready. <a class="social-link" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Visit @aphrosanimation ↗</a></p>';
+      }
+
+      if (name === "contact") {
+        modalBody.innerHTML =
+          '<h2 class="modal-title">Follow the project</h2>' +
+          '<p class="modal-lede">Watch new episodes and follow the art behind Seafoam.</p>' +
+          '<div class="contact-box"><p>Created by Lauren Leven · Aphros Animation</p>' +
+          '<a class="contact-link" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">YouTube ↗</a>' +
+          '<a class="contact-link" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Instagram ↗</a></div>';
+      }
+
+      if (name === "about") {
+        modalBody.innerHTML =
+          '<h2 class="modal-title">About Seafoam</h2>' +
+          '<p class="modal-lede">An independent animated sci-fi series created by Lauren Leven.</p>' +
+          '<p class="about-copy">Seafoam follows a cast of characters whose lives cross paths with F.A.T.E. Labs and a strange world shaped by the sea. Explore the episodes, get to know the cast, and follow the art as the series grows.</p>' +
+          '<div class="fact-list"><span class="fact">Original animation</span><span class="fact">Science fiction</span><span class="fact">Created by Lauren Leven</span></div>';
+      }
+    }
+
+    function renderCharacter(index) {
+      const character = characters[index];
+      modalHeading.textContent = character.name;
+      modalBody.innerHTML =
+        '<button class="social-link" type="button" id="backToCharacters">← All characters</button>' +
+        '<div style="display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center;gap:16px;margin-top:14px">' +
+        '<span style="width:110px;height:110px">' + portraitMarkup(character) + '</span>' +
+        '<div><h2 class="modal-title">' + character.name + '</h2><p class="about-copy">' + character.bio + '</p></div></div>' +
+        '<p class="modal-note">To add the finished character art, edit the image field for ' + character.name + ' in the character list near the top of the script.</p>';
+      modalBody.querySelector("#backToCharacters").addEventListener("click", function () { renderPanel("characters"); });
+    }
+
+    function chooseEpisode(number) {
+      const episode = episodes.find(function (item) { return item.number === number; });
+      if (!episode) return;
+      if (!episode.videoId) {
+        playerMessage.textContent = "This episode is listed; add its YouTube video ID in the episode list to play it.";
+        playerMessage.hidden = false;
+        playChime();
+        return;
+      }
+
+      videoFrame.src = "https://www.youtube-nocookie.com/embed/" + episode.videoId + "?rel=0";
+      videoFrame.title = "Seafoam Episode " + Number(episode.number) + " — " + episode.title;
+      playerLabel.textContent = "Episode " + episode.number + " · " + episode.title;
+      document.querySelector("#episodeEyebrow").textContent = "Episode " + episode.number + " · " + episode.title;
+      document.querySelector("#episodeTitle").textContent = episode.title;
+      document.querySelector("#episodeDescription").textContent = episode.description;
+      playerMessage.hidden = true;
+      modalBody.querySelectorAll("[data-episode]").forEach(function (button) {
+        button.setAttribute("aria-current", String(button.dataset.episode === number));
+      });
+      document.querySelector("#companionMessage").textContent = "Now playing episode " + Number(episode.number);
+      playChime();
+    }
+
+    panelButtons.forEach(function (button) {
+      button.addEventListener("click", function () { openPanel(button.dataset.panel); });
+    });
+    document.querySelector("#homeButton").addEventListener("click", function () {
+      closePanel();
+      playChime();
+    });
+    document.querySelector("#closeModal").addEventListener("click", closePanel);
+    document.querySelector("#soundToggle").addEventListener("click", function (event) {
+      soundEnabled = !soundEnabled;
+      event.currentTarget.setAttribute("aria-pressed", String(soundEnabled));
+      event.currentTarget.textContent = soundEnabled ? "Sound: on" : "Sound: off";
+      playChime();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !modal.hidden) closePanel();
+    });
+
+    /* Drag the window by its title bar; on release it snaps to the nearest corner. */
+    const modalHandle = document.querySelector("#modalHandle");
+    modalHandle.addEventListener("pointerdown", function (event) {
+      if (event.target.closest("button") || modal.hidden) return;
+      const rect = modal.getBoundingClientRect();
+      modal.style.left = rect.left + "px";
+      modal.style.top = rect.top + "px";
+      modal.style.bottom = "auto";
+      modal.style.transform = "none";
+      modalHandle.setPointerCapture(event.pointerId);
+      const startX = event.clientX;
+      const startY = event.clientY;
+      const originX = rect.left;
+      const originY = rect.top;
+      function move(moveEvent) {
+        const maxX = window.innerWidth - modal.offsetWidth - 10;
+        const maxY = window.innerHeight - modal.offsetHeight - 10;
+        const x = Math.max(10, Math.min(maxX, originX + moveEvent.clientX - startX));
+        const y = Math.max(10, Math.min(maxY, originY + moveEvent.clientY - startY));
+        modal.style.left = x + "px";
+        modal.style.top = y + "px";
+      }
+      function finish() {
+        modalHandle.removeEventListener("pointermove", move);
+        modalHandle.removeEventListener("pointerup", finish);
+        modalHandle.removeEventListener("pointercancel", finish);
+        snapModal();
+      }
+      modalHandle.addEventListener("pointermove", move);
+      modalHandle.addEventListener("pointerup", finish);
+      modalHandle.addEventListener("pointercancel", finish);
+    });
+
+    function snapModal() {
+      const rect = modal.getBoundingClientRect();
+      const x = rect.left + rect.width / 2 < window.innerWidth / 2
+        ? 10
+        : window.innerWidth - rect.width - 10;
+      const y = rect.top + rect.height / 2 < window.innerHeight / 2
+        ? 74
+        : window.innerHeight - rect.height - 10;
+      modal.style.left = Math.max(10, x) + "px";
+      modal.style.top = Math.max(10, y) + "px";
+      modal.style.bottom = "auto";
+      modal.style.transform = "none";
+    }
+
+    /* Small glow follows a mouse or trackpad pointer; it stays off on touch screens. */
+    const cursorGlow = document.querySelector("#cursorGlow");
+    window.addEventListener("pointermove", function (event) {
+      if (event.pointerType === "touch" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      cursorGlow.style.left = event.clientX + "px";
+      cursorGlow.style.top = event.clientY + "px";
+    });
+
     document.querySelector("#year").textContent = new Date().getFullYear();
-    showHome();
   </script>
 </body>
 </html>
