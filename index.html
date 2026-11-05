@@ -232,25 +232,25 @@
       transition: transform .18s ease, box-shadow .18s ease;
     }
     .cast-hint { margin: 8px 0 0; color: var(--muted); font-size: .64rem; }
+    /* Square festival artwork keeps the award visible in the compact side rail. */
     .laurel {
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px;
+      width: 100%;
+      aspect-ratio: 1;
+      min-height: 0;
+      overflow: hidden;
+      padding: 4px;
       border-color: #fff0ad99;
       border-radius: 22px;
-      color: var(--gold);
-      text-align: center;
-      background:
-        radial-gradient(ellipse at 50% 0%, #fff0ad48 0 2%, transparent 34%),
-        linear-gradient(145deg, #5a527b, #23254e);
-      box-shadow: inset 0 2px 0 rgba(255,255,255,.55), inset 0 -6px 12px #15153888, 0 8px 18px #080b3155;
+      background: linear-gradient(145deg, #5a527b, #23254e);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 8px 18px #080b3155;
     }
-    .laurel svg { width: 34px; flex: 0 0 auto; }
-    .laurel strong { display: block; font: .8rem var(--serif); }
-    .laurel small { display: block; margin-top: 4px; color: var(--muted); font-size: .57rem; }
+    .laurel img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 17px;
+      object-fit: cover;
+    }
 
     .stage { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .player {
@@ -560,8 +560,7 @@
       .nav-button { min-height: 58px; padding: 7px; gap: 7px; }
       .nav-icon { width: 30px; height: 30px; }
       .nav-button strong { font-size: .9rem; }
-      .laurel { min-height: 78px; padding: 6px; }
-      .laurel svg { width: 27px; }
+      .laurel { min-height: 0; padding: 4px; }
       .episode-info { min-height: 72px; padding: 10px; }
     }
     @media (max-width: 720px) {
@@ -736,10 +735,9 @@
           </span>
           <span class="cast-hint">Seven lives in one orbit · Meet the cast ↗</span>
         </button>
-        <section class="glass laurel">
-          <svg viewBox="0 0 44 54" fill="none" aria-hidden="true"><path d="M20 48C8 37 5 22 7 7m2 9c5-1 8-4 10-8m-9 18c5-1 9-3 12-7m-10 16c5 0 10-2 14-5M24 48C36 37 39 22 37 7m-2 9c-5-1-8-4-10-8m9 18c-5-1-9-3-12-7m10 16c-5 0-10-2-14-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <span><strong>Festival laurel</strong><small>Add the official festival and award here</small></span>
-        </section>
+        <figure class="glass laurel" aria-label="Seafoam Best Poster award artwork">
+          <img src="./best%20poster%20square%20%281%29.png" alt="Seafoam Best Poster award" loading="lazy">
+        </figure>
       </aside>
 
       <section class="stage" aria-label="Seafoam video player">
