@@ -225,6 +225,8 @@
     .cast-card:hover { transform: translateY(-2px); border-color: #ff9fcf9c; filter: brightness(1.12); }
     .cast-icons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .cast-icon {
+      position:relative;
+      overflow:hidden;
       aspect-ratio: 1;
       display: grid;
       place-items: center;
@@ -236,7 +238,7 @@
       box-shadow: inset 0 2px 3px #70e9e4d9, inset 0 -4px 6px #211d4359, 0 3px 7px #080b2b4a;
       transition: transform .18s ease, box-shadow .18s ease;
     }
-    .cast-icon img { width:100%; height:100%; object-fit:cover; object-position:center 10%; border-radius:inherit; }
+    .cast-icon img { position:absolute; width:300%; height:300%; max-width:none; left:-100%; top:-26%; object-fit:contain; border-radius:inherit; }
     .cast-hint { margin: 8px 0 0; color: var(--muted); font-size: .64rem; }
     /* Square festival artwork keeps the award visible in the compact side rail. */
     .laurel {
@@ -690,14 +692,14 @@
       overflow: hidden;
       border: 1px solid var(--glass-rim);
       background:
-        linear-gradient(180deg, rgba(232,248,255,.92) 0 1px, rgba(180,222,255,.42) 2px, transparent 6px),
-        radial-gradient(ellipse 48% 90% at 14% 0%, rgba(86,174,255,.22), transparent 72%),
-        linear-gradient(180deg, rgba(69,126,183,.24), rgba(13,38,82,.52) 38%, rgba(7,24,58,.76));
+        linear-gradient(180deg, rgba(238,250,255,.98) 0 1px, rgba(172,220,255,.58) 2px, transparent 7px),
+        radial-gradient(ellipse 90% 70% at 50% -4%, rgba(138,205,255,.25), transparent 64%),
+        linear-gradient(180deg, rgba(77,145,201,.2), rgba(17,51,99,.31) 42%, rgba(5,24,58,.55));
       box-shadow:
-        inset 0 1px 0 rgba(235,248,255,.94),
-        inset 0 0 0 1px rgba(117,190,255,.18),
-        inset 0 -1px 0 rgba(4,18,49,.62),
-        0 3px 8px rgba(2,12,34,.28);
+        inset 0 1px 0 rgba(245,252,255,.98),
+        inset 0 0 0 1px rgba(162,215,255,.24),
+        inset 0 -1px 0 rgba(4,18,49,.7),
+        0 3px 9px rgba(2,12,34,.34);
       -webkit-backdrop-filter: blur(5px) saturate(135%);
       backdrop-filter: blur(5px) saturate(135%);
       transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
@@ -710,7 +712,7 @@
       left: 9%;
       height: 2px;
       border-radius: 999px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.74) 14%, #fff 38% 62%, rgba(157,255,247,.8) 86%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(206,236,255,.82) 14%, #fff 38% 62%, rgba(128,194,255,.9) 86%, transparent);
       content: "";
       pointer-events: none;
     }
