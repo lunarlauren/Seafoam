@@ -870,7 +870,7 @@
             <span class="large-orb" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M50 11c-10 21-16 35-16 48a16 16 0 0 0 32 0c0-13-6-27-16-48Z" fill="#9af7e8" fill-opacity=".7" stroke="#fff" stroke-width="2"/><path d="M20 72q10-7 20 0t20 0 20 0" stroke="#d5c7ff" stroke-width="2" stroke-linecap="round"/></svg></span>
             <span class="series-name">SEAFOAM</span>
             <span class="series-caption">A story beneath the surface · About</span>
-            <span class="series-summary">An independent animated sci-fantasy series about strange worlds, shifting loyalties, and the secrets hidden beneath the sea.</span>
+            <span class="series-summary">An original animated sci-fantasy series about a crew caught in a strange experiment far from home.</span>
           </button>
         </section>
         <button class="glass cast-card gloss-button" type="button" data-panel="characters" aria-label="Open character profiles">
@@ -948,15 +948,15 @@
        Episodes 1–4 and 6 are editable slots until their final titles and links are added.
     */
     const episodes = [
-      { number: "01", title: "Begin Again", description: "Alex begins a new life on a strange planet and meets Yunoire.", videoId: "PmpK3zloNQU" },
-      { number: "02", title: "The Dark Side of the Moon", description: "Alex discovers that life on her new world has a darker side.", videoId: "bEexbCSNDW0" },
-      { number: "03", title: "World Away", description: "Alex and Yunoire learn more about each other and their world.", videoId: "woa_XZvQyeE" },
-      { number: "04", title: "Trouble", description: "The crew faces new conflict as the expedition continues.", videoId: "fMMxjRrJCSQ" },
+      { number: "01", title: "Begin Again", description: "After waking far from Earth, Alex tries to make sense of her new surroundings. Meeting Yunoire gives her a first connection to this unfamiliar world.", videoId: "PmpK3zloNQU" },
+      { number: "02", title: "The Dark Side of the Moon", description: "As Alex settles into life on the new world, she begins to notice that its beauty hides unsettling truths.", videoId: "bEexbCSNDW0" },
+      { number: "03", title: "World Away", description: "Alex and Yunoire grow closer while comparing what they know about their worlds—and what neither of them can explain.", videoId: "woa_XZvQyeE" },
+      { number: "04", title: "Trouble", description: "Tension rises among the crew as the expedition pushes forward, testing the fragile trust they have built.", videoId: "fMMxjRrJCSQ" },
       { number: "05", title: "The Moon: Reversed", description: "Alex questions her alliances while answers may be buried in her unconscious.", videoId: "-9wHI0Xynkg" },
-      { number: "06", title: "Space Invader", description: "An unexpected presence disrupts life aboard the ship.", videoId: "NDYAiRJdT38" },
-      { number: "07", title: "Pouring Rain", description: "Unlikely alliances form.", videoId: "ho-a8dA5n1I" },
-      { number: "08", title: "Crashing Waves", description: "The expedition is pushed into dangerous waters.", videoId: "Kn8JkIpY-l4" },
-      { number: "09", title: "Game Over", description: "The crew reaches a turning point with everything at stake.", videoId: "0jO58onY4Sk" }
+      { number: "06", title: "Space Invader", description: "An unexpected presence unsettles the ship and forces the crew to reconsider what they thought they understood.", videoId: "NDYAiRJdT38" },
+      { number: "07", title: "Pouring Rain", description: "With pressure mounting, Alex finds herself relying on people she is not sure she can trust.", videoId: "ho-a8dA5n1I" },
+      { number: "08", title: "Crashing Waves", description: "The expedition enters dangerous waters, and the crew must work together to face what lies ahead.", videoId: "Kn8JkIpY-l4" },
+      { number: "09", title: "Game Over", description: "The crew reaches a turning point. Their decisions now carry consequences for everyone aboard.", videoId: "0jO58onY4Sk" }
     ];
 
     /* CHARACTER EDITING:
@@ -964,11 +964,11 @@
        Each image points to the matching character PNG in the repository.
     */
     const characters = [
-      { name: "Alex", initials: "A", color: "linear-gradient(145deg,#88efd9,#7478cf)", image: "./Alex-Character.png", bio: "The story's central character. Her search for the truth brings her into the orbit of F.A.T.E. Labs." },
-      { name: "Yunoire", initials: "Y", color: "linear-gradient(145deg,#8aabff,#b66fe5)", image: "./YunoirePNG.png", bio: "A Kir whose connection with Alex changes the course of the story." },
-      { name: "Jack", initials: "J", color: "linear-gradient(145deg,#c9a5ff,#6359a9)", image: "./Jack Transparent.png", bio: "A member of Alex's circle whose loyalty is tested as the crew faces danger." },
-      { name: "Charlotte", initials: "C", color: "linear-gradient(145deg,#ff9fcf,#bd577f)", image: "./Charlotte Transparent.png", bio: "A sharp, decisive member of the crew with a pivotal role in the story." },
-      { name: "Apollo", initials: "A", color: "linear-gradient(145deg,#7fe0f1,#4d739e)", image: "./apollo transparent.png", bio: "A compelling figure whose influence over the crew has a darker side." },
+      { name: "Alex", initials: "A", color: "linear-gradient(145deg,#88efd9,#7478cf)", image: "./Alex-Character.png", bio: "Taken from Earth and pulled into F.A.T.E. Labs’ experiment, Alex has to decide which of her new allies she can trust." },
+      { name: "Yunoire", initials: "Y", color: "linear-gradient(145deg,#8aabff,#b66fe5)", image: "./YunoirePNG.png", bio: "A Kir from the strange world Alex wakes up on. Her growing bond with Alex offers a glimpse of life beyond the experiment." },
+      { name: "Jack", initials: "J", color: "linear-gradient(145deg,#c9a5ff,#6359a9)", image: "./Jack Transparent.png", bio: "Part of Alex’s circle aboard the ship. As the crew is pushed into danger, Jack’s loyalties become harder to read." },
+      { name: "Charlotte", initials: "C", color: "linear-gradient(145deg,#ff9fcf,#bd577f)", image: "./Charlotte Transparent.png", bio: "A decisive member of the crew whose choices carry real consequences for the people around her." },
+      { name: "Apollo", initials: "A", color: "linear-gradient(145deg,#7fe0f1,#4d739e)", image: "./apollo transparent.png", bio: "A charismatic presence with influence over the crew—and intentions that are not always easy to see." },
 
     ];
 
@@ -1115,7 +1115,7 @@
         modalBody.innerHTML =
           '<h2 class="modal-title">About Seafoam</h2>' +
           '<p class="modal-lede">An independent animated sci-fantasy series created by Lauren Leven.</p>' +
-          '<p class="about-copy">Seafoam follows a cast of characters whose lives cross paths with F.A.T.E. Labs and a strange world shaped by the sea. Explore the episodes, get to know the cast, and follow the art as the series grows.</p>' +
+          '<p class="about-copy">After being taken from Earth, Alex wakes in a world shaped by the sea and caught inside F.A.T.E. Labs’ experiment. As she searches for a way to understand what happened, she must navigate uncertain alliances, simulated choices, and the people whose lives are tied to her own. Seafoam is an original animated sci-fantasy series about identity, trust, and what it means to choose your own future.</p>' +
           '<div class="fact-list"><span class="fact">Original animation</span><span class="fact">Sci-fantasy</span><span class="fact">Created by Lauren Leven</span></div>';
       }
     }
