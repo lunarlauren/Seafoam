@@ -847,6 +847,32 @@
     }
     .mobile-nav button { background:rgba(27,51,91,.28) !important; border-color:rgba(112,171,231,.14) !important; }
     .sound-toggle { background:rgba(14,35,67,.48) !important; backdrop-filter:blur(12px); }
+
+    /* Shared interaction states: a small lift and a cool blue glass response. */
+    @media (hover:hover) and (pointer:fine) {
+      .nav-button, .episode-card, .character-card, .series-card, .cast-card,
+      .poster-button, .watch-button, .mobile-nav button, .sound-toggle {
+        transition:transform .22s ease, border-color .22s ease, background-color .22s ease, box-shadow .22s ease, filter .22s ease;
+      }
+      .nav-button:hover, .episode-card:hover, .character-card:hover,
+      .watch-button:hover, .mobile-nav button:hover, .sound-toggle:hover {
+        transform:translateY(-2px);
+        border-color:rgba(95,176,255,.48) !important;
+        background-color:rgba(43,92,145,.3) !important;
+        box-shadow:0 8px 20px rgba(0,13,36,.34) !important;
+      }
+      .cast-card:hover { transform:translateY(-2px); border-color:rgba(95,176,255,.48) !important; }
+      .series-card button:hover { transform:translateY(-2px); filter:brightness(1.08); }
+      .poster-button:hover img { transform:scale(1.035); filter:brightness(.66) saturate(.82) contrast(1.12); }
+    }
+    .nav-button:focus-visible, .episode-card:focus-visible, .character-card:focus-visible,
+    .poster-button:focus-visible, .series-card button:focus-visible, .cast-card:focus-visible {
+      outline:2px solid rgba(102,190,255,.88);
+      outline-offset:3px;
+    }
+    .nav-button:active, .episode-card:active, .character-card:active,
+    .poster-button:active, .mobile-nav button:active { transform:scale(.985); }
+
 </style>
 </head>
 <body>
