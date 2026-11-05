@@ -615,11 +615,11 @@
       .layout { display:flex; flex-direction:column; align-items:stretch; width:min(520px,100%); min-height:calc(100svh - 48px - 112px); padding:12px 10px; }
       .left-rail, .nav-rail { display: none; }
       .stage { width:100%; gap:8px; }
-      .mobile-laurel { display:flex; flex:0 0 auto; align-items:center; gap:12px; width:100%; margin:12px auto 100px; padding:10px; text-align:left; color:var(--text); background:rgba(8,22,48,.48); border:1px solid rgba(91,157,220,.24); }
+      .mobile-laurel { display:flex; flex:0 0 auto; align-items:center; gap:12px; width:100%; margin:12px auto 16px; padding:10px; text-align:left; color:var(--text); background:rgba(8,22,48,.48); border:1px solid rgba(91,157,220,.24); }
       .mobile-laurel img { width:56px; height:56px; object-fit:cover; filter:brightness(.55) saturate(.65); }
       .mobile-laurel strong,.mobile-laurel small { display:block; }
       .mobile-laurel small { margin-top:3px; color:var(--muted); font-size:.68rem; }
-      .mobile-laurel-arrow { margin-left:auto; color:#75baff; }
+      .mobile-laurel-arrow { width:20px; height:20px; margin-left:auto; flex:0 0 auto; color:#75baff; }
       .player { aspect-ratio: 16 / 10; max-height: 40svh; border-radius: 4px; }
       .player-label { display:none; }
       .player-message { bottom: 8px; font-size: .58rem; }
@@ -910,7 +910,7 @@
           <span class="cast-icons" aria-label="Five characters">
             <span class="cast-icon"><img src="./Alex-Character.png" alt=""></span><span class="cast-icon"><img src="./YunoirePNG.png" alt=""></span><span class="cast-icon"><img src="./Jack%20Transparent.png" alt=""></span><span class="cast-icon"><img src="./Charlotte%20Transparent.png" alt=""></span><span class="cast-icon"><img src="./apollo%20transparent.png" alt=""></span>
           </span>
-          <span class="cast-hint">Open a character profile ↗</span>
+          <span class="cast-hint">Open a character profile</span>
         </button>
         <figure class="glass laurel">
           <button class="poster-button" id="openPoster" type="button" aria-label="View Best Poster larger"><img src="./best%20poster%20square%20%281%29.png" alt="Seafoam Best Poster award" loading="lazy"></button>
@@ -929,7 +929,7 @@
             <h1 id="episodeTitle">The Moon: Reversed</h1>
             <p id="episodeDescription">Alex questions her alliances while answers may be buried in her unconscious.</p>
           </div>
-          <a class="watch-button gloss-button" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">More videos ↗</a>
+          <a class="watch-button gloss-button" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">More videos <svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </section>
 
       </section>
@@ -943,7 +943,7 @@
       <button class="mobile-laurel glass" id="mobileOpenPoster" type="button">
         <img src="./best%20poster%20square%20%281%29.png" alt="" aria-hidden="true">
         <span><strong>Festival Laurel</strong><small>View the award poster</small></span>
-        <span class="mobile-laurel-arrow" aria-hidden="true">↗</span>
+        <svg class="mobile-laurel-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M6 18 18 6M8 6h10v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </main>
 
@@ -1122,7 +1122,7 @@
           characters.map(function (character, index) {
             return '<button class="character-card gloss-button" type="button" data-character="' + index + '">' +
               portraitMarkup(character) +
-              '<span><strong>' + character.name + '</strong><small>Open character profile ↗</small></span>' +
+              '<span><strong>' + character.name + '</strong><small>Open character profile</small></span>' +
               '</button>';
           }).join("") +
           '</div>';
@@ -1136,7 +1136,7 @@
           '<h2 class="modal-title">Seafoam social feed</h2>' +
           '<p class="modal-lede">A little window into the art and making of the series.</p>' +
           '<div class="gallery-grid"><div class="gallery-tile"><span>Seafoam art</span></div><div class="gallery-tile"><span>Character art</span></div><div class="gallery-tile"><span>Behind the scenes</span></div></div>' +
-          '<p class="modal-note">These are visual placeholders. Add selected post images here when you are ready. <a class="social-link" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Visit @aphrosanimation ↗</a></p>';
+          '<p class="modal-note">These are visual placeholders. Add selected post images here when you are ready. <a class="social-link" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Visit @aphrosanimation</a></p>';
       }
 
       if (name === "contact") {
@@ -1144,8 +1144,8 @@
           '<h2 class="modal-title">Follow the project</h2>' +
           '<p class="modal-lede">Watch new episodes and follow the art behind Seafoam.</p>' +
           '<div class="contact-box"><p>Created by Lauren Leven · Aphros Animation</p>' +
-          '<a class="contact-link" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">YouTube ↗</a>' +
-          '<a class="contact-link" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Instagram ↗</a></div>';
+          '<a class="contact-link" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">YouTube</a>' +
+          '<a class="contact-link" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Instagram</a></div>';
       }
 
       if (name === "about") {
