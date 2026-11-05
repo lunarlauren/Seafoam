@@ -881,6 +881,13 @@
     .poster-button:active, .mobile-nav button:active { transform:scale(.985); }
 
 
+
+    .instagram-preview { display:flex; align-items:center; gap:14px; margin:18px 0 12px; padding:16px; border:1px solid rgba(91,157,220,.22); border-radius:4px; background:rgba(7,20,45,.42); }
+    .instagram-mark { width:48px; height:48px; display:grid; place-items:center; flex:none; border:1px solid rgba(111,185,244,.32); border-radius:50%; color:#a6d9ff; font-size:2rem; line-height:1; }
+    .instagram-preview strong,.instagram-preview small { display:block; }
+    .instagram-preview small { margin-top:4px; color:var(--muted); font-size:.72rem; }
+    .instagram-visit { display:inline-flex; align-items:center; gap:10px; padding:9px 12px; border:1px solid rgba(91,157,220,.26); border-radius:4px; background:rgba(17,43,77,.32); }
+
     /* Spacing scale keeps the page rhythm consistent across breakpoints. */
     :root { --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; }
     .layout { gap:var(--space-4); }
@@ -1148,10 +1155,11 @@
 
       if (name === "social") {
         modalBody.innerHTML =
-          '<h2 class="modal-title">Seafoam social feed</h2>' +
-          '<p class="modal-lede">A little window into the art and making of the series.</p>' +
-          '<div class="gallery-grid"><div class="gallery-tile"><span>Seafoam art</span></div><div class="gallery-tile"><span>Character art</span></div><div class="gallery-tile"><span>Behind the scenes</span></div></div>' +
-          '<p class="modal-note">These are visual placeholders. Add selected post images here when you are ready. <a class="social-link" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">Visit @aphrosanimation</a></p>';
+          '<h2 class="modal-title">Instagram</h2>' +
+          '<p class="modal-lede">Follow the art, animation, and making of Seafoam.</p>' +
+          '<div class="instagram-preview"><span class="instagram-mark" aria-hidden="true">◎</span><div><strong>@aphrosanimation</strong><small>Aphros Animation · Seafoam</small></div></div>' +
+          '<a class="contact-link instagram-visit" href="https://www.instagram.com/aphrosanimation/" target="_blank" rel="noopener">View latest posts <span aria-hidden="true">→</span></a>' +
+          '<p class="modal-note">Instagram posts open on Instagram.</p>';
       }
 
       if (name === "contact") {
