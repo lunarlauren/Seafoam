@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seafoam.bertinoln.workers.dev/sitemap.xml
