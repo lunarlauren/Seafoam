@@ -470,7 +470,7 @@
       pointer-events: none;
       opacity: 0;
       transform: translate(-50%, -50%);
-      transition: opacity .25s ease;
+      transition: left .12s ease-out, top .12s ease-out, opacity .25s ease;
     }
     .footer { padding: 0 18px 10px; color: #aaa6c4; text-align: center; font-size: .58rem; }
 
@@ -715,7 +715,6 @@
     const playerLabel = document.querySelector("#playerLabel");
     const playerMessage = document.querySelector("#playerMessage");
     const panelButtons = Array.from(document.querySelectorAll("[data-panel]"));
-    let activePanel = "";
     let activeEpisode = "05";
     let soundEnabled = false;
     let audioContext;
@@ -752,7 +751,6 @@
     }
 
     function openPanel(name) {
-      activePanel = name;
       modal.hidden = false;
       setPanelButtonState(name);
       modalBody.scrollTop = 0;
@@ -763,7 +761,6 @@
 
     function closePanel() {
       modal.hidden = true;
-      activePanel = "";
       setPanelButtonState("");
       document.querySelector("#companionMessage").textContent = "Your tiny guide to the series";
     }
