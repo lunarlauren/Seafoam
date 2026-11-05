@@ -204,7 +204,9 @@
         linear-gradient(145deg, rgba(17,69,119,.42), rgba(28,42,101,.52) 52%, rgba(8,25,61,.62));
       box-shadow: inset 0 2px 0 rgba(255,255,255,.46), inset 0 -8px 16px #15134488, 0 8px 18px #080b3155;
     }
-    .series-card button { border: 0; padding: 0; background: none; }
+    .series-card button { border:0; padding:0; background:none; cursor:pointer; transition:transform .3s ease, filter .3s ease; }
+    .series-card button:hover { transform:translateY(-2px); filter:brightness(1.08); }
+    .series-card:has(button:hover) { box-shadow:0 14px 32px rgba(29,111,205,.22) !important; }
     .large-orb {
       width: 88px;
       height: 88px;
@@ -272,7 +274,10 @@
       object-fit: cover;
     }
     .poster-button { display:block; width:100%; height:100%; padding:0; border:0; background:none; cursor:zoom-in; }
-    .poster-button:focus-visible { outline:2px solid #a6fff3; outline-offset:3px; border-radius: 4px; }
+    .poster-button:focus-visible { outline:2px solid #65c9ff; outline-offset:3px; border-radius:4px; }
+    .poster-button img { transition:transform .38s cubic-bezier(.2,.7,.2,1), filter .38s ease; }
+    .poster-button:hover img { transform:scale(1.035); filter:brightness(1.12) saturate(1.12); }
+    .poster-button:hover { box-shadow:inset 0 0 24px rgba(65,166,255,.35); }
 
     .stage { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .player {
@@ -463,7 +468,10 @@
       box-shadow: inset 0 1px 2px #70e9e4b8, 0 3px 8px #080b3155;
       font-size: 1rem;
     }
-    .modal-body { overflow: auto; padding: 16px; overscroll-behavior: contain; }
+    .modal-body { overflow:auto; padding:16px; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#56b8f2 rgba(9,28,61,.42); }
+    .modal-body::-webkit-scrollbar { width:9px; }
+    .modal-body::-webkit-scrollbar-track { margin:8px 2px; border:1px solid rgba(91,157,220,.16); border-radius:99px; background:rgba(5,20,48,.42); }
+    .modal-body::-webkit-scrollbar-thumb { border:2px solid rgba(8,27,58,.78); border-radius:99px; background:linear-gradient(180deg,#78e8ed,#4c9ded 55%,#8769d8); box-shadow:0 0 9px rgba(65,166,255,.24); }
     .poster-view { display:block; width:100%; height:auto; max-height:calc(100svh - 170px); object-fit:contain; margin:auto; border-radius: 4px; }
     .modal:has(.poster-view) { width:min(820px,calc(100vw - 28px)); }
     .modal-title { margin: 0; font: 1.55rem/1.1 var(--serif); }
