@@ -1,2 +1,5 @@
 wrangler.jsonc
 .assetsignore
+.github/
+**/node_modules/
+**/.git/
