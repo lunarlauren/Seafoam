@@ -612,10 +612,10 @@
       .brand-orb { width: 29px; height: 29px; }
       .status { display: none; }
       .sound-toggle { padding: 6px 9px; }
-      .layout { display:flex; align-items:center; width:min(520px,100%); min-height:calc(100svh - 48px - 112px); padding:12px 10px; }
+      .layout { display:flex; flex-direction:column; align-items:stretch; width:min(520px,100%); min-height:calc(100svh - 48px - 112px); padding:12px 10px; }
       .left-rail, .nav-rail { display: none; }
       .stage { width:100%; gap:8px; }
-      .mobile-laurel { display:flex; align-items:center; gap:12px; width:min(520px,calc(100% - 20px)); margin:0 auto 100px; padding:10px; text-align:left; color:var(--text); background:rgba(8,22,48,.48); border:1px solid rgba(91,157,220,.24); }
+      .mobile-laurel { display:flex; flex:0 0 auto; align-items:center; gap:12px; width:100%; margin:12px auto 100px; padding:10px; text-align:left; color:var(--text); background:rgba(8,22,48,.48); border:1px solid rgba(91,157,220,.24); }
       .mobile-laurel img { width:56px; height:56px; object-fit:cover; filter:brightness(.55) saturate(.65); }
       .mobile-laurel strong,.mobile-laurel small { display:block; }
       .mobile-laurel small { margin-top:3px; color:var(--muted); font-size:.68rem; }
