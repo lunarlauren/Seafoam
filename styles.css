@@ -777,9 +777,9 @@
     .gloss-button { box-shadow:inset 0 1px 0 rgba(112,187,255,.56),0 2px 5px rgba(2,12,34,.25); }
     .player { box-shadow:0 0 0 1px rgba(61,137,226,.45),0 10px 26px rgba(2,10,29,.4); }
     .portrait img[src*="YunoirePNG"] { transform:none; object-position:center top; }
-    /* Keep About and the square award tile on matching edges. */
-    .left-rail { grid-template-rows:minmax(260px,1fr) auto auto; align-items:stretch; }
-    .series-card { aspect-ratio:auto; min-height:260px; }
+    /* Let About use the remaining rail height so the award aligns with the episode card. */
+    .left-rail { grid-template-rows:minmax(220px,1fr) auto auto; align-items:stretch; }
+    .series-card { aspect-ratio:auto; min-height:220px; }
     .large-orb { width:64px; height:64px; }
     .series-card button { gap:4px; padding:10px 8px; }
     .series-summary { max-width:30ch; font-size:.68rem; line-height:1.5; }
