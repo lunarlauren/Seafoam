@@ -241,11 +241,25 @@
       const character = characters[index];
       modalHeading.textContent = character.name;
       modalBody.innerHTML =
-        '<button class="social-link" type="button" id="backToCharacters">← All characters</button>' +
+        '<button class="social-link" type="button" id="backToCharacters">← All character files</button>' +
         '<div class="character-detail">' +
         portraitMarkup(character).replace('class="portrait"', 'class="portrait character-portrait"') +
-        '<div><h2 class="modal-title">' + character.name + '</h2><p class="about-copy">' + character.bio + '</p></div></div>';
+        '<div><p class="eyebrow">SEAFOAM PERSONNEL FILE</p><h2 class="modal-title">' + character.name + '</h2>' +
+        '<div class="dossier-tabs" role="tablist" aria-label="' + character.name + ' file sections">' +
+        '<button class="dossier-tab is-active" type="button" data-file-tab="background" aria-selected="true">Background</button>' +
+        '<button class="dossier-tab" type="button" data-file-tab="details" aria-selected="false">Personal details</button></div>' +
+        '<div class="dossier-content" id="dossierContent"><p class="about-copy">' + character.bio + '</p></div></div></div>';
       modalBody.querySelector("#backToCharacters").addEventListener("click", function () { renderPanel("characters"); });
+      modalBody.querySelectorAll("[data-file-tab]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          modalBody.querySelectorAll("[data-file-tab]").forEach(function (tab) { tab.classList.remove("is-active"); tab.setAttribute("aria-selected", "false"); });
+          button.classList.add("is-active");
+          button.setAttribute("aria-selected", "true");
+          modalBody.querySelector("#dossierContent").innerHTML = button.dataset.fileTab === "details"
+            ? '<dl class="dossier-facts"><div><dt>Birthday</dt><dd>Undisclosed</dd></div><div><dt>Blood type</dt><dd>Undisclosed</dd></div></dl>'
+            : '<p class="about-copy">' + character.bio + '</p>';
+        });
+      });
     }
 
     function chooseEpisode(number) {
