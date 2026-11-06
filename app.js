@@ -310,7 +310,7 @@
       if (!episode || !episode.videoId) return;
       videoStarted = true;
       videoFrame.title = "Seafoam Episode " + Number(episode.number) + " — " + episode.title;
-      videoFrame.src = "https://www.youtube-nocookie.com/embed/" + episode.videoId + "?rel=0&autoplay=1";
+      videoFrame.src = "https://www.youtube-nocookie.com/embed/" + episode.videoId + "?rel=0&autoplay=1&mute=1&playsinline=1";
       videoFrame.hidden = false;
       playVideoButton.hidden = true;
     });
