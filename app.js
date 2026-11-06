@@ -329,3 +329,84 @@
 
 
     document.querySelector("#year").textContent = new Date().getFullYear();
+
+    /* Smooth aqua bubbles trail the mouse. The YouTube frame is cross-origin,
+       so over it the trail keeps a gentle orbit instead of reading mouse moves. */
+    const cursorTrail = document.querySelector("#cursorTrail");
+    const cursorPlayer = document.querySelector("#player");
+    const embeddedVideo = document.querySelector("#videoFrame");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+    if (cursorTrail && cursorPlayer && embeddedVideo && !reducedMotion && finePointer) {
+      const dots = Array.from(cursorTrail.querySelectorAll(".cursor-trail-dot"));
+      const points = dots.map(function () { return { x: -100, y: -100 }; });
+      let targetX = -100;
+      let targetY = -100;
+      let videoAnchorX = 0;
+      let videoAnchorY = 0;
+      let overEmbeddedVideo = false;
+      let cursorFrame = 0;
+
+      function animateCursor(time) {
+        if (!cursorTrail.classList.contains("is-visible")) {
+          cursorFrame = 0;
+          return;
+        }
+        const goalX = overEmbeddedVideo ? videoAnchorX + Math.cos(time * .0012) * 12 : targetX;
+        const goalY = overEmbeddedVideo ? videoAnchorY + Math.sin(time * .0015) * 9 : targetY;
+        points[0].x += (goalX - points[0].x) * .34;
+        points[0].y += (goalY - points[0].y) * .34;
+        for (let index = 1; index < points.length; index += 1) {
+          points[index].x += (points[index - 1].x - points[index].x) * .24;
+          points[index].y += (points[index - 1].y - points[index].y) * .24;
+        }
+        points.forEach(function (point, index) {
+          dots[index].style.transform = "translate3d(" + point.x + "px," + point.y + "px,0) translate(-50%,-50%)";
+        });
+        cursorFrame = window.requestAnimationFrame(animateCursor);
+      }
+
+      function startCursorTrail() {
+        cursorTrail.classList.add("is-visible");
+        if (!cursorFrame) cursorFrame = window.requestAnimationFrame(animateCursor);
+      }
+
+      document.addEventListener("pointermove", function (event) {
+        if (event.pointerType !== "mouse" || overEmbeddedVideo) return;
+        targetX = event.clientX;
+        targetY = event.clientY;
+        startCursorTrail();
+      }, { passive: true });
+
+      cursorPlayer.addEventListener("pointerenter", function (event) {
+        if (embeddedVideo.hidden) return;
+        overEmbeddedVideo = true;
+        videoAnchorX = event.clientX;
+        videoAnchorY = event.clientY;
+        startCursorTrail();
+        cursorTrail.classList.add("is-in-video");
+      }, { passive: true });
+
+      embeddedVideo.addEventListener("load", function () {
+        if (embeddedVideo.hidden || !cursorPlayer.matches(":hover")) return;
+        overEmbeddedVideo = true;
+        videoAnchorX = targetX;
+        videoAnchorY = targetY;
+        startCursorTrail();
+        cursorTrail.classList.add("is-in-video");
+      });
+
+      cursorPlayer.addEventListener("pointerleave", function () {
+        overEmbeddedVideo = false;
+        cursorTrail.classList.remove("is-in-video");
+      }, { passive: true });
+
+      window.addEventListener("blur", function () {
+        overEmbeddedVideo = false;
+        cursorTrail.classList.remove("is-visible", "is-in-video");
+      });
+      window.addEventListener("pointerout", function (event) {
+        if (event.relatedTarget === null) cursorTrail.classList.remove("is-visible", "is-in-video");
+      }, { passive: true });
+    }
