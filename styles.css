@@ -947,7 +947,7 @@
     border-color:rgba(91,157,220,.26) !important;
     border-radius:4px !important;
     background:rgba(7,20,43,.72) !important;
-    box-shadow:inset 3px 0 0 rgba(100,221,224,.5),0 8px 18px rgba(0,5,19,.24) !important;
+    box-shadow:0 8px 18px rgba(0,5,19,.24) !important;
   }
   .episode-info h1 { font-size:clamp(1.05rem,5vw,1.28rem); }
   .episode-info p:last-child { max-width:42ch; font-size:.65rem; line-height:1.4; }
