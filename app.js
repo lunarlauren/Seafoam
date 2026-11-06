@@ -49,7 +49,9 @@
           window.requestAnimationFrame(function () { ripple.style.opacity = "0"; });
           window.setTimeout(function () { ripple.remove(); }, 240);
         } else {
-          ripple.addEventListener("animationend", function () { ripple.remove(); }, { once: true });
+          ripple.addEventListener("animationend", function (event) {
+            if (event.target === ripple) ripple.remove();
+          });
         }
       }
     }
