@@ -869,6 +869,8 @@
     .stage { gap:var(--space-3); }
     .episode-info { padding:var(--space-3) var(--space-4); }
     @media (min-width:981px) {
+      .layout { align-items:start; }
+      .left-rail { height:auto; align-self:stretch; }
       .topbar, .footer { width:min(1440px,calc(100% - 40px)); }
       .topbar { padding-inline:0; }
       .footer { padding-inline:0; }
