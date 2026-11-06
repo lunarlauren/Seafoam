@@ -1075,6 +1075,10 @@
 .background-ripple--held {
   width:clamp(9rem,22vw,15rem);
   opacity:.62;
+  border:1px solid rgba(83,174,229,.42);
+  box-shadow:0 0 0 4px rgba(40,104,206,.1),inset 0 0 14px rgba(64,147,219,.14),0 0 26px rgba(52,137,221,.18);
+  -webkit-backdrop-filter:blur(1px) saturate(115%);
+  backdrop-filter:blur(1px) saturate(115%);
   transform:translate(-50%,-50%) scale(1);
   animation:none;
   background:radial-gradient(circle,transparent 0 26%,rgba(38,105,207,.46) 29% 31%,transparent 33% 45%,rgba(24,75,166,.36) 48% 50%,transparent 52% 62%,rgba(13,48,119,.26) 65% 67%,transparent 69%);
