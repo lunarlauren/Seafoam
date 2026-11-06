@@ -139,7 +139,7 @@
 
     function renderPanel(name) {
       const headings = {
-        episodes: "Episode archive",
+        episodes: "More videos",
         characters: "Meet the characters",
         social: "Seafoam on Instagram",
         contact: "Follow the series",
@@ -160,7 +160,8 @@
               '<span><strong>' + episode.title + '</strong><small>' + state + '</small></span>' +
               '</button>';
           }).join("") +
-          '</div>';
+          '</div>' +
+          '<a class="watch-button gloss-button episode-youtube-link" href="https://www.youtube.com/@AphrosAnimation" target="_blank" rel="noopener">Watch on YouTube <svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
         modalBody.querySelectorAll("[data-episode]").forEach(function (button) {
           button.addEventListener("click", function () { chooseEpisode(button.dataset.episode); });
         });
