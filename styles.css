@@ -1074,7 +1074,7 @@
 }
 .background-ripple--held {
   width:clamp(9rem,22vw,15rem);
-  opacity:.52;
+  opacity:.62;
   transform:translate(-50%,-50%) scale(1);
   animation:none;
   background:radial-gradient(circle,transparent 0 26%,rgba(38,105,207,.46) 29% 31%,transparent 33% 45%,rgba(24,75,166,.36) 48% 50%,transparent 52% 62%,rgba(13,48,119,.26) 65% 67%,transparent 69%);
@@ -1085,12 +1085,12 @@
   inset:-14%;
   content:"";
   border-radius:50%;
-  background:radial-gradient(circle,transparent 0 57%,rgba(54,143,222,.58) 59% 60%,transparent 62% 100%);
+  background:radial-gradient(circle,transparent 0 57%,rgba(54,143,222,.68) 59% 60%,transparent 62% 100%);
   animation:water-wake 2.45s cubic-bezier(.42,0,.32,1) infinite;
 }
 .background-ripple--held::after {
   inset:-28%;
-  background:radial-gradient(circle,transparent 0 66%,rgba(89,126,211,.42) 68% 69%,transparent 71% 100%);
+  background:radial-gradient(circle,transparent 0 66%,rgba(89,126,211,.5) 68% 69%,transparent 71% 100%);
   animation-delay:-1.2s;
 }
 .background-ripple--release {
@@ -1103,11 +1103,11 @@
   transition:opacity .48s ease-out;
 }
 @keyframes water-wake {
-  0%,100% { opacity:.3; transform:scale(.8); }
-  50% { opacity:.76; transform:scale(1.09); }
+  0%,100% { opacity:.38; transform:scale(.8); }
+  50% { opacity:.84; transform:scale(1.09); }
 }
 @keyframes water-release {
-  from { opacity:.52; transform:translate(-50%,-50%) scale(1); }
+  from { opacity:.62; transform:translate(-50%,-50%) scale(1); }
   to { opacity:0; transform:translate(-50%,-50%) scale(1.3); }
 }
 @media (prefers-reduced-motion: reduce) {
