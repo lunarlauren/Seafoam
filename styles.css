@@ -375,6 +375,9 @@
     .watch-button {
       --button-tint: var(--violet);
       flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 10px 16px;
       border-radius: 4px;
       color: white;
@@ -384,6 +387,7 @@
       text-transform: uppercase;
     }
     .watch-button:hover { filter: brightness(1.05); transform: translateY(0); }
+    .episode-youtube-link { margin-top: 14px; }
 
     .nav-rail { display: flex; flex-direction: column; gap: 9px; align-self: stretch; padding-top: 0; }
     .nav-button {
