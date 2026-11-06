@@ -9,6 +9,12 @@
       ripple.setAttribute("aria-hidden", "true");
       ripple.style.setProperty("--ripple-x", x + "px");
       ripple.style.setProperty("--ripple-y", y + "px");
+      for (let index = 0; index < 3; index += 1) {
+        const ring = document.createElement("span");
+        ring.className = "ripple-ring ripple-ring--" + (index + 1);
+        ring.setAttribute("aria-hidden", "true");
+        ripple.appendChild(ring);
+      }
       seafoamShell.appendChild(ripple);
       return ripple;
     }
