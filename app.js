@@ -238,6 +238,7 @@
         videoFrame.src = "https://www.youtube-nocookie.com/embed/" + episode.videoId + "?rel=0";
       } else {
         videoPoster.dataset.fallback = "";
+        videoPoster.classList.remove("is-unavailable");
         videoPoster.src = "https://i.ytimg.com/vi/" + episode.videoId + "/maxresdefault.jpg";
         playVideoButton.setAttribute("aria-label", "Play Seafoam episode " + Number(episode.number) + ": " + episode.title);
       }
@@ -251,8 +252,15 @@
       playChime();
     }
 
+    videoPoster.addEventListener("load", function () {
+      if (videoPoster.naturalWidth <= 120) videoPoster.classList.add("is-unavailable");
+    });
+
     videoPoster.addEventListener("error", function () {
-      if (videoPoster.dataset.fallback) return;
+      if (videoPoster.dataset.fallback) {
+        videoPoster.classList.add("is-unavailable");
+        return;
+      }
       videoPoster.dataset.fallback = "true";
       videoPoster.src = "https://i.ytimg.com/vi/" + episodes.find(function (item) { return item.number === activeEpisode; }).videoId + "/hqdefault.jpg";
     });
