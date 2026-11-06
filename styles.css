@@ -1062,66 +1062,83 @@
 }
 
 
-/* Water rings travel outward; each held ripple launches another wave behind it. */
+/* A tap sends individual wave fronts outward with a slight natural wobble. */
 .background-ripple {
-  animation:seafoam-wave 1.65s cubic-bezier(.18,.62,.32,1) forwards;
-  will-change:transform,opacity;
-}
-@keyframes seafoam-wave {
-  0% { opacity:0; transform:translate(-50%,-50%) scale(.08,.07) rotate(-2deg); }
-  12% { opacity:.78; }
-  70% { opacity:.42; }
-  100% { opacity:0; transform:translate(-50%,-50%) scale(2.25,1.78) rotate(3deg); }
-}
-.background-ripple--held {
-  width:clamp(8rem,20vw,13rem);
-  opacity:0;
+  overflow:visible;
+  background:none;
   border:0;
-  box-shadow:none;
-  -webkit-backdrop-filter:none;
-  backdrop-filter:none;
   transform:translate(-50%,-50%);
-  animation:none;
-  background:radial-gradient(ellipse,transparent 0 69%,rgba(67,160,211,.56) 71% 72%,transparent 74% 100%);
+  animation:ripple-lifetime 2.14s linear forwards;
+  will-change:opacity;
 }
-.background-ripple--held::before,
-.background-ripple--held::after {
+.background-ripple .ripple-ring {
   position:absolute;
-  inset:-8%;
-  content:"";
-  border-radius:50%;
-  background:radial-gradient(ellipse,transparent 0 69%,rgba(53,128,194,.46) 71% 72%,transparent 74% 100%);
-  animation:water-travel 3.15s cubic-bezier(.18,.62,.32,1) infinite;
+  inset:0;
+  border:1px solid rgba(111,204,225,.38);
+  border-top-color:rgba(185,242,241,.66);
+  border-right-color:rgba(104,182,216,.36);
+  border-bottom-color:rgba(61,132,188,.22);
+  border-left-color:rgba(91,173,211,.3);
+  border-radius:50% 48% 53% 47% / 48% 52% 47% 53%;
+  opacity:0;
+  transform:scale(.08,.06) rotate(-2deg);
+  animation:ripple-front 1.76s cubic-bezier(.2,.58,.34,1) both;
 }
-.background-ripple--held::after {
-  inset:-16%;
-  background:radial-gradient(ellipse,transparent 0 69%,rgba(111,139,206,.38) 71% 72%,transparent 74% 100%);
-  animation-delay:1.05s;
+.background-ripple .ripple-ring--2 { animation-delay:.18s; }
+.background-ripple .ripple-ring--3 { animation-delay:.36s; }
+@keyframes ripple-front {
+  0% { opacity:0; transform:scale(.08,.06) rotate(-2deg); border-radius:50% 48% 53% 47% / 48% 52% 47% 53%; }
+  11% { opacity:.72; }
+  58% { opacity:.4; }
+  100% { opacity:0; transform:scale(2.18,1.72) rotate(3deg); border-radius:47% 53% 48% 52% / 52% 47% 53% 48%; }
+}
+@keyframes ripple-lifetime {
+  from { opacity:1; }
+  to { opacity:1; }
+}
+.background-ripple--static {
+  animation:none;
+  opacity:.86;
+  transform:translate(-50%,-50%);
+  transition:opacity .2s ease-out;
+}
+.background-ripple--static .ripple-ring {
+  animation:none;
+  opacity:.35;
+  transform:scale(.9,.74);
 }
 .background-ripple--held {
-  animation:water-travel 3.15s cubic-bezier(.18,.62,.32,1) infinite;
+  width:clamp(7rem,14vw,10rem);
+  opacity:1;
+  animation:none;
 }
-@keyframes water-travel {
-  0% { opacity:0; transform:scale(.12,.1) rotate(-2deg); }
-  14% { opacity:.62; }
-  100% { opacity:0; transform:scale(1.45,1.16) rotate(3deg); }
+.background-ripple--held .ripple-ring {
+  animation:held-wave 2.8s cubic-bezier(.2,.58,.34,1) infinite;
+}
+.background-ripple--held .ripple-ring--2 { animation-delay:.72s; }
+.background-ripple--held .ripple-ring--3 { animation-delay:1.44s; }
+@keyframes held-wave {
+  0% { opacity:0; transform:scale(.08,.06) rotate(-2deg); }
+  12% { opacity:.58; }
+  100% { opacity:0; transform:scale(2.05,1.62) rotate(3deg); }
 }
 .background-ripple--release {
-  animation:water-release .62s cubic-bezier(.2,.7,.25,1) forwards;
+  animation:water-release .62s ease-out forwards;
 }
-.background-ripple--release::before,
-.background-ripple--release::after {
+.background-ripple--release .ripple-ring {
   animation:none;
   opacity:0;
-  transition:opacity .52s ease-out;
+  transition:opacity .48s ease-out;
 }
 @keyframes water-release {
-  from { opacity:.62; transform:translate(-50%,-50%) scale(1); }
-  to { opacity:0; transform:translate(-50%,-50%) scale(1.28,1.12); }
+  from { opacity:1; }
+  to { opacity:0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .background-ripple { animation-duration:.01ms !important; }
-  .background-ripple--held,
-  .background-ripple--held::before,
-  .background-ripple--held::after { animation:none !important; opacity:.35; }
+  .background-ripple,
+  .background-ripple .ripple-ring,
+  .background-ripple--held .ripple-ring {
+    animation:none !important;
+  }
+  .background-ripple .ripple-ring { opacity:.35; transform:scale(.9,.74); }
 }
