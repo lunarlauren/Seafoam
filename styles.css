@@ -870,7 +870,9 @@
     .episode-info { padding:var(--space-3) var(--space-4); }
     @media (min-width:981px) {
       .layout { align-items:start; }
-      .left-rail { height:auto; align-self:stretch; }
+      .left-rail { display:flex; height:100%; align-self:stretch; flex-direction:column; gap:var(--space-3); }
+      .series-card { flex:1 1 220px; min-height:220px; }
+      .cast-card, .laurel { flex:0 0 auto; }
       .topbar, .footer { width:min(1440px,calc(100% - 40px)); }
       .topbar { padding-inline:0; }
       .footer { padding-inline:0; }
