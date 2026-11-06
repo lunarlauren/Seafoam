@@ -1051,8 +1051,7 @@
   mix-blend-mode:screen;
   background:none;
   transform:translate(-50%,-50%);
-  animation:ripple-lifetime 2.14s linear forwards;
-  will-change:opacity;
+  transition:opacity .62s ease-out;
 }
 .background-ripple .ripple-ring {
   position:absolute;
@@ -1075,12 +1074,7 @@
   58% { opacity:.4; }
   100% { opacity:0; transform:scale(2.18,1.72) rotate(3deg); border-radius:47% 53% 48% 52% / 52% 47% 53% 48%; }
 }
-@keyframes ripple-lifetime {
-  from { opacity:1; }
-  to { opacity:1; }
-}
 .background-ripple--static {
-  animation:none;
   opacity:.86;
   transform:translate(-50%,-50%);
   transition:opacity .2s ease-out;
@@ -1093,7 +1087,6 @@
 .background-ripple--held {
   width:clamp(7rem,14vw,10rem);
   opacity:1;
-  animation:none;
 }
 .background-ripple--held .ripple-ring {
   animation:held-wave 2.8s cubic-bezier(.2,.58,.34,1) infinite;
@@ -1106,7 +1099,7 @@
   100% { opacity:0; transform:scale(2.05,1.62) rotate(3deg); }
 }
 .background-ripple--release {
-  animation:water-release .62s ease-out forwards;
+  opacity:0;
 }
 .background-ripple--release .ripple-ring {
   animation:none;
