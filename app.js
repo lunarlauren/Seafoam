@@ -1,3 +1,29 @@
+    /* Let background clicks send visible radial-gradient ripples across the page. */
+    const seafoamShell = document.querySelector(".shell");
+    const reducedMotionForRipple = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (seafoamShell) {
+      seafoamShell.addEventListener("pointerdown", function (event) {
+        if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        if (event.target.closest("button, a, input, textarea, select, [role='button'], [contenteditable='true'], #infoModal")) return;
+
+        const ripple = document.createElement("span");
+        ripple.className = "background-ripple";
+        ripple.setAttribute("aria-hidden", "true");
+        ripple.style.setProperty("--ripple-x", event.clientX + "px");
+        ripple.style.setProperty("--ripple-y", event.clientY + "px");
+        seafoamShell.appendChild(ripple);
+
+        if (reducedMotionForRipple.matches) {
+          ripple.classList.add("background-ripple--static");
+          window.requestAnimationFrame(function () { ripple.style.opacity = "0"; });
+          window.setTimeout(function () { ripple.remove(); }, 240);
+        } else {
+          ripple.addEventListener("animationend", function () { ripple.remove(); }, { once: true });
+        }
+      }, { passive: true });
+    }
+
     /* Gentle scroll parallax: move the star layer, never track the pointer. */
     let parallaxFrame = 0;
     function updateBackgroundParallax() {
@@ -205,8 +231,8 @@
       if (name === "about") {
         modalBody.innerHTML =
           '<h2 class="modal-title">About Seafoam</h2>' +
-          '<p class="modal-lede">A hand-drawn sci-fantasy animated web series created by Lauren Leven.</p>' +
-          '<p class="about-copy">After being taken from Earth, Alex wakes in a world shaped by the sea and caught inside F.A.T.E. Labs’ experiment. As she searches for a way to understand what happened, she must navigate uncertain alliances, simulated choices, and the people whose lives are tied to her own. Seafoam is an original animated sci-fantasy series about identity, trust, and what it means to choose your own future. If you enjoy hand-drawn webcomics, imaginative animation, and creator-led indie series, explore the episodes and meet the cast.</p>' +
+          '<p class="modal-lede">An animated sci-fantasy web series created by Lauren Leven.</p>' +
+          '<p class="about-copy">After being taken from Earth, Alex wakes in a world shaped by the sea and caught inside F.A.T.E. Labs’ experiment. As she searches for a way to understand what happened, she must navigate uncertain alliances, simulated choices, and the people whose lives are tied to her own. Seafoam is an original animated sci-fantasy series about identity, trust, and what it means to choose your own future. If you enjoy indie animation, imaginative storytelling, and creator-led series, explore the episodes and meet the cast.</p>' +
           '<div class="fact-list"><span class="fact">Original animation</span><span class="fact">Sci-fantasy</span><span class="fact">Created by Lauren Leven</span></div>';
       }
     }
