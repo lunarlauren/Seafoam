@@ -881,3 +881,12 @@
       .nav-rail { grid-area: nav; gap: 10px; padding-top: 0; }
       .nav-button { min-height: 58px; }
     }
+
+/* Character archive dossier sections */
+.dossier-tabs { display:flex; gap:7px; margin:12px 0 10px; }
+.dossier-tab { border:1px solid rgba(75,157,247,.42); border-radius:4px; padding:7px 10px; color:var(--muted); background:linear-gradient(145deg,#0b2d68,#061936); font:600 .68rem var(--sans); cursor:pointer; }
+.dossier-tab.is-active { color:var(--text); border-color:#3984e8; background:linear-gradient(145deg,#124080,#092654); }
+.dossier-facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:0; }
+.dossier-facts div { padding:10px; border:1px solid rgba(75,157,247,.28); border-radius:4px; background:linear-gradient(145deg,rgba(11,45,104,.78),rgba(6,25,54,.92)); }
+.dossier-facts dt { color:var(--aqua); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; }
+.dossier-facts dd { margin:4px 0 0; font: .9rem var(--serif); }
