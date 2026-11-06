@@ -272,15 +272,15 @@
       aspect-ratio: 1;
       display: grid;
       place-items: center;
-      border: 1px solid #7ce9e6d9;
-      border-radius: 4px;
+      border: 1px solid rgba(116, 205, 224, .72);
+      border-radius: 5px;
       color: #211d43;
       background: linear-gradient(145deg, #70e9e4a8, transparent 34%), var(--icon-color);
       font: 1rem var(--serif);
-      box-shadow: inset 0 2px 3px #70e9e4d9, inset 0 -4px 6px #211d4359, 0 3px 7px #080b2b4a;
+      box-shadow: 0 2px 7px rgba(1, 9, 25, .32);
       transition: transform .18s ease, box-shadow .18s ease;
     }
-    .cast-icon img { position:absolute; width:300%; height:300%; max-width:none; left:-100%; top:-26%; object-fit:contain; border-radius:inherit; }
+    .cast-icon img { position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; object-position:center 9%; border-radius:inherit; }
     .cast-hint { margin: 8px 0 0; color: var(--muted); font-size: .64rem; }
     /* Square festival artwork keeps the award visible in the compact side rail. */
     .laurel {
@@ -569,37 +569,37 @@
     .character-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
     .character-card {
       display: grid;
-      grid-template-columns: 64px minmax(0, 1fr);
+      grid-template-columns: 72px minmax(0, 1fr);
       align-items: center;
       gap: 10px;
-      border: 1px solid #e5fbff99;
-      border-radius: 4px;
-      padding: 9px;
-      background:
-        radial-gradient(ellipse at 12% 0%, #70e9e43c 0 2%, transparent 22%),
-        linear-gradient(140deg, #61578c, #34376d 64%, #35577b);
-      box-shadow: inset 0 1px 0 #70e9e480, inset 0 -4px 9px #17183e6b, 0 5px 12px #080b3155;
+      border: 1px solid rgba(91,157,220,.22);
+      border-radius: 6px;
+      padding: 10px;
+      background: rgba(9, 24, 53, .58);
+      box-shadow: 0 8px 20px rgba(0, 6, 19, .2);
       text-align: left;
       transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
     .character-card:hover { border-color: #ff9fcf9c; transform: translateY(-2px); }
     .portrait {
-      width: 64px;
+      width: 72px;
+      height: 76px;
       aspect-ratio: 1;
       display: grid;
       place-items: center;
       overflow: hidden;
-      border: 2px solid #76e9e4;
-      border-radius: 4px;
+      border: 1px solid rgba(112, 210, 224, .76);
+      border-radius: 6px;
       color: white;
-      background:
-        radial-gradient(ellipse at 28% 18%, #70e9e482 0 2%, transparent 22%),
-        var(--portrait-bg);
-      box-shadow: inset 0 2px 5px #70e9e4a8, inset 0 -4px 8px #15163f66, 0 2px 7px #080b3155;
+      background: linear-gradient(145deg, rgba(103,190,218,.18), rgba(7,19,43,.8)), var(--portrait-bg);
+      box-shadow: 0 3px 10px rgba(0, 6, 19, .3);
       font: 1.3rem var(--serif);
     }
-    .portrait img { width:100%; height:100%; object-fit:cover; object-position:center 12%; transform:scale(2.35); transform-origin:center 14%; }
-    .character-detail .portrait { width: 110px; height: 110px; }
+    .portrait img { width:100%; height:100%; object-fit:cover; object-position:center 8%; transform:none; }
+    .portrait img[alt="Yunoire"] { object-position:center 4%; }
+    .portrait img[alt="Charlotte"] { object-position:center 10%; }
+    .portrait img[alt="Apollo"] { object-position:center 7%; }
+    .character-detail .portrait { width: 132px; height: 146px; }
     .character-card strong { display: block; font: .95rem var(--serif); }
     .character-card small { display: block; margin-top: 4px; color: var(--muted); font-size: .62rem; line-height: 1.4; }
 
@@ -764,8 +764,7 @@
       border-radius:4px !important;
       border-width:1px !important;
     }
-    /* Yunoire's source art needs a face-forward crop for the small cast tile. */
-    .cast-icon:nth-child(2) img { width: 100%; height: 100%; left: 0; top: 0; transform: none; object-fit: cover; object-position: center top; }
+    .cast-icon:nth-child(2) img { object-position:center 4%; }
 
     /* Classic glass finish: one quiet edge, translucent fill, soft lift. */
     .glass, .gloss-button, .player, .episode-info, .modal, .character-card,
