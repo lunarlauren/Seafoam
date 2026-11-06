@@ -608,7 +608,7 @@
     .about-copy { max-width: 60ch; color: #e9e4f8; font: 1.05rem/1.6 var(--serif); }
     .fact-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
     .fact { border: 1px solid var(--line); border-radius: 4px; padding: 6px 9px; color: var(--aqua); font-size: .61rem; }
-    .character-detail { display: grid; grid-template-columns: 110px minmax(0, 1fr); align-items: center; gap: 16px; margin-top: 14px; }
+    .character-detail { display: grid; grid-template-columns: 132px minmax(0, 1fr); align-items: center; gap: 16px; margin-top: 14px; }
     .contact-box { border: 1px solid var(--line); border-radius: 4px; padding: 14px; background: linear-gradient(135deg, #3d385d, #242440); }
     .contact-box p { margin-top: 0; color: var(--muted); font-size: .78rem; }
     .contact-box a { display: inline-block; margin: 5px 12px 3px 0; }
@@ -726,6 +726,8 @@
       .modal-title { font-size: 1.35rem; }
       .modal-lede { margin: 5px 0 11px; font-size: .68rem; }
       .episode-list, .character-grid { grid-template-columns: 1fr; }
+      .character-detail { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+      .character-detail .portrait { width: 96px; height: 116px; }
       .footer { display:none; }
       }
     @media (prefers-reduced-motion: reduce) {
