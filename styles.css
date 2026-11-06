@@ -778,11 +778,12 @@
     .player { box-shadow:0 0 0 1px rgba(61,137,226,.45),0 10px 26px rgba(2,10,29,.4); }
     .portrait img[src*="YunoirePNG"] { transform:none; object-position:center top; }
     /* Keep About and the square award tile on matching edges. */
-    .left-rail { grid-template-rows:auto auto auto; }
-    .series-card { aspect-ratio:1; min-height:0; }
+    .left-rail { grid-template-rows:minmax(260px,1fr) auto auto; align-items:stretch; }
+    .series-card { aspect-ratio:auto; min-height:260px; }
     .large-orb { width:64px; height:64px; }
     .series-card button { gap:4px; padding:10px 8px; }
-    .series-summary { font-size:.62rem; line-height:1.4; }
+    .series-summary { max-width:30ch; font-size:.68rem; line-height:1.5; }
+    .cast-icons { grid-template-columns:repeat(5,minmax(0,1fr)); gap:5px; }
     /* Quiet iconography: retain the colored line icon, remove the glowing tile. */
     .nav-icon { width:30px; height:30px; border:0; border-radius:0; background:transparent; box-shadow:none; }
     .nav-button { gap:8px; }
@@ -863,10 +864,19 @@
 
     /* Spacing scale keeps the page rhythm consistent across breakpoints. */
     :root { --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; }
-    .layout { gap:var(--space-4); grid-template-columns:minmax(0, 220px) minmax(0, 1fr) minmax(0, 190px); }
+    .layout { gap:var(--space-4); grid-template-columns:minmax(0, 240px) minmax(0, 1fr) minmax(0, 190px); }
     .rail { gap:var(--space-3); }
     .stage { gap:var(--space-3); }
     .episode-info { padding:var(--space-3) var(--space-4); }
+    @media (min-width:981px) {
+      .topbar, .footer { width:min(1440px,calc(100% - 40px)); }
+      .topbar { padding-inline:0; }
+      .footer { padding-inline:0; }
+    }
+    @media (max-width:980px) {
+      .left-rail { grid-template-rows:minmax(220px,1fr) auto auto; }
+      .cast-icons { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    }
     @media (max-width:720px) {
       .layout { gap:var(--space-3); padding:var(--space-3) 10px; }
       .stage { gap:var(--space-2); }
