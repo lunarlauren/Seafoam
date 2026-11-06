@@ -74,32 +74,6 @@
     :focus-visible { outline: 2px solid var(--aqua); outline-offset: 2px; }
     [hidden] { display: none !important; }
 
-    /* Clicks on open page surfaces create soft, expanding water rings. */
-    .background-ripple {
-      position: fixed;
-      z-index: 15;
-      top: var(--ripple-y);
-      left: var(--ripple-x);
-      width: clamp(6rem, 12vw, 8rem);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      background: radial-gradient(circle, transparent 0 26%, rgba(38,105,207,.88) 29% 31%, transparent 33% 45%, rgba(24,75,166,.76) 48% 50%, transparent 52% 62%, rgba(13,48,119,.62) 65% 67%, transparent 69%);
-      transform: translate(-50%, -50%) scale(.25);
-      animation: seafoam-ripple .95s cubic-bezier(.16,.74,.28,1) forwards;
-    }
-    .background-ripple--static {
-      animation: none;
-      opacity: .86;
-      transform: translate(-50%, -50%) scale(1);
-      transition: opacity .2s ease-out;
-    }
-    @keyframes seafoam-ripple {
-      from { opacity: .95; }
-      to { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
-    }
-
     /* The shell keeps the desktop player and both sidebars in one stable frame. */
     .shell { min-height: 100svh; position: relative; isolation: isolate; }
     .shell::before {
@@ -1062,11 +1036,20 @@
 }
 
 
-/* A tap sends individual wave fronts outward with a slight natural wobble. */
+/* One ripple layer handles taps, held touches, and reduced-motion fallback. */
 .background-ripple {
+  position:fixed;
+  z-index:15;
+  top:var(--ripple-y);
+  left:var(--ripple-x);
+  width:clamp(6rem,12vw,8rem);
+  aspect-ratio:1;
   overflow:visible;
-  background:none;
   border:0;
+  border-radius:50%;
+  pointer-events:none;
+  mix-blend-mode:screen;
+  background:none;
   transform:translate(-50%,-50%);
   animation:ripple-lifetime 2.14s linear forwards;
   will-change:opacity;
@@ -1133,12 +1116,4 @@
 @keyframes water-release {
   from { opacity:1; }
   to { opacity:0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .background-ripple,
-  .background-ripple .ripple-ring,
-  .background-ripple--held .ripple-ring {
-    animation:none !important;
-  }
-  .background-ripple .ripple-ring { opacity:.35; transform:scale(.9,.74); }
 }
