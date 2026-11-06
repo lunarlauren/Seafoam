@@ -212,22 +212,25 @@
       });
     }
 
-    function openPanel(name) {
+    function prepareModal(panelName = "") {
       modal.hidden = false;
-      modal.style.left = ""; modal.style.top = ""; modal.style.bottom = ""; modal.style.transform = "";
-      setPanelButtonState(name);
+      ["left", "top", "bottom", "transform"].forEach(function (property) {
+        modal.style.removeProperty(property);
+      });
+      setPanelButtonState(panelName);
       modalBody.scrollTop = 0;
+    }
+
+    function openPanel(name) {
+      prepareModal(name);
       renderPanel(name);
       playChime();
     }
 
     function openPoster() {
-      modal.hidden = false;
-      modal.style.left = ""; modal.style.top = ""; modal.style.bottom = ""; modal.style.transform = "";
-      setPanelButtonState("");
+      prepareModal();
       modalHeading.textContent = "Seafoam · Best Poster";
       modalBody.innerHTML = '<img class="poster-view" src="./best%20poster%20square%20%281%29.png" alt="Seafoam Best Poster award artwork">';
-      modalBody.scrollTop = 0;
     }
 
     function closePanel() {
