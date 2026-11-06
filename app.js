@@ -159,11 +159,11 @@
        Each image points to the matching character PNG in the repository.
     */
     const characters = [
-      { name: "Alex", initials: "A", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./Alex-Character.png", bio: "Taken from Earth and pulled into F.A.T.E. Labs’ experiment, Alex has to decide which of her new allies she can trust." },
-      { name: "Yunoire", initials: "Y", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./YunoirePNG.png", bio: "A Kir from the strange world Alex wakes up on. Her growing bond with Alex offers a glimpse of life beyond the experiment." },
-      { name: "Jack", initials: "J", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./Jack Transparent.png", bio: "Part of Alex’s circle aboard the ship. As the crew is pushed into danger, Jack’s loyalties become harder to read." },
-      { name: "Charlotte", initials: "C", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./Charlotte Transparent.png", bio: "A decisive member of the crew whose choices carry real consequences for the people around her." },
-      { name: "Apollo", initials: "A", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./apollo transparent.png", bio: "A charismatic presence with influence over the crew—and intentions that are not always easy to see." }
+      { name: "Alex", initials: "A", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./alex.webp", bio: "Taken from Earth and pulled into F.A.T.E. Labs’ experiment, Alex has to decide which of her new allies she can trust." },
+      { name: "Yunoire", initials: "Y", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./yunoire.webp", bio: "A Kir from the strange world Alex wakes up on. Her growing bond with Alex offers a glimpse of life beyond the experiment." },
+      { name: "Jack", initials: "J", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./jack.webp", bio: "Part of Alex’s circle aboard the ship. As the crew is pushed into danger, Jack’s loyalties become harder to read." },
+      { name: "Charlotte", initials: "C", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./charlotte.webp", bio: "A decisive member of the crew whose choices carry real consequences for the people around her." },
+      { name: "Apollo", initials: "A", color: "linear-gradient(145deg,#0c3478,#061936)", image: "./apollo.webp", bio: "A charismatic presence with influence over the crew—and intentions that are not always easy to see." }
     ];
 
     const modal = document.querySelector("#infoModal");
@@ -199,7 +199,7 @@
 
     function portraitMarkup(character) {
       const picture = character.image
-        ? '<img src="' + character.image + '" alt="' + character.name + '">'
+        ? '<img src="' + character.image + '" alt="' + character.name + '" loading="lazy" decoding="async">'
         : character.initials;
       return '<span class="portrait" style="--portrait-bg:' + character.color + '">' + picture + '</span>';
     }
