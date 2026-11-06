@@ -76,13 +76,13 @@
       z-index: 15;
       top: var(--ripple-y);
       left: var(--ripple-x);
-      width: clamp(12rem, 24vw, 21rem);
+      width: clamp(6rem, 12vw, 8rem);
       aspect-ratio: 1;
       border-radius: 50%;
       pointer-events: none;
       mix-blend-mode: screen;
       background: radial-gradient(circle, transparent 0 26%, rgba(137,255,242,.82) 29% 31%, transparent 33% 45%, rgba(198,165,255,.68) 48% 50%, transparent 52% 62%, rgba(255,176,238,.46) 65% 67%, transparent 69%);
-      transform: translate(-50%, -50%) scale(.18);
+      transform: translate(-50%, -50%) scale(.25);
       animation: seafoam-ripple .95s cubic-bezier(.16,.74,.28,1) forwards;
     }
     .background-ripple--static {
@@ -93,7 +93,7 @@
     }
     @keyframes seafoam-ripple {
       from { opacity: .95; }
-      to { opacity: 0; transform: translate(-50%, -50%) scale(4.2); }
+      to { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
     }
 
     /* The shell keeps the desktop player and both sidebars in one stable frame. */
