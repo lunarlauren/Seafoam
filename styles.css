@@ -70,43 +70,6 @@
     :focus-visible { outline: 2px solid var(--aqua); outline-offset: 2px; }
     [hidden] { display: none !important; }
 
-    /* Iridescent cursor bubbles; the actual pointer stays visible and usable. */
-    .cursor-trail {
-      position: fixed;
-      z-index: 30;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      opacity: 0;
-      mix-blend-mode: screen;
-      transition: opacity .2s ease;
-    }
-    .cursor-trail.is-visible { opacity: 1; }
-    .cursor-trail-dot {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 16px;
-      height: 16px;
-      border: 1px solid rgba(154, 247, 232, .72);
-      border-radius: 58% 42% 52% 48%;
-      background: radial-gradient(circle at 32% 25%, rgba(231,255,255,.95), rgba(105,234,236,.52) 28%, rgba(100,136,255,.2) 70%, transparent);
-      box-shadow: inset 0 1px 3px rgba(255,255,255,.7), 0 0 14px rgba(89,221,255,.58);
-      will-change: transform;
-    }
-    .cursor-trail-dot--middle { width: 10px; height: 10px; opacity: .74; }
-    .cursor-trail-dot--tail { width: 6px; height: 6px; opacity: .48; }
-    .cursor-trail.is-in-video .cursor-trail-dot--lead { animation: cursor-glimmer 1.8s ease-in-out infinite; }
-    .cursor-trail.is-in-video .cursor-trail-dot--middle { animation: cursor-glimmer 2.2s ease-in-out infinite reverse; }
-    @keyframes cursor-glimmer {
-      0%, 100% { filter: brightness(.9); }
-      50% { filter: brightness(1.35); }
-    }
-    @media (pointer: coarse), (prefers-reduced-motion: reduce) {
-      .cursor-trail { display: none !important; }
-    }
-
     /* Clicks on open page surfaces create soft, expanding water rings. */
     .background-ripple {
       position: fixed;
