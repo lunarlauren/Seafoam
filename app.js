@@ -1,25 +1,89 @@
-    /* Let background clicks send visible radial-gradient ripples across the page. */
+    /* Background taps create a clean ring; a hold keeps a small wake moving. */
     const seafoamShell = document.querySelector(".shell");
     const reducedMotionForRipple = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let backgroundPress = null;
 
-    if (seafoamShell) {
-      seafoamShell.addEventListener("pointerdown", function (event) {
-        if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
-        if (event.target.closest("button, a, input, textarea, select, [role='button'], [contenteditable='true'], #infoModal")) return;
+    function makeBackgroundRipple(x, y, mode) {
+      const ripple = document.createElement("span");
+      ripple.className = "background-ripple" + (mode ? " " + mode : "");
+      ripple.setAttribute("aria-hidden", "true");
+      ripple.style.setProperty("--ripple-x", x + "px");
+      ripple.style.setProperty("--ripple-y", y + "px");
+      seafoamShell.appendChild(ripple);
+      return ripple;
+    }
 
-        const ripple = document.createElement("span");
-        ripple.className = "background-ripple";
-        ripple.setAttribute("aria-hidden", "true");
-        ripple.style.setProperty("--ripple-x", event.clientX + "px");
-        ripple.style.setProperty("--ripple-y", event.clientY + "px");
-        seafoamShell.appendChild(ripple);
+    function finishBackgroundPress(pointerId, cancelled) {
+      const press = backgroundPress;
+      if (!press || press.pointerId !== pointerId) return;
+      window.clearTimeout(press.timer);
+      backgroundPress = null;
 
+      if (press.ripple) {
+        if (cancelled) {
+          press.ripple.remove();
+          return;
+        }
+        if (press.isHeld) {
+          if (reducedMotionForRipple.matches) {
+            press.ripple.remove();
+          } else {
+            press.ripple.classList.remove("background-ripple--held");
+            press.ripple.classList.add("background-ripple--release");
+            window.setTimeout(function () { press.ripple && press.ripple.remove(); }, 620);
+          }
+        }
+        return;
+      }
+
+      if (!cancelled) {
+        const ripple = makeBackgroundRipple(press.x, press.y,
+          reducedMotionForRipple.matches ? "background-ripple--static" : "");
         if (reducedMotionForRipple.matches) {
-          ripple.classList.add("background-ripple--static");
           window.requestAnimationFrame(function () { ripple.style.opacity = "0"; });
           window.setTimeout(function () { ripple.remove(); }, 240);
         } else {
           ripple.addEventListener("animationend", function () { ripple.remove(); }, { once: true });
+        }
+      }
+    }
+
+    if (seafoamShell) {
+      seafoamShell.addEventListener("pointerdown", function (event) {
+        if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        if (event.target.closest("button, a, input, textarea, select, [role='button'], [contenteditable='true'], #infoModal, .player, .rail, .mobile-nav, .episode-info, .mobile-series-intro, .mobile-laurel")) return;
+        if (backgroundPress) return;
+
+        const press = {
+          pointerId: event.pointerId,
+          x: event.clientX,
+          y: event.clientY,
+          startX: event.clientX,
+          startY: event.clientY,
+          isHeld: false,
+          ripple: null,
+          timer: 0
+        };
+        press.timer = window.setTimeout(function () {
+          if (backgroundPress !== press) return;
+          press.isHeld = true;
+          press.ripple = makeBackgroundRipple(press.x, press.y,
+            reducedMotionForRipple.matches ? "background-ripple--static" : "background-ripple--held");
+        }, 340);
+        backgroundPress = press;
+      }, { passive: true });
+
+      window.addEventListener("pointerup", function (event) {
+        finishBackgroundPress(event.pointerId, false);
+      });
+      window.addEventListener("pointercancel", function (event) {
+        finishBackgroundPress(event.pointerId, true);
+      });
+      window.addEventListener("pointermove", function (event) {
+        const press = backgroundPress;
+        if (!press || press.pointerId !== event.pointerId) return;
+        if (Math.hypot(event.clientX - press.startX, event.clientY - press.startY) > 14) {
+          finishBackgroundPress(event.pointerId, true);
         }
       }, { passive: true });
     }
