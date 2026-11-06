@@ -67,8 +67,7 @@
       { name: "Yunoire", initials: "Y", color: "linear-gradient(145deg,#8aabff,#b66fe5)", image: "./YunoirePNG.png", bio: "A Kir from the strange world Alex wakes up on. Her growing bond with Alex offers a glimpse of life beyond the experiment." },
       { name: "Jack", initials: "J", color: "linear-gradient(145deg,#c9a5ff,#6359a9)", image: "./Jack Transparent.png", bio: "Part of Alex’s circle aboard the ship. As the crew is pushed into danger, Jack’s loyalties become harder to read." },
       { name: "Charlotte", initials: "C", color: "linear-gradient(145deg,#ff9fcf,#bd577f)", image: "./Charlotte Transparent.png", bio: "A decisive member of the crew whose choices carry real consequences for the people around her." },
-      { name: "Apollo", initials: "A", color: "linear-gradient(145deg,#7fe0f1,#4d739e)", image: "./apollo transparent.png", bio: "A charismatic presence with influence over the crew—and intentions that are not always easy to see." },
-
+      { name: "Apollo", initials: "A", color: "linear-gradient(145deg,#7fe0f1,#4d739e)", image: "./apollo transparent.png", bio: "A charismatic presence with influence over the crew—and intentions that are not always easy to see." }
     ];
 
     const modal = document.querySelector("#infoModal");
@@ -218,8 +217,7 @@
         '<button class="social-link" type="button" id="backToCharacters">← All characters</button>' +
         '<div class="character-detail">' +
         portraitMarkup(character).replace('class="portrait"', 'class="portrait character-portrait"') +
-        '<div><h2 class="modal-title">' + character.name + '</h2><p class="about-copy">' + character.bio + '</p></div></div>' +
-        ''; 
+        '<div><h2 class="modal-title">' + character.name + '</h2><p class="about-copy">' + character.bio + '</p></div></div>';
       modalBody.querySelector("#backToCharacters").addEventListener("click", function () { renderPanel("characters"); });
     }
 
