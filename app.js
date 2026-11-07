@@ -228,7 +228,7 @@
     function openPoster() {
       prepareModal();
       modalHeading.textContent = "Seafoam · Best Poster";
-      modalBody.innerHTML = '<img class="poster-view" src="./best%20poster%20square%20%281%29.png" alt="Seafoam Best Poster award artwork">';
+      modalBody.innerHTML = '<img class="poster-view" src="./best-poster.webp" alt="Seafoam Best Poster award artwork">';
     }
 
     function closePanel() {
