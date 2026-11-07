@@ -178,6 +178,7 @@
     let videoStarted = false;
     let soundEnabled = false;
     let audioContext;
+    let modalReturnFocus = null;
 
     /* Short optional chime. Sound is off until the visitor switches it on. */
     function playChime() {
@@ -211,6 +212,7 @@
     }
 
     function prepareModal(panelName = "") {
+      modalReturnFocus = document.activeElement;
       modal.hidden = false;
       ["left", "top", "bottom", "transform"].forEach(function (property) {
         modal.style.removeProperty(property);
@@ -234,6 +236,9 @@
     function closePanel() {
       modal.hidden = true;
       setPanelButtonState("");
+      const trigger = modalReturnFocus;
+      modalReturnFocus = null;
+      if (trigger && trigger.isConnected && typeof trigger.focus === "function") trigger.focus();
     }
 
     function renderPanel(name) {
