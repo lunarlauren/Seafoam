@@ -214,6 +214,7 @@
     function prepareModal(panelName = "") {
       modalReturnFocus = document.activeElement;
       modal.hidden = false;
+      modalHeading.setAttribute("tabindex", "-1");
       ["left", "top", "bottom", "transform"].forEach(function (property) {
         modal.style.removeProperty(property);
       });
@@ -221,9 +222,14 @@
       modalBody.scrollTop = 0;
     }
 
+    function focusModalHeading() {
+      modalHeading.focus({ preventScroll: true });
+    }
+
     function openPanel(name) {
       prepareModal(name);
       renderPanel(name);
+      focusModalHeading();
       playChime();
     }
 
@@ -231,6 +237,7 @@
       prepareModal();
       modalHeading.textContent = "Seafoam · Best Poster";
       modalBody.innerHTML = '<img class="poster-view" src="./best-poster.webp" alt="Seafoam Best Poster award artwork">';
+      focusModalHeading();
     }
 
     function closePanel() {
@@ -327,7 +334,11 @@
         '<button class="dossier-tab is-active" type="button" data-file-tab="background" aria-selected="true">Background</button>' +
         '<button class="dossier-tab" type="button" data-file-tab="details" aria-selected="false">Personal details</button></div>' +
         '<div class="dossier-content" id="dossierContent"><p class="about-copy">' + character.bio + '</p></div></div></div>';
-      modalBody.querySelector("#backToCharacters").addEventListener("click", function () { renderPanel("characters"); });
+      focusModalHeading();
+      modalBody.querySelector("#backToCharacters").addEventListener("click", function () {
+        renderPanel("characters");
+        focusModalHeading();
+      });
       modalBody.querySelectorAll("[data-file-tab]").forEach(function (button) {
         button.addEventListener("click", function () {
           modalBody.querySelectorAll("[data-file-tab]").forEach(function (tab) { tab.classList.remove("is-active"); tab.setAttribute("aria-selected", "false"); });
