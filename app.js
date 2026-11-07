@@ -309,8 +309,8 @@
       if (name === "about") {
         modalBody.innerHTML =
           '<h2 class="modal-title">About Seafoam</h2>' +
-          '<p class="modal-lede">An animated sci-fantasy web series created by Lauren Leven.</p>' +
-          '<p class="about-copy">After being taken from Earth, Alex wakes in a world shaped by the sea and caught inside F.A.T.E. Labs’ experiment. As she searches for a way to understand what happened, she must navigate uncertain alliances, simulated choices, and the people whose lives are tied to her own. Seafoam is an original animated sci-fantasy series about identity, trust, and what it means to choose your own future. If you enjoy indie animation, imaginative storytelling, and creator-led series, explore the episodes and meet the cast.</p>' +
+          '<p class="modal-lede">An animated sci-fantasy romance web series created by Lauren Leven.</p>' +
+          '<p class="about-copy">After being taken from Earth, Alex wakes in a world shaped by the sea and caught inside F.A.T.E. Labs’ experiment. As she searches for answers, her growing connection with Yunoire deepens the stakes of uncertain alliances and simulated choices. Seafoam is an original animated sci-fantasy romance about identity, trust, and choosing your own future. If you enjoy indie animation, imaginative storytelling, and creator-led series, explore the episodes and meet the cast.</p>' +
           '<div class="fact-list"><span class="fact">Original animation</span><span class="fact">Sci-fantasy</span><span class="fact">Created by Lauren Leven</span></div>';
       }
     }
