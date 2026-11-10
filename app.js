@@ -427,7 +427,7 @@
     /* Drag the window by its title bar; on release it snaps to the nearest corner. */
     const modalHandle = document.querySelector("#modalHandle");
     modalHandle.addEventListener("pointerdown", function (event) {
-      if (event.target.closest("button") || modal.hidden) return;
+      if (event.target.closest("button") || modal.hidden || window.matchMedia("(max-width: 820px)").matches || event.pointerType === "touch") return;
       const rect = modal.getBoundingClientRect();
       modal.style.left = rect.left + "px";
       modal.style.top = rect.top + "px";
