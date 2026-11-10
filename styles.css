@@ -1398,3 +1398,41 @@ body { font-size:14px; line-height:1.55; }
   .mobile-nav button:focus-visible { outline-offset:-2px; }
   .modal-body { overscroll-behavior:contain; }
 }
+
+/* Pass 6 — mobile windows behave like readable sheets, not draggable desktop panes. */
+@media (max-width:820px) {
+  .modal {
+    position:fixed;
+    top:calc(56px + env(safe-area-inset-top));
+    bottom:calc(82px + env(safe-area-inset-bottom));
+    left:10px;
+    right:10px;
+    width:auto;
+    min-width:0;
+    max-width:none;
+    min-height:0;
+    max-height:none;
+    transform:none;
+    resize:none;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .modal-header {
+    flex:0 0 auto;
+    min-height:50px;
+    cursor:default;
+    touch-action:auto;
+  }
+  .modal-body {
+    min-height:0;
+    flex:1 1 auto;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:clamp(14px,4vw,20px);
+  }
+  .modal-close { min-width:40px; min-height:40px; }
+}
+@media (max-width:380px) {
+  .modal { left:8px;right:8px; }
+}
