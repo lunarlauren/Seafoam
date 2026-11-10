@@ -96,3 +96,6 @@ body { background:#061329; }
   .modal { border-radius:6px; }
 }
 @media (prefers-reduced-motion:reduce) { .shell::before { animation:none; } }
+
+/* Remove four decorative dots that were overlaid on the video player. */
+.player::before { content:none; display:none; }
