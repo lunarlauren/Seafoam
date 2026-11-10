@@ -1,73 +1,98 @@
-/* Abyssal Y2K — elegant aquatic-futurist skin.
-   Layered over styles.css so existing layout, interactions and responsive rules remain intact.
-   Design tokens live here for easy future tuning. */
+/* Seafoam / Ethereal Y2K
+   Understated early-internet fantasy: ocean first, interface second.
+   This small override is intentionally separate from the functional layout. */
 :root {
-  --pearl:#efffff; --chrome:#b9e9f3; --lagoon:#79e6df;
-  --aqua:#a3f8ef; --muted:#c5d9e8;
-  --glass-rim:rgba(191,245,255,.57);
-  --radius-sharp:12px;
+  --aqua:#b5e8e6;
+  --muted:#b7c7da;
+  --glass-rim:rgba(170,205,222,.22);
+  --radius-sharp:5px;
 }
-body { background:#030d21; }
+body { background:#061329; }
 .shell::before {
-  opacity:.52;
+  opacity:.23;
   background:
-    radial-gradient(ellipse at 50% -15%,rgba(92,222,236,.2),transparent 46%),
-    radial-gradient(circle at 10% 28%,#d8ffff 0 1px,transparent 4px),
-    radial-gradient(circle at 88% 16%,#e6fcff 0 1px,transparent 4px),
-    radial-gradient(circle at 74% 83%,#a5d9ff 0 1px,transparent 5px),
-    radial-gradient(circle at 22% 76%,#d5faff 0 1px,transparent 4px);
+    radial-gradient(circle at 12% 28%,#b8dfff 0 1px,transparent 4px),
+    radial-gradient(circle at 86% 17%,#d1e8ff 0 1px,transparent 4px),
+    radial-gradient(circle at 76% 81%,#9fd8e7 0 1px,transparent 4px);
 }
 .topbar {
-  border-bottom:1px solid rgba(208,248,255,.35);
-  background:linear-gradient(180deg,rgba(15,55,94,.65),rgba(3,14,37,.42));
-  box-shadow:inset 0 1px rgba(255,255,255,.2),0 10px 35px rgba(0,8,29,.25);
+  background:linear-gradient(180deg,rgba(7,25,49,.54),rgba(5,20,42,.22));
+  border-bottom:1px solid rgba(172,212,231,.19);
+  box-shadow:none;
 }
-.brand { color:#f1ffff; text-shadow:0 0 18px rgba(128,237,245,.4); letter-spacing:.22em; }
+.brand { color:#e9f5ff; letter-spacing:.17em; text-shadow:0 1px 12px rgba(114,191,210,.15); }
 .brand-orb,.large-orb {
-  border-color:rgba(241,255,255,.85);
-  background:radial-gradient(circle at 28% 20%,#e2ffff 0 3%,#86e4ed 9%,transparent 35%),linear-gradient(145deg,#75a9dc,#155e94 48%,#061b45);
-  box-shadow:inset 0 2px 6px rgba(255,255,255,.8),inset 0 -7px 12px rgba(2,17,54,.8),0 0 18px rgba(94,222,230,.35);
+  border:1px solid rgba(204,240,246,.55);
+  background:radial-gradient(circle at 30% 22%,rgba(194,243,243,.62),transparent 27%),linear-gradient(145deg,#376a9b,#092a5b 65%,#06152f);
+  box-shadow:inset 0 1px 4px rgba(255,255,255,.35),inset 0 -5px 12px rgba(0,10,38,.5),0 0 12px rgba(98,190,204,.13);
 }
 .glass,.left-rail > .glass,.series-card,.nav-button,.episode-info,.modal,.contact-box,.character-card,.episode-card {
-  border:1px solid rgba(173,230,242,.36);
-  border-radius:12px;
-  background:linear-gradient(160deg,rgba(99,177,212,.23),rgba(12,52,91,.5) 28%,rgba(4,20,51,.68) 80%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.42),inset 0 -1px 0 rgba(107,195,215,.14),0 12px 32px rgba(0,5,27,.38);
-  -webkit-backdrop-filter:blur(18px) saturate(150%);
-  backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(167,203,223,.2);
+  border-radius:5px;
+  background:linear-gradient(150deg,rgba(30,67,105,.34),rgba(4,19,45,.54) 65%);
+  box-shadow:inset 0 1px rgba(220,246,255,.12),0 9px 24px rgba(0,6,25,.24);
+  -webkit-backdrop-filter:blur(13px) saturate(112%);
+  backdrop-filter:blur(13px) saturate(112%);
 }
-.series-card { background:radial-gradient(ellipse at 50% 15%,rgba(142,238,244,.2),transparent 56%),linear-gradient(160deg,rgba(40,107,153,.48),rgba(3,21,56,.72)); }
-.series-name { letter-spacing:.24em; text-shadow:0 0 22px rgba(145,246,247,.5); }
-.series-caption,.section-label,.eyebrow { color:#b5fff5; letter-spacing:.18em; }
+.series-card { background:linear-gradient(150deg,rgba(22,62,101,.36),rgba(5,19,46,.57)); }
+.series-name { letter-spacing:.18em; text-shadow:none; }
+.series-caption,.section-label,.eyebrow { color:#b6e2e4; letter-spacing:.13em; }
 .gloss-button,.nav-button,.mobile-nav button,.dossier-tab {
-  border:1px solid rgba(190,243,250,.48);
-  border-radius:11px;
-  background:linear-gradient(180deg,rgba(222,254,255,.4) 0,rgba(113,209,227,.25) 9%,rgba(42,111,156,.48) 43%,rgba(7,36,79,.7) 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 5px rgba(2,19,55,.45),0 5px 15px rgba(0,11,34,.3);
+  border:1px solid rgba(157,199,222,.22);
+  border-radius:5px;
+  background:linear-gradient(180deg,rgba(91,145,183,.21),rgba(10,40,78,.38) 38%,rgba(5,23,51,.52));
+  box-shadow:inset 0 1px rgba(228,250,255,.18),0 4px 12px rgba(0,8,30,.17);
 }
-.nav-button { min-height:66px; }
-.nav-icon { border:1px solid rgba(200,252,255,.34); border-radius:9px; background:linear-gradient(145deg,rgba(142,223,238,.26),rgba(6,39,81,.38)); box-shadow:inset 0 1px rgba(255,255,255,.3); }
-.nav-button[aria-pressed="true"],.mobile-nav button[aria-pressed="true"] { border-color:#b8fff4; box-shadow:inset 0 1px rgba(255,255,255,.75),0 0 17px rgba(117,235,232,.2); }
-.player { border:2px solid rgba(221,253,255,.82); border-radius:14px; box-shadow:0 0 0 1px rgba(78,166,199,.55),0 18px 44px rgba(0,5,24,.48); }
-.player-play-icon { width:60px; height:60px; border:1px solid rgba(240,255,255,.85); border-radius:50%; color:white; background:linear-gradient(155deg,rgba(153,245,244,.85),rgba(19,108,158,.85) 55%,rgba(7,39,89,.94)); box-shadow:inset 0 2px 2px rgba(255,255,255,.65),0 0 30px rgba(84,224,231,.35); }
-.episode-info { background:linear-gradient(115deg,rgba(31,93,133,.65),rgba(4,24,59,.73)); }
-.watch-button { color:#f3ffff; }
-.modal { border-radius:14px; background:linear-gradient(150deg,rgba(27,93,140,.96),rgba(4,20,52,.97)); }
-.modal-header { border-radius:13px 13px 0 0; background:linear-gradient(180deg,rgba(183,247,252,.32),rgba(38,108,159,.4) 25%,rgba(8,46,98,.82)); }
+.nav-button { min-height:60px; }
+.nav-icon { border:0; border-radius:0; background:transparent; box-shadow:none; }
+.nav-button[aria-pressed="true"],.mobile-nav button[aria-pressed="true"] {
+  border-color:rgba(172,228,230,.46);
+  background:linear-gradient(145deg,rgba(50,108,136,.4),rgba(5,31,64,.55));
+  box-shadow:inset 2px 0 rgba(173,231,232,.58);
+}
+.player {
+  border:1px solid rgba(193,227,239,.45);
+  border-radius:5px;
+  box-shadow:0 14px 34px rgba(0,5,23,.37);
+}
+.player-play-icon {
+  width:52px;height:52px;border-radius:50%;
+  border:1px solid rgba(222,247,250,.65);
+  color:#f2ffff;
+  background:rgba(6,38,74,.75);
+  box-shadow:0 4px 20px rgba(0,8,27,.4),inset 0 1px rgba(255,255,255,.2);
+}
+.episode-info { background:linear-gradient(120deg,rgba(18,58,99,.48),rgba(4,22,52,.58)); }
+.watch-button { color:#f0f9ff; }
+.modal {
+  border-radius:6px;
+  background:linear-gradient(145deg,rgba(12,44,81,.96),rgba(4,18,43,.97));
+}
+.modal-header {
+  border-radius:5px 5px 0 0;
+  background:linear-gradient(180deg,rgba(71,130,163,.32),rgba(10,43,81,.77));
+}
 .modal-close { border-radius:50%; }
-.cast-icon { border-color:rgba(216,251,255,.7); border-radius:9px; }
-.series-copy h2,.episode-info h1 { text-shadow:0 0 18px rgba(99,223,236,.16); }
-:focus-visible { outline:2px solid #d1fff5; outline-offset:3px; }
+.cast-icon { border-color:rgba(182,220,232,.32); border-radius:4px; }
+.series-copy h2,.episode-info h1 { text-shadow:none; }
+:focus-visible { outline:2px solid #bce9e7; outline-offset:3px; }
 @media (hover:hover) and (pointer:fine) {
-  .gloss-button:hover,.nav-button:hover { border-color:rgba(226,255,255,.86); box-shadow:inset 0 1px rgba(255,255,255,.85),0 0 22px rgba(107,226,231,.22),0 8px 22px rgba(0,8,32,.35); }
+  .gloss-button:hover,.nav-button:hover {
+    border-color:rgba(181,229,230,.5);
+    background-color:rgba(34,78,110,.28);
+    box-shadow:inset 0 1px rgba(245,255,255,.24),0 7px 19px rgba(0,8,32,.27);
+  }
 }
 @media (max-width:820px) {
-  .topbar { background:linear-gradient(180deg,rgba(27,83,121,.91),rgba(5,24,56,.85)); }
-  .mobile-nav { border:1px solid rgba(186,241,248,.54); border-radius:17px; background:linear-gradient(160deg,rgba(44,116,151,.91),rgba(5,28,65,.94)); box-shadow:inset 0 1px rgba(255,255,255,.35),0 16px 38px rgba(0,5,27,.48); }
-  .mobile-nav button { border-radius:10px; background:linear-gradient(180deg,rgba(167,235,243,.25),rgba(13,54,101,.72)); }
-  .episode-info,.mobile-series-intro,.mobile-laurel { border-radius:12px; }
-  .modal { border-radius:14px; }
+  .topbar { background:rgba(5,20,43,.75); }
+  .mobile-nav {
+    border:1px solid rgba(167,203,223,.25);
+    border-radius:7px;
+    background:rgba(5,20,43,.83);
+    box-shadow:0 12px 30px rgba(0,5,23,.35);
+  }
+  .mobile-nav button { border-radius:4px; background:rgba(18,50,81,.34); }
+  .episode-info,.mobile-series-intro,.mobile-laurel { border-radius:5px; }
+  .modal { border-radius:6px; }
 }
-@media (prefers-reduced-motion:reduce) {
-  .shell::before { animation:none; }
-}
+@media (prefers-reduced-motion:reduce) { .shell::before { animation:none; } }
