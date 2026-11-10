@@ -420,8 +420,37 @@
       event.currentTarget.textContent = soundEnabled ? "Sound: on" : "Sound: off";
       playChime();
     });
+    /* Keep keyboard navigation inside an open information window. */
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && !modal.hidden) closePanel();
+      if (modal.hidden) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closePanel();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = Array.from(modal.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )).filter(function (element) {
+        return element.getClientRects().length > 0;
+      });
+      if (!focusable.length) {
+        event.preventDefault();
+        modalHeading.focus();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && (document.activeElement === first || document.activeElement === modalHeading)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (!modal.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      }
     });
 
     /* Drag the window by its title bar; on release it snaps to the nearest corner. */
