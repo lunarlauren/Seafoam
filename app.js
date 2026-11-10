@@ -212,8 +212,9 @@
     }
 
     function prepareModal(panelName = "") {
-      modalReturnFocus = document.activeElement;
+      if (modal.hidden) modalReturnFocus = document.activeElement;
       modal.hidden = false;
+      modal.setAttribute("aria-modal", "true");
       modalHeading.setAttribute("tabindex", "-1");
       ["left", "top", "bottom", "transform"].forEach(function (property) {
         modal.style.removeProperty(property);
@@ -242,6 +243,7 @@
 
     function closePanel() {
       modal.hidden = true;
+      modal.setAttribute("aria-modal", "false");
       setPanelButtonState("");
       const trigger = modalReturnFocus;
       modalReturnFocus = null;
@@ -456,7 +458,7 @@
     /* Drag the window by its title bar; on release it snaps to the nearest corner. */
     const modalHandle = document.querySelector("#modalHandle");
     modalHandle.addEventListener("pointerdown", function (event) {
-      if (event.target.closest("button") || modal.hidden || window.matchMedia("(max-width: 820px)").matches || event.pointerType === "touch") return;
+      if (event.button !== 0 || event.target.closest("button") || modal.hidden || window.matchMedia("(max-width: 820px)").matches || event.pointerType === "touch") return;
       const rect = modal.getBoundingClientRect();
       modal.style.left = rect.left + "px";
       modal.style.top = rect.top + "px";
@@ -485,5 +487,15 @@
       modalHandle.addEventListener("pointercancel", finish);
     });
 
+
+    /* Clear desktop drag coordinates when the viewport becomes a mobile layout. */
+    window.addEventListener("resize", function () {
+      if (modal.hidden) return;
+      if (window.matchMedia("(max-width: 820px)").matches) {
+        ["left", "top", "bottom", "transform"].forEach(function (property) {
+          modal.style.removeProperty(property);
+        });
+      }
+    });
 
     document.querySelector("#year").textContent = new Date().getFullYear();
