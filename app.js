@@ -455,43 +455,58 @@
       }
     });
 
-    /* Drag the window by its title bar; on release it snaps to the nearest corner. */
+    /* Desktop-only window dragging; keep the title bar reachable on resize. */
     const modalHandle = document.querySelector("#modalHandle");
-    modalHandle.addEventListener("pointerdown", function (event) {
-      if (event.button !== 0 || event.target.closest("button") || modal.hidden || window.matchMedia("(max-width: 820px)").matches || event.pointerType === "touch") return;
+    let activeDrag = null;
+    function clampModalPosition(left, top) {
       const rect = modal.getBoundingClientRect();
-      modal.style.left = rect.left + "px";
-      modal.style.top = rect.top + "px";
+      const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
+      const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
+      modal.style.left = Math.max(8, Math.min(maxLeft, left)) + "px";
+      modal.style.top = Math.max(8, Math.min(maxTop, top)) + "px";
+    }
+    function stopModalDrag() {
+      if (!activeDrag) return;
+      const pointerId = activeDrag.pointerId;
+      activeDrag = null;
+      if (modalHandle.hasPointerCapture(pointerId)) modalHandle.releasePointerCapture(pointerId);
+    }
+    modalHandle.addEventListener("pointerdown", function (event) {
+      if (activeDrag || event.button !== 0 || event.target.closest("button") ||
+          modal.hidden || window.matchMedia("(max-width: 820px)").matches ||
+          event.pointerType === "touch") return;
+      const rect = modal.getBoundingClientRect();
+      activeDrag = {
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        left: rect.left,
+        top: rect.top
+      };
       modal.style.bottom = "auto";
       modal.style.transform = "none";
+      clampModalPosition(rect.left, rect.top);
       modalHandle.setPointerCapture(event.pointerId);
-      const startX = event.clientX;
-      const startY = event.clientY;
-      const originX = rect.left;
-      const originY = rect.top;
-      function move(moveEvent) {
-        const maxX = window.innerWidth - modal.offsetWidth - 10;
-        const maxY = window.innerHeight - modal.offsetHeight - 10;
-        const x = Math.max(10, Math.min(maxX, originX + moveEvent.clientX - startX));
-        const y = Math.max(10, Math.min(maxY, originY + moveEvent.clientY - startY));
-        modal.style.left = x + "px";
-        modal.style.top = y + "px";
-      }
-      function finish() {
-        modalHandle.removeEventListener("pointermove", move);
-        modalHandle.removeEventListener("pointerup", finish);
-        modalHandle.removeEventListener("pointercancel", finish);
-      }
-      modalHandle.addEventListener("pointermove", move);
-      modalHandle.addEventListener("pointerup", finish);
-      modalHandle.addEventListener("pointercancel", finish);
+      event.preventDefault();
     });
-
+    modalHandle.addEventListener("pointermove", function (event) {
+      if (!activeDrag || event.pointerId !== activeDrag.pointerId) return;
+      clampModalPosition(
+        activeDrag.left + event.clientX - activeDrag.startX,
+        activeDrag.top + event.clientY - activeDrag.startY
+      );
+    });
+    modalHandle.addEventListener("pointerup", function (event) {
+      if (activeDrag && event.pointerId === activeDrag.pointerId) stopModalDrag();
+    });
+    modalHandle.addEventListener("pointercancel", stopModalDrag);
+    modalHandle.addEventListener("lostpointercapture", function () { activeDrag = null; });
 
     /* Clear desktop drag coordinates when the viewport becomes a mobile layout. */
     window.addEventListener("resize", function () {
       if (modal.hidden) return;
       if (window.matchMedia("(max-width: 820px)").matches) {
+        stopModalDrag();
         ["left", "top", "bottom", "transform"].forEach(function (property) {
           modal.style.removeProperty(property);
         });
