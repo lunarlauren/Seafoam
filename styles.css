@@ -588,13 +588,10 @@
       .episode-info { min-height: 72px; padding: 10px; }
     }
     @media (max-width: 820px) {
-      .brand { gap: 7px; font-size: 1rem; }
-      .brand-orb { width: 29px; height: 29px; }
       .status { display: none; }
-      .sound-toggle { padding: 6px 9px; }
-      .layout { display:flex; flex-direction:column; align-items:stretch; width:min(520px,100%); min-height:calc(100svh - 48px - 112px); padding:12px 10px; }
+      .layout { display:flex; flex-direction:column; align-items:stretch; }
       .left-rail, .nav-rail { display: none; }
-      .stage { width:100%; gap:8px; }
+      .stage { width:100%; }
       .mobile-series-intro {
         display:flex;
         align-items:center;
@@ -837,13 +834,7 @@
   .top-actions { gap:8px; }
   .status { font-size:.48rem; letter-spacing:.08em; }
   .sound-toggle { padding:7px 9px; font-size:.55rem; }
-  .layout {
-    width:min(560px,100%);
-    min-height:0;
-    gap:10px;
-    padding:12px 12px calc(94px + env(safe-area-inset-bottom));
-  }
-  .stage { gap:9px; }
+  .layout { min-height:0; }
   .player {
     aspect-ratio:16 / 9;
     max-height:none;
