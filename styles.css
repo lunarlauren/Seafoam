@@ -588,7 +588,6 @@
       .episode-info { min-height: 72px; padding: 10px; }
     }
     @media (max-width: 820px) {
-      .topbar { height: 48px; margin: 0 auto; padding: 0 12px; }
       .brand { gap: 7px; font-size: 1rem; }
       .brand-orb { width: 29px; height: 29px; }
       .status { display: none; }
@@ -596,7 +595,6 @@
       .layout { display:flex; flex-direction:column; align-items:stretch; width:min(520px,100%); min-height:calc(100svh - 48px - 112px); padding:12px 10px; }
       .left-rail, .nav-rail { display: none; }
       .stage { width:100%; gap:8px; }
-      .episode-info { order:-1; }
       .mobile-series-intro {
         display:flex;
         align-items:center;
@@ -619,7 +617,6 @@
       .mobile-laurel strong,.mobile-laurel small { display:block; }
       .mobile-laurel small { margin-top:3px; color:var(--muted); font-size:.68rem; }
       .mobile-laurel-arrow { width:20px; height:20px; margin-left:auto; flex:0 0 auto; color:#75baff; }
-      .player { aspect-ratio: 16 / 10; max-height: 40svh; border-radius: var(--radius-sharp); }
       .player-message { bottom: 8px; font-size: .58rem; }
       .episode-info { display:grid; align-items:center; }
       .eyebrow { margin-bottom: 3px; font-size: .51rem; }
@@ -902,9 +899,6 @@
     text-align:left;
   }
 
-}
-@media (max-width: 420px) {
-  .status { display:none; }
 }
 
 
