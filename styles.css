@@ -621,10 +621,10 @@
       .mobile-laurel-arrow { width:20px; height:20px; margin-left:auto; flex:0 0 auto; color:#75baff; }
       .player { aspect-ratio: 16 / 10; max-height: 40svh; border-radius: var(--radius-sharp); }
       .player-message { bottom: 8px; font-size: .58rem; }
-      .episode-info { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px; padding:11px 12px; }
+      .episode-info { display:grid; align-items:center; }
       .eyebrow { margin-bottom: 3px; font-size: .51rem; }
-      .episode-info h1 { font-size: 1.08rem; line-height:1.15; }
-      .episode-info p:last-child { margin-top: 3px; font-size: .6rem; }
+      .episode-info h1 { line-height:1.15; }
+      .episode-info p:last-child { margin-top:3px; }
       .watch-button { max-width:100px; white-space:normal; text-align:center; padding:7px 8px; font-size:.52rem; }
       /* Dock placement; visual treatment lives in the final handheld section. */
       .mobile-nav {
@@ -856,15 +856,12 @@
     box-shadow:0 10px 24px rgba(0,4,15,.38);
   }
   .episode-info {
-    min-height:0;
-    padding:11px 12px;
     border-color:rgba(91,157,220,.26);
     border-radius: var(--radius-sharp);
     background:rgba(7,20,43,.72);
     box-shadow:0 8px 18px rgba(0,5,19,.24);
   }
-  .episode-info h1 { font-size:clamp(1.05rem,5vw,1.28rem); }
-  .episode-info p:last-child { max-width:42ch; font-size:.65rem; line-height:1.4; }
+  .episode-info p:last-child { max-width:42ch; }
   .watch-button {
     max-width:none;
     min-height:38px;
@@ -1247,7 +1244,6 @@ body { font-size:14px; line-height:1.55; }
     gap:14px;
   }
   .stage { gap:10px; }
-  .player { aspect-ratio:16/9; max-height:none; }
   .episode-info {
     order:0;
     grid-template-columns:minmax(0,1fr) auto;
@@ -1256,7 +1252,6 @@ body { font-size:14px; line-height:1.55; }
   }
   .episode-info .eyebrow { font-size:.69rem; letter-spacing:.09em; }
   .episode-info h1 { font-size:clamp(1.15rem,4.6vw,1.5rem); }
-  .episode-info p:last-child { line-height:1.5; }
   .watch-button { max-width:112px; padding:10px; font-size:.73rem; }
   .mobile-series-intro { margin-top:0; padding:14px; }
   .mobile-series-intro strong { font-size:1.05rem; }
